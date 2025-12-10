@@ -7,7 +7,7 @@
  */
 
 /*
- * Pin 2 of the TTGO T-Display serves as the datos line for the LED cadena.
+ * Pin 2 of the TTGO T-Display serves as the data line for the LED String.
  * Pin 35 is set up as the button pin in the platformio_overrides.ini archivo.
  * The button can be set up via the macros section in the web interfaz.
  * I use the button to cycle between presets.

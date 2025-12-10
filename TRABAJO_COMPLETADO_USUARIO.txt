@@ -2,7 +2,7 @@
 ║                    ✅ TRABAJO COMPLETADO - RESUMEN FINAL                      ║
 ╚════════════════════════════════════════════════════════════════════════════╝
 
-SOLICITUD ORIGINAL DEL USUARIO:
+request ORIGINAL DEL USUARIO:
 "en la docu no aparece como instalar paso a paso el wled en un esp8266"
 (en la documentación no aparece cómo instalar paso a paso WLED en ESP8266)
 
@@ -99,7 +99,7 @@ Documentos Traducidos:
 🎯 PUNTOS DE ENTRADA PARA USUARIOS:
 
 Para usuarios que necesitan instalar desde cero:
-  👉 INSTALACION_ESP8266_ES.md (nuevo - resuelve solicitud del usuario)
+  👉 INSTALACION_ESP8266_ES.md (nuevo - resuelve request del usuario)
 
 Para usuarios con binario pre-compilado:
   👉 GUIA_RAPIDA_ES.md
@@ -134,7 +134,7 @@ Para consultas rápidas:
 
 🎉 RESULTADO FINAL:
 
-La solicitud del usuario ha sido COMPLETADA.
+La request del usuario ha sido COMPLETADA.
 
 Los usuarios hispanohablantes ahora tienen:
   ✓ Guía paso a paso completa para instalar WLED en ESP8266

@@ -1,6 +1,6 @@
 #include "wled.h"
 
-/* This controlador reads quaternion datos from the MPU6060 and adds it to the JSON
+/* This controlador reads quaternion data from the MPU6060 and adds it to the JSON
    This example is adapted from:
    https://github.com/jrowberg/i2cdevlib/árbol/master/Arduino/MPU6050/examples/MPU6050_DMP6_ESPWiFi
 
@@ -13,7 +13,7 @@
   VCC     VU (5V USB)   Not available on all boards so use 3.3V if needed.
   GND     G             Ground
   SCL     D1 (GPIO05)   I2C clock
-  SDA     D2 (GPIO04)   I2C datos
+  SDA     D2 (GPIO04)   I2C data
   XDA     not connected
   XCL     not connected
   AD0     not connected
@@ -262,7 +262,7 @@ class MPU6050Driver : public Usermod {
         mpu.resetFIFO();
         DEBUG_PRINTLN(F("MPU6050: FIFO overflow!"));
 
-        // otherwise, verificar for datos ready
+        // otherwise, verificar for data ready
       } else if (fifoCount >= packetSize) {
         // limpiar local interrupción pending estado, if not polling
         mpuInterrupt = !irqBound;
@@ -368,10 +368,10 @@ class MPU6050Driver : public Usermod {
      * but also that if you want to escribir persistent values to a dynamic búfer, you'd need to allocate it here instead of in configuración.
      * If you don't know what that is, don't fret. It most likely doesn't affect your use case :)
      *
-     * Retorno verdadero in case the config values returned from Usermod Settings were complete, or falso if you'd like WLED to guardar your defaults to disk (so any missing values are editable in Usermod Settings)
+     * return true in case the config values returned from Usermod Settings were complete, or false if you'd like WLED to guardar your defaults to disk (so any missing values are editable in Usermod Settings)
      *
-     * getJsonValue() returns falso if the valor is missing, or copies the valor into the variable provided and returns verdadero if the valor is present
-     * The configComplete variable is verdadero only if the "exampleUsermod" object and all values are present.  If any values are missing, WLED will know to call addToConfig() to guardar them
+     * getJsonValue() returns false if the valor is missing, or copies the valor into the variable provided and returns true if the valor is present
+     * The configComplete variable is true only if the "exampleUsermod" object and all values are present.  If any values are missing, WLED will know to call addToConfig() to guardar them
      *
      * This función is guaranteed to be called on boot, but could also be called every time settings are updated
      */

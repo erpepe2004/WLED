@@ -47,7 +47,7 @@ class UMBattery
         virtual float mapVoltage(float v, float min, float max) = 0;
         // { 
         //     example implementación, linear mapping
-        //     retorno (v-min) * 100 / (max-min);
+        //     return (v-min) * 100 / (max-min);
         // };
 
         virtual void calculateAndSetLevel(float voltage) = 0;

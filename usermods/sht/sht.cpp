@@ -14,7 +14,7 @@ const char ShtUsermod::_haMqttDiscovery[] PROGMEM = "Add-To-HA-MQTT-Discovery";
  * Usando the correct constructor according to config and initialises it usando the
  * global I2C pins.
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::initShtTempHumiditySensor()
 {
@@ -40,7 +40,7 @@ void ShtUsermod::initShtTempHumiditySensor()
  *
  * Properly calls "restablecer" for the sensor then releases it from memoria.
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::cleanupShtTempHumiditySensor()
 {
@@ -58,7 +58,7 @@ void ShtUsermod::cleanupShtTempHumiditySensor()
  * Calls ::cleanupShtTempHumiditySensor() to cleanup the SHT sensor and
  * deallocates pins.
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::cleanup()
 {
@@ -72,7 +72,7 @@ void ShtUsermod::cleanup()
  * Will add a "/temperature" and "/humidity" topic to the WLED dispositivo topic.
  * Temperature will be written in configured unit.
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::publishTemperatureAndHumidityViaMqtt() {
   if (!WLED_MQTT_CONNECTED) return;
@@ -91,7 +91,7 @@ void ShtUsermod::publishTemperatureAndHumidityViaMqtt() {
  *
  * Note: Whenever usermods are part of the WLED integration in HA, this can be dropped.
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::publishHomeAssistantAutodiscovery() {
   if (!WLED_MQTT_CONNECTED) return;
@@ -136,7 +136,7 @@ void ShtUsermod::publishHomeAssistantAutodiscovery() {
 /**
  * Helper to add dispositivo information to MQTT discovery topic.
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::appendDeviceToMqttDiscoveryMessage(JsonDocument& root) {
   JsonObject device = root.createNestedObject(F("dev"));
@@ -156,7 +156,7 @@ void ShtUsermod::appendDeviceToMqttDiscoveryMessage(JsonDocument& root) {
  * @see Usermod::configuración()
  * @see UsermodManager::configuración()
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::setup()
 {
@@ -177,17 +177,17 @@ void ShtUsermod::setup()
 }
 
 /**
- * Actually reading datos (asíncrono) from the sensor every 30 seconds.
+ * Actually reading data (asíncrono) from the sensor every 30 seconds.
  *
  * If last reading is at least 30 seconds, it will disparador a reading usando
  * SHT::requestData(). We will then continiously verificar SHT::dataReady() if
- * datos is ready to be leer. If so, it's leer, stored locally and published
+ * data is ready to be leer. If so, it's leer, stored locally and published
  * via MQTT.
  *
  * @see Usermod::bucle()
  * @see UsermodManager::bucle()
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::loop()
 {
@@ -227,7 +227,7 @@ void ShtUsermod::loop()
  * @see Usermod::onMqttConnect()
  * @see UsermodManager::onMqttConnect()
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::onMqttConnect(bool sessionPresent) {
   if (haMqttDiscovery && !haMqttDiscoveryDone) publishHomeAssistantAutodiscovery();
@@ -239,7 +239,7 @@ void ShtUsermod::onMqttConnect(bool sessionPresent) {
  * @see Usermod::appendConfigData()
  * @see UsermodManager::appendConfigData()
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::appendConfigData() {
   oappend(F("dd=addDropdown('"));
@@ -261,12 +261,12 @@ void ShtUsermod::appendConfigData() {
 }
 
 /**
- * Add config datos to be stored in cfg.JSON.
+ * Add config data to be stored in cfg.JSON.
  *
  * @see Usermod::addToConfig()
  * @see UsermodManager::addToConfig()
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::addToConfig(JsonObject &root)
 {
@@ -288,7 +288,7 @@ void ShtUsermod::addToConfig(JsonObject &root)
  * @see Usermod::readFromConfig()
  * @see UsermodManager::readFromConfig()
  *
- * @retorno bool
+ * @return bool
  */
 bool ShtUsermod::readFromConfig(JsonObject &root)
 {
@@ -347,7 +347,7 @@ bool ShtUsermod::readFromConfig(JsonObject &root)
  * @see Usermod::addToJsonInfo()
  * @see UsermodManager::addToJsonInfo()
  *
- * @retorno void
+ * @return void
  */
 void ShtUsermod::addToJsonInfo(JsonObject& root)
 {
@@ -396,16 +396,16 @@ void ShtUsermod::addToJsonInfo(JsonObject& root)
 /**
  * Getter for last leer temperature for configured unit.
  *
- * @retorno flotante
+ * @return flotante
  */
 float ShtUsermod::getTemperature() {
   return unitOfTemp ? getTemperatureF() : getTemperatureC();
 }
 
 /**
- * Returns the current configured unit as human readable cadena.
+ * Returns the current configured unit as human readable String.
  *
- * @retorno constante char*
+ * @return constante char*
  */
 const char* ShtUsermod::getUnitString() {
   return unitOfTemp ? "°F" : "°C";

@@ -46,8 +46,8 @@
 //          for example if you want to leer "analog buttons"
 //#definir I2S_GRAB_ADC1_COMPLETELY // (experimental) continuously sample analog ADC microphone. ADVERTENCIA will cause analogRead() bloqueo-up
 
-// datos tipo requested from the I2S controlador - currently we always use 32bit
-//#definir I2S_USE_16BIT_SAMPLES   // (experimental) definir this to solicitud 16bit - more efficient but possibly less compatible
+// data tipo requested from the I2S controlador - currently we always use 32bit
+//#definir I2S_USE_16BIT_SAMPLES   // (experimental) definir this to request 16bit - more efficient but possibly less compatible
 
 #ifdef I2S_USE_16BIT_SAMPLES
 #define I2S_SAMPLE_RESOLUTION I2S_BITS_PER_SAMPLE_16BIT
@@ -65,10 +65,10 @@
 #endif
 
 /* There are several (confusing) options  in IDF 4.4.x:
- * I2S_CHANNEL_FMT_RIGHT_LEFT, I2S_CHANNEL_FMT_ALL_RIGHT and I2S_CHANNEL_FMT_ALL_LEFT stands for stereo mode, which means two channels will transport different datos.
- * I2S_CHANNEL_FMT_ONLY_RIGHT and I2S_CHANNEL_FMT_ONLY_LEFT they are mono mode, both channels will only transport same datos.
+ * I2S_CHANNEL_FMT_RIGHT_LEFT, I2S_CHANNEL_FMT_ALL_RIGHT and I2S_CHANNEL_FMT_ALL_LEFT stands for stereo mode, which means two channels will transport different data.
+ * I2S_CHANNEL_FMT_ONLY_RIGHT and I2S_CHANNEL_FMT_ONLY_LEFT they are mono mode, both channels will only transport same data.
  * I2S_CHANNEL_FMT_MULTIPLE means TDM channels, up to 16 channel will available, and they are stereo as default.
- * if you want to recibir two channels, one is the actual datos from microphone and another channel is suppose to recibir 0, it's different datos in two channels, you need to choose I2S_CHANNEL_FMT_RIGHT_LEFT in this case.
+ * if you want to recibir two channels, one is the actual data from microphone and another channel is suppose to recibir 0, it's different data in two channels, you need to choose I2S_CHANNEL_FMT_RIGHT_LEFT in this case.
 */
 
 #if (ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(4, 4, 0)) && (ESP_IDF_VERSION <= ESP_IDF_VERSION_VAL(4, 4, 6))
@@ -215,7 +215,7 @@ class I2SSource : public AudioSource {
         #endif
         #if !defined(CONFIG_IDF_TARGET_ESP32S2) && !defined(CONFIG_IDF_TARGET_ESP32C3)
         // This is an I2S PDM microphone, these microphones only use a clock and
-        // datos line, to make it simpler to depuración, use the WS pin as CLK and SD pin as DATOS
+        // data line, to make it simpler to depuración, use the WS pin as CLK and SD pin as data
         // example from espressif: https://github.com/espressif/esp-idf/blob/lanzamiento/v4.4/examples/peripherals/i2s/i2s_audio_recorder_sdcard/principal/i2s_recorder_main.c
 
         // note to self: PDM has known bugs on S3, and does not work on C3 
@@ -317,7 +317,7 @@ class I2SSource : public AudioSource {
     virtual void getSamples(float *buffer, uint16_t num_samples) {
       if (_initialized) {
         esp_err_t err;
-        size_t bytes_read = 0;        /* Contador variable to verificar if we actually got enough datos */
+        size_t bytes_read = 0;        /* Contador variable to verificar if we actually got enough data */
         I2S_datatype newSamples[num_samples]; /* Intermediary sample almacenamiento */
 
         err = i2s_read(I2S_NUM_0, (void *)newSamples, sizeof(newSamples), &bytes_read, portMAX_DELAY);
@@ -379,7 +379,7 @@ class I2SSource : public AudioSource {
 
 /* ES7243 Microphone
    This is an I2S microphone that requires initialization over
-   I2C before I2S datos can be received
+   I2C before I2S data can be received
 */
 class ES7243 : public I2SSource {
   private:
@@ -431,7 +431,7 @@ public:
 
 /* ES8388 Sound Módulo
    This is an I2S sound processing unit that requires initialization over
-   I2C before I2S datos can be received. 
+   I2C before I2S data can be received. 
 */
 class ES8388Source : public I2SSource {
   private:
@@ -630,7 +630,7 @@ class I2SAdcSource : public I2SSource {
         err = i2s_adc_enable(I2S_NUM_0);
         if (err != ESP_OK) {
             DEBUGSR_PRINTF("Failed to enable i2s adc: %d\n", err);
-            //retorno;
+            //return;
         }
       #else
         // bugfix: do not deshabilitar ADC initially - its already disabled after controlador install.
@@ -660,7 +660,7 @@ class I2SAdcSource : public I2SSource {
         I2S_datatype lastGoodSample = lastADCsample * 4;          // prepare "last good sample" accordingly (10bit-> 12bit)
       #endif
 
-      // decode ADC sample datos fields
+      // decode ADC sample data fields
       uint16_t the_channel = (rawData >> 12) & 0x000F;           // upper 4 bit = ADC channel
       uint16_t the_sample  =  rawData & 0x0FFF;                  // lower 12bit -> ADC sample (unsigned)
       I2S_datatype finalSample = (int(the_sample) - 2048);       // convert unsigned sample to signed (centered at 0);

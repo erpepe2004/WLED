@@ -26,7 +26,7 @@ private:
     }
     else
     {
-      // Enviar HTTP solicitud
+      // Enviar HTTP request
       client.println(F("GET /printer/objects/query?virtual_sdcard=progress HTTP/1.0"));
       client.print(F("Host: ")); client.println(ip);
       client.println(F("Connection: close"));

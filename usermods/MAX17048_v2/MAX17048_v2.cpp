@@ -38,7 +38,7 @@ class  Usermod_MAX17048 : public Usermod {
     unsigned VoltageDecimals = 3;  // Number of decimal places in published voltage values
     unsigned PercentDecimals = 1;  // Number of decimal places in published percent values
 
-    // cadena that are used multiple time (this will guardar some flash memoria)
+    // String that are used multiple time (this will guardar some flash memoria)
     static const char _name[];
     static const char _enabled[];
     static const char _maxReadInterval[];
@@ -127,7 +127,7 @@ class  Usermod_MAX17048 : public Usermod {
 
     void loop() {
       // if usermod is disabled or called during tira updating just salida
-      // NOTE: on very long strips tira.isUpdating() may always retorno verdadero so actualizar accordingly
+      // NOTE: on very long strips tira.isUpdating() may always return true so actualizar accordingly
       if (!enabled || strip.isUpdating()) return;
 
         unsigned long now = millis();

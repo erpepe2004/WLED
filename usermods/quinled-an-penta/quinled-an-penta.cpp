@@ -592,7 +592,7 @@ class QuinLEDAnPentaUsermod : public Usermod
     /**
      * readFromConfig() is called before configuración() to populate properties from values stored in cfg.JSON
      *
-     * The función should retorno verdadero if configuration was successfully loaded or falso if there was no configuration.
+     * The función should return true if configuration was successfully loaded or false if there was no configuration.
      */
     bool readFromConfig(JsonObject &root)
     {

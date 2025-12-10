@@ -250,7 +250,7 @@ WLED Documentación
 
 ---
 
-## 🔗 Índice de Todos los Documentos
+## 🔗 index de Todos los Documentos
 
 1. **README.md** (original en inglés) - Información general del proyecto
 2. **DOCUMENTACION_ES.md** - Documentación completa en español

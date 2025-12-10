@@ -45,7 +45,7 @@ static void PrintLnInBox(const char* txt, uint32_t color) {
 }
 
 /**
- * Anular the current colors for the selected segmento to the defaults for the
+ * override the current colors for the selected segmento to the defaults for the
  * selected die efecto.
  */
 void SetDefaultColors(uint8_t mode) {

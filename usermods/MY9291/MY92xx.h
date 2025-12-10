@@ -171,14 +171,14 @@ void my92xx::_set_cmd(my92xx_cmd_t command) {
     // TStop > 12us.
     os_delay_us(12);
 
-    // Enviar 12 DI pulse, after 6 pulse's falling edge store duty datos, and 12
+    // Enviar 12 DI pulse, after 6 pulse's falling edge store duty data, and 12
     // pulse's rising edge convertir to command mode.
     _di_pulse(12);
 
-    // Retraso >12us, begin enviar CMD datos
+    // Retraso >12us, begin enviar CMD data
     os_delay_us(12);
 
-    // Enviar CMD datos
+    // Enviar CMD data
     unsigned char command_data = *(unsigned char*)(&command);
     for (unsigned char i = 0; i < _chips; i++) {
         _write(command_data, 8);
@@ -187,7 +187,7 @@ void my92xx::_set_cmd(my92xx_cmd_t command) {
     // TStart > 12us. Retraso 12 us.
     os_delay_us(12);
 
-    // Enviar 16 DI pulse，at 14 pulse's falling edge store CMD datos, and
+    // Enviar 16 DI pulse，at 14 pulse's falling edge store CMD data, and
     // at 16 pulse's falling edge convertir to duty mode.
     _di_pulse(16);
 
@@ -232,7 +232,7 @@ void my92xx::_send() {
     // TStop > 12us.
     os_delay_us(12);
 
-    // Enviar color datos
+    // Enviar color data
     for (unsigned char channel = 0; channel < _channels; channel++) {
         _write(_state ? _value[channel] : 0, bit_length);
     }
@@ -240,7 +240,7 @@ void my92xx::_send() {
     // TStart > 12us. Ready for enviar DI pulse.
     os_delay_us(12);
 
-    // Enviar 8 DI pulse. After 8 pulse falling edge, store old datos.
+    // Enviar 8 DI pulse. After 8 pulse falling edge, store old data.
     _di_pulse(8);
 
     // TStop > 12us.

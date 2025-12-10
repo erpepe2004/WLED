@@ -1,6 +1,6 @@
 #pragma once
 
-/* Este usermod usa datos del giroscopio para proporcionar un efecto de "surge" basado en movimiento
+/* Este usermod usa data del giroscopio para proporcionar un efecto de "surge" basado en movimiento
 
 Requiere lib_deps = bolderflight/Bolder Flight Systems Eigen@^3.0.0
 
@@ -137,10 +137,10 @@ class GyroSurge : public Usermod {
      * `readFromConfig()` se llama ANTES de `configuración()`. Esto permite usar valores persistentes en `configuración()` (p. ej. asignación de pines),
      * pero si necesitas escribir valores persistentes en un búfer dinámico deberás asignarlo aquí en lugar de en `configuración()`.
      *
-     * Devuelve `verdadero` si los valores de configuración estaban completos, o `falso` si quieres que WLED guarde los valores por defecto en disco.
+     * Devuelve `true` si los valores de configuración estaban completos, o `false` si quieres que WLED guarde los valores por defecto en disco.
      *
-     * `getJsonValue()` devuelve falso si falta el valor, o copia el valor en la variable proporcionada y devuelve verdadero si está presente.
-     * `configComplete` será verdadero sólo si el objeto del usermod y todos sus valores están presentes. Si faltan valores, WLED llamará a `addToConfig()` para guardarlos.
+     * `getJsonValue()` devuelve false si falta el valor, o copia el valor en la variable proporcionada y devuelve true si está presente.
+     * `configComplete` será true sólo si el objeto del usermod y todos sus valores están presentes. Si faltan valores, WLED llamará a `addToConfig()` para guardarlos.
      *
      * Esta función se garantiza que se llame en el arranque, pero también puede ser llamada cada vez que se actualizan los ajustes.
      */
@@ -160,7 +160,7 @@ class GyroSurge : public Usermod {
     }
 
     void loop() {
-      // get IMU datos
+      // get IMU data
       um_data_t *um_data;
       if (!UsermodManager::getUMData(&um_data, USERMOD_ID_IMU)) {
         // Apply max
@@ -171,8 +171,8 @@ class GyroSurge : public Usermod {
 
       if (sample_count != last_sample) {        
         last_sample = sample_count;
-        // Calculate based on new datos
-        // We use the raw gyro datos (angular rate)        
+        // Calculate based on new data
+        // We use the raw gyro data (angular rate)        
         auto gyros = (int16_t*)um_data->u_data[4];  // 16384 == 2000 deg/s
 
         // Compute the overall rotation rate

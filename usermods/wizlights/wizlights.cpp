@@ -73,7 +73,7 @@ class WizLightsUsermod : public Usermod {
       UDP.endPacket();
     }
 
-    // Anular definition so it compiles
+    // override definition so it compiles
     void setup() {
       
     }

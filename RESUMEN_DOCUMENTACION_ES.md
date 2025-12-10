@@ -82,7 +82,7 @@ Cubre:
 **Navegación Central de Documentación**
 
 Cubre:
-- ✅ Índice de todos los documentos
+- ✅ index de todos los documentos
 - ✅ Guía de lectura según caso de uso
 - ✅ Búsqueda rápida por tema
 - ✅ Mapa visual de contenidos
@@ -220,7 +220,7 @@ Actualización:                     Diciembre 2025
 - Cubre 100% de funcionalidades de WLED
 
 ### 🎯 Estructura Clara
-- Índice central para navegación
+- index central para navegación
 - Múltiples puntos de entrada (por rol/experiencia)
 - Tabla de contenidos en cada documento
 - Referencias cruzadas entre documentos
@@ -252,7 +252,7 @@ Actualización:                     Diciembre 2025
 - [Documentación Completa](DOCUMENTACION_ES.md) - Referencia exhaustiva
 - [API REST](API_REFERENCIA_ES.md) - Control programático
 - [Compilación Avanzada](COMPILACION_AVANZADA_ES.md) - Desarrollo
-- [Índice General](INDICE_DOCUMENTACION_ES.md) - Navegación
+- [index General](INDICE_DOCUMENTACION_ES.md) - Navegación
 - [Referencia Rápida](REFERENCIA_RAPIDA_ES.md) - Cheatsheet
 
 ### Recursos Oficiales

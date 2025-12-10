@@ -328,7 +328,7 @@ Compilación:     platformio.ini
 - ⚡ **Inicio rápido**: `GUIA_RAPIDA_ES.md`
 - 🔌 **API REST**: `API_REFERENCIA_ES.md`
 - 🛠️ **Compilación avanzada**: `COMPILACION_AVANZADA_ES.md`
-- 📚 **Índice general**: `INDICE_DOCUMENTACION_ES.md`
+- 📚 **index general**: `INDICE_DOCUMENTACION_ES.md`
 - 💬 **Discord**: https://discord.gg/QAh7wJHrRM
 - 🌐 **Wiki oficial**: https://kno.wled.ge
 

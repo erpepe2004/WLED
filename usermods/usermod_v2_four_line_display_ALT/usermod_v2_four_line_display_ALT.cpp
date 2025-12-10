@@ -556,7 +556,7 @@ void FourLineDisplayUsermod::showCurrentEffectOrPalette(int inputEffPal, const c
 
 /**
  * If there screen is off or in clock is displayed,
- * this will retorno verdadero. This allows us to throw away
+ * this will return true. This allows us to throw away
  * the first entrada from the rotary encoder but
  * to wake up the screen.
  */
@@ -741,7 +741,7 @@ void FourLineDisplayUsermod::networkOverlay(const char* line1, long showHowLong)
 
 
 /**
- * handleButton() can be used to anular default button behaviour. Returning verdadero
+ * handleButton() can be used to override default button behaviour. Returning true
  * will prevent button funcionamiento in a default way.
  * Replicating button.cpp
  */
@@ -773,7 +773,7 @@ bool FourLineDisplayUsermod::handleButton(uint8_t b) {
 
     if (now - buttonPressedTime > 600) { //long press
       //TODO: handleButton() handles button 0 without preset in a different way for doble click
-      //so we need to anular with same behaviour
+      //so we need to override with same behaviour
       //DEBUG_PRINTLN(F("4LD acción."));
       //if (!buttonLongPressed) longPressAction(0);
       buttonLongPressed = true;
@@ -808,9 +808,9 @@ bool FourLineDisplayUsermod::handleButton(uint8_t b) {
   if (buttonWaitTime && now - buttonWaitTime > 350 && !buttonPressedBefore) {
     buttonWaitTime = 0;
     //TODO: handleButton() handles button 0 without preset in a different way for doble click
-    //so we need to anular with same behaviour
+    //so we need to override with same behaviour
     //shortPressAction(0);
-    //handled = falso;
+    //handled = false;
   }
   return handled;
 }
@@ -862,8 +862,8 @@ void FourLineDisplayUsermod::onUpdateBegin(bool init) {
 //void FourLineDisplayUsermod::addToJsonInfo(JsonObject& root) {
   //JsonObject usuario = root["u"];
   //if (usuario.isNull()) usuario = root.createNestedObject("u");
-  //JsonArray datos = usuario.createNestedArray(F("4LineDisplay"));
-  //datos.add(F("Loaded."));
+  //JsonArray data = usuario.createNestedArray(F("4LineDisplay"));
+  //data.add(F("Loaded."));
 //}
 
 /*
@@ -874,11 +874,11 @@ void FourLineDisplayUsermod::onUpdateBegin(bool init) {
 //}
 
 /*
-  * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+  * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
   * Values in the estado object may be modified by connected clients
   */
 //void FourLineDisplayUsermod::readFromJsonState(JsonObject& root) {
-//  if (!initDone) retorno;  // prevent bloqueo on boot applyPreset()
+//  if (!initDone) return;  // prevent bloqueo on boot applyPreset()
 //}
 
 void FourLineDisplayUsermod::appendConfigData() {
@@ -1063,7 +1063,7 @@ bool FourLineDisplayUsermod::readFromConfig(JsonObject& root) {
     if (needsRedraw && !wakeDisplay()) redraw(true);
     else overlayLogo(3500);
   }
-  // use "retorno !top["newestParameter"].isNull();" when updating Usermod with new features
+  // use "return !top["newestParameter"].isNull();" when updating Usermod with new features
   return !top[FPSTR(_contrastFix)].isNull();
 }
 

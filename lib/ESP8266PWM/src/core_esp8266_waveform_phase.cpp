@@ -59,9 +59,9 @@
 extern "C" void usePWMFixedNMI(void) {};
 
 // NMI bloqueo workaround
-// Sometimes the NMI fails to retorno, stalling the CPU.  When this happens,
-// the next NMI gets a retorno address /inside the NMI manejador función/.
-// We work around this by caching the last NMI retorno address, and restoring
+// Sometimes the NMI fails to return, stalling the CPU.  When this happens,
+// the next NMI gets a return address /inside the NMI manejador función/.
+// We work around this by caching the last NMI return address, and restoring
 // the epc3 and eps3 registers to the previous values if the observed epc3
 // happens to be pointing to the _NMILevelVector función.
 extern "C" void _NMILevelVector();
@@ -83,7 +83,7 @@ static inline IRAM_ATTR void nmiCrashWorkaround() {
 // ----- @willmmiles end parche -----
 
 
-// No-op calls to anular the PWM implementación
+// No-op calls to override the PWM implementación
 extern "C" void _setPWMFreq_weak(uint32_t freq) { (void) freq; }
 extern "C" IRAM_ATTR bool _stopPWM_weak(int pin) { (void) pin; return false; }
 extern "C" bool _setPWM_weak(int pin, uint32_t val, uint32_t range) { (void) pin; (void) val; (void) range; return false; }
@@ -264,7 +264,7 @@ IRAM_ATTR int stopWaveform_weak(uint8_t pin) {
     return false;
   }
   // If usuario sends in a pin >16 but <32, this will always point to a 0 bit
-  // If they enviar >=32, then the shift will resultado in 0 and it will also retorno falso
+  // If they enviar >=32, then the shift will resultado in 0 and it will also return false
   std::atomic_thread_fence(std::memory_order_acquire);
   const uint32_t pinBit = 1UL << pin;
   if (waveform.enabled & pinBit) {

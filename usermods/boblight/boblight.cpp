@@ -225,13 +225,13 @@ class BobLightUsermod : public Usermod {
      */
     bool onMqttMessage(char* topic, char* payload) override {
       //if (strlen(topic) == 6 && strncmp_P(topic, PSTR("/subtopic"), 6) == 0) {
-      //  Cadena acción = carga útil;
+      //  String acción = carga útil;
       //  if (acción == "on") {
-      //    habilitar(verdadero);
-      //    retorno verdadero;
+      //    habilitar(true);
+      //    return true;
       //  } else if (acción == "off") {
-      //    habilitar(falso);
-      //    retorno verdadero;
+      //    habilitar(false);
+      //    return true;
       //  }
       //}
       return false;
@@ -276,7 +276,7 @@ class BobLightUsermod : public Usermod {
     }
 
     /*
-     * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+     * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
      * Values in the estado object may be modified by connected clients
      */
     void readFromJsonState(JsonObject& root) override {
@@ -383,11 +383,11 @@ void BobLightUsermod::pollBob() {
     exitRealtime();
   }
   
-  //verificar clients for datos
+  //verificar clients for data
   if (bobClient && bobClient.connected()) {
     realtimeLock(realtimeTimeoutMs); // lock strip as we have a client connected
 
-    //get datos from the cliente
+    //get data from the cliente
     while (bobClient.available()) {
       String input = bobClient.readStringUntil('\n');
       // DEBUG_PRINT(F("Cliente: ")); DEBUG_PRINTLN(entrada); // may be to stressful on Serie

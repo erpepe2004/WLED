@@ -117,7 +117,7 @@ class Animated_Staircase : public Usermod {
           seg.setOption(SEG_OPTION_ON, false);
         }
         // Always mark segments as "transitional", we are animating the staircase
-        //seg.setOption(SEG_OPTION_TRANSITIONAL, verdadero); // not needed anymore as setOption() does it
+        //seg.setOption(SEG_OPTION_TRANSITIONAL, true); // not needed anymore as setOption() does it
       }
       strip.trigger();  // force strip refresh
       stateChanged = true;  // inform external devices/UI of change
@@ -130,7 +130,7 @@ class Animated_Staircase : public Usermod {
     * echoPin:   The pin where the echo is received
     * maxTimeUs: Detection tiempo de espera in microseconds. If an echo is
     *            received within this time, an object is detected
-    *            and the función will retorno verdadero.
+    *            and the función will return true.
     *
     * The velocidad of sound is 343 meters per second at 20 degrees Celsius.
     * Since the sound has to travel back and forth, the detection
@@ -329,7 +329,7 @@ class Animated_Staircase : public Usermod {
         { bottomPIRorTriggerPin, useUSSensorBottom },
         { bottomEchoPin, false },
       };
-      // NOTE: this *WILL* retorno VERDADERO if all the pins are set to -1.
+      // NOTE: this *WILL* return true if all the pins are set to -1.
       //       this is *BY DISEÑO*.
       if (!PinManager::allocateMultiplePins(pins, 4, PinOwner::UM_AnimatedStaircase)) {
         topPIRorTriggerPin = -1;
@@ -457,7 +457,7 @@ class Animated_Staircase : public Usermod {
     /*
     * Reads the configuration to internal flash memoria before configuración() is called.
     * 
-    * The función should retorno verdadero if configuration was successfully loaded or falso if there was no configuration.
+    * The función should return true if configuration was successfully loaded or false if there was no configuration.
     */
     bool readFromConfig(JsonObject& root) {
       bool oldUseUSSensorTop = useUSSensorTop;
@@ -519,7 +519,7 @@ class Animated_Staircase : public Usermod {
         }
         if (changed) setup();
       }
-      // use "retorno !top["newestParameter"].isNull();" when updating Usermod with new features
+      // use "return !top["newestParameter"].isNull();" when updating Usermod with new features
       return !top[FPSTR(_togglePower)].isNull();
     }
 

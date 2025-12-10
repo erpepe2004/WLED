@@ -57,7 +57,7 @@ public:
 
   void loop() override {
     // if usermod is disabled or called during tira updating just salida
-    // NOTE: on very long strips tira.isUpdating() may always retorno verdadero so actualizar accordingly
+    // NOTE: on very long strips tira.isUpdating() may always return true so actualizar accordingly
     if (!enabled || strip.isUpdating()) return;
 
     // do your magic here

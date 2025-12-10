@@ -50,7 +50,7 @@ class UsermodCronixie : public Usermod {
     void setCronixie()
     {
       /*
-      * digit purpose índice
+      * digit purpose index
       * 0-9 | 0-9 (incl. random)
       * 10 | blank
       * 11 | blank, bg off

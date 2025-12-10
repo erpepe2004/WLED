@@ -29,7 +29,7 @@
 //   NOTE: Pin defaults below are for QuinLed Dig-Uno's Q2 on the board
 // Conectar pin 4 (on the right) of the sensor to GROUND
 //   NOTE: If usando a bare sensor (AM*), Conectar a 10K resistor from pin 2
-//   (datos) to pin 1 (power) of the sensor. DHT* boards have the pullup already
+//   (data) to pin 1 (power) of the sensor. DHT* boards have the pullup already
 
 #ifdef USERMOD_DHT_PIN
 #define DHTPIN USERMOD_DHT_PIN

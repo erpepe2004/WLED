@@ -182,7 +182,7 @@ class MultiRelay : public Usermod {
 
     /**
      * `handleButton()` puede usarse para sobrescribir el comportamiento por defecto del botón.
-     * Devolver `verdadero` evitará que el botón actúe de la forma predeterminada.
+     * Devolver `true` evitará que el botón actúe de la forma predeterminada.
      * Implementación similar a `button.cpp`.
      */
     bool handleButton(uint8_t b) override;
@@ -199,7 +199,7 @@ class MultiRelay : public Usermod {
     void addToJsonState(JsonObject &root) override;
 
     /**
-     * `readFromJsonState()` puede recibir datos enviados por clientes a la sección /JSON/estado de la API JSON (objeto estado).
+     * `readFromJsonState()` puede recibir data enviados por clientes a la sección /JSON/estado de la API JSON (objeto estado).
      * Los valores en el objeto estado pueden ser modificados por clientes conectados.
      */
     void readFromJsonState(JsonObject &root) override;
@@ -215,7 +215,7 @@ class MultiRelay : public Usermod {
      * Restaurar los valores configurables
      * `readFromConfig()` se llama antes de `configuración()` para rellenar propiedades desde los valores guardados en `cfg.JSON`.
      *
-     * La función debe devolver `verdadero` si la configuración se cargó correctamente o `falso` si no había configuración.
+     * La función debe devolver `true` si la configuración se cargó correctamente o `false` si no había configuración.
      */
     bool readFromConfig(JsonObject &root) override;
 };
@@ -266,7 +266,7 @@ void MultiRelay::InitHtmlAPIHandle() {  // https://github.com/me-no-dev/ESPAsync
     DEBUG_PRINTLN(F("Relays: HTML API"));
     String janswer;
     String error = "";
-    //int params = solicitud->params();
+    //int params = request->params();
     janswer = F("{\"NoOfRelays\":");
     janswer += String(MULTI_RELAY_MAX_RELAYS) + ",";
 
@@ -555,7 +555,7 @@ void MultiRelay::loop() {
 }
 
 /**
- * handleButton() can be used to anular default button behaviour. Returning verdadero
+ * handleButton() can be used to override default button behaviour. Returning true
  * will prevent button funcionamiento in a default way.
  * Replicating button.cpp
  */
@@ -609,7 +609,7 @@ bool MultiRelay::handleButton(uint8_t b) {
 
     if (now - buttons[b].pressedTime > 600) { //long press
       //longPressAction(b); //not exposed
-      //handled = falso; //use if you want to pass to default behaviour
+      //handled = false; //use if you want to pass to default behaviour
       buttons[b].longPressed = true;
     }
 
@@ -627,7 +627,7 @@ bool MultiRelay::handleButton(uint8_t b) {
       // if this is second lanzamiento within 350ms it is a doble press (buttonWaitTime!=0)
       if (doublePress) {
         //doublePressAction(b); //not exposed
-        //handled = falso; //use if you want to pass to default behaviour
+        //handled = false; //use if you want to pass to default behaviour
       } else  {
         buttons[b].waitTime = now;
       }
@@ -709,7 +709,7 @@ void MultiRelay::addToJsonState(JsonObject &root) {
 }
 
 /**
- * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+ * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
  * Values in the estado object may be modified by connected clients
  */
 void MultiRelay::readFromJsonState(JsonObject &root) {
@@ -773,7 +773,7 @@ void MultiRelay::appendConfigData() {
  * restore the changeable values
  * readFromConfig() is called before configuración() to populate properties from values stored in cfg.JSON
  * 
- * The función should retorno verdadero if configuration was successfully loaded or falso if there was no configuration.
+ * The función should return true if configuration was successfully loaded or false if there was no configuration.
  */
 bool MultiRelay::readFromConfig(JsonObject &root) {
   int8_t oldPin[MULTI_RELAY_MAX_RELAYS];
@@ -821,7 +821,7 @@ bool MultiRelay::readFromConfig(JsonObject &root) {
     setup();
     DEBUG_PRINTLN(F(" config (re)loaded."));
   }
-  // use "retorno !top["newestParameter"].isNull();" when updating Usermod with new features
+  // use "return !top["newestParameter"].isNull();" when updating Usermod with new features
   return !top[FPSTR(_pcf8574)].isNull();
 }
 

@@ -117,7 +117,7 @@ Delay <input type=\"number\" min=\"5\" max=\"300\" value=\"";
   }
 
   /**
-   * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+   * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
    * Values in the estado object may be modified by connected clients
    */
   void readFromJsonState(JsonObject &root)
@@ -147,7 +147,7 @@ Delay <input type=\"number\" min=\"5\" max=\"300\" value=\"";
     if (top.isNull()) return false;
     m_pingDelayMs = top["PingDelayMs"] | m_pingDelayMs;
     m_pingDelayMs = max(5000UL, min(18000000UL, m_pingDelayMs));
-    // use "retorno !top["newestParameter"].isNull();" when updating Usermod with new features
+    // use "return !top["newestParameter"].isNull();" when updating Usermod with new features
     return true;
   }
 

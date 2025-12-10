@@ -328,7 +328,7 @@ class PixelsDiceTrayUsermod : public Usermod {
   }
 
   /*
-   * readFromJsonState() can be used to recibir datos clients enviar to the
+   * readFromJsonState() can be used to recibir data clients enviar to the
    * /JSON/estado part of the JSON API (estado object). Values in the estado object
    * may be modified by connected clients
    */
@@ -378,11 +378,11 @@ class PixelsDiceTrayUsermod : public Usermod {
     // <entrada tipo="hidden" name="DiceTray:die_0" valor="texto">
     // <entrada tipo="texto" name="DiceTray:die_0" valor="*" style="width:250px;" oninput="verificar(this,'DiceTray')">
     // ```
-    // addInfo let's you add datos before or after the two entrada fields.
+    // addInfo let's you add data before or after the two entrada fields.
     //
     // To work around this, add información texto to the end of the preceding item.
     //
-    // See addInfo in wled00/datos/settings_um.htm for details on what this función does.
+    // See addInfo in wled00/data/settings_um.htm for details on what this función does.
     oappend(F(
         "addInfo('DiceTray:ble_scan_duration',1,'<br><br><i>Set to \"*\" to "
         "connect to any die.<br>Leave Blank to disable.</i><br><i "
@@ -446,13 +446,13 @@ class PixelsDiceTrayUsermod : public Usermod {
     menu_ctrl.Redraw();
 #endif
 
-    // use "retorno !top["newestParameter"].isNull();" when updating Usermod with
+    // use "return !top["newestParameter"].isNull();" when updating Usermod with
     // new features
     return !top["DiceTray"].isNull();
   }
 
   /**
-   * handleButton() can be used to anular default button behaviour. Returning verdadero
+   * handleButton() can be used to override default button behaviour. Returning true
    * will prevent button funcionamiento in a default way.
    * Replicating button.cpp
    */

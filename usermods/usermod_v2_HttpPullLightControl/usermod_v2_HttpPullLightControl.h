@@ -6,7 +6,7 @@
  * Author: Roel Broersma
  * Website: https://www.roelbroersma.nl
  * Github author: github.com/roelbroersma
- * Description: This usermod for WLED will solicitud a given URL to know which effects
+ * Description: This usermod for WLED will request a given URL to know which effects
  *              or individual lights it should turn on/off. So you can remote control a WLED
  *              instalación without having acceso to it (if no puerto forward, vpn or public IP is available).
  * Use Caso: Crear a WLED 'Ring of Thought' christmas card. Sent a LED ring with 60 LEDs to 60 friends.

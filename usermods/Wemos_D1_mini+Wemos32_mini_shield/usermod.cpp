@@ -112,7 +112,7 @@ void userLoop() {
         #else
         int16_t board_temperature = (Dallas(DALLAS_PIN,0)* 1.8 + 32);
         #endif
-//Crear carácter cadena populated with usuario defined dispositivo topic from the UI, and the leer temperature. Then publish to MQTT servidor.
+//Crear carácter String populated with usuario defined dispositivo topic from the UI, and the leer temperature. Then publish to MQTT servidor.
         String t = String(mqttDeviceTopic);
         t += "/temperature";
         mqtt->publish(t.c_str(), 0, true, String(board_temperature).c_str());

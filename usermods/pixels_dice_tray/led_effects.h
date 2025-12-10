@@ -23,7 +23,7 @@ static constexpr uint8_t USER_ANY_DIE = 0xFF;
  */
 
 /**
- * Retorno the last die roll based on the custom1 efecto setting.
+ * return the last die roll based on the custom1 efecto setting.
  */
 static pixels::RollEvent GetLastRollForSegment() {
   // If an invalid die is selected, fallback to usando the most recent roll from

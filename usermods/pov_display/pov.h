@@ -17,7 +17,7 @@ class POV {
         bool loadImage(const char * filename);
 
         /* Show next line of active image
-           Retunrs the índice of next line to be shown (not yet shown!)
+           Retunrs the index of next line to be shown (not yet shown!)
            If it retunrs 0, it means we have completed showing the image and
             next call will iniciar again
         */

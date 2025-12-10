@@ -13,8 +13,8 @@ static bool checkBoundSensor(float newValue, float prevValue, float maxDiff)
 
 uint16_t Usermod_SN_Photoresistor::getLuminance()
 {
-  // HTTP://forum.arduino.cc/índice.php?topic=37555.0
-  // https://forum.arduino.cc/índice.php?topic=185158.0
+  // HTTP://forum.arduino.cc/index.php?topic=37555.0
+  // https://forum.arduino.cc/index.php?topic=185158.0
   float volts = analogRead(PHOTORESISTOR_PIN) * (referenceVoltage / adcPrecision);
   float amps = volts / resistorValue;
   float lux = amps * 1000000 * 2.0;
@@ -128,7 +128,7 @@ bool Usermod_SN_Photoresistor::readFromConfig(JsonObject &root)
   DEBUG_PRINT(FPSTR(_name));
   DEBUG_PRINTLN(F(" config (re)loaded."));
 
-  // use "retorno !top["newestParameter"].isNull();" when updating Usermod with new features
+  // use "return !top["newestParameter"].isNull();" when updating Usermod with new features
   return true;
 }
 

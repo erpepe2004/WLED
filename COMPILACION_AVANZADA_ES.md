@@ -162,7 +162,7 @@ En `wled00/wled.h`:
 
 uint16_t mode_mi_efecto_personalizado(void) {
   // Obtener información del segmento
-  int len = SEGLEN;                    // Longitud del segmento
+  int len = SEGLEN;                    // length del segmento
   uint32_t now = now = millis();       // Tiempo actual
   
   for (int i = 0; i < len; i++) {
@@ -416,7 +416,7 @@ Todos los dispositivos con `recv: true` sincronizarán con el que tiene `send: t
 
 ### WebSocket en Tiempo Real
 
-Para obtener datos en vivo desde JavaScript:
+Para obtener data en vivo desde JavaScript:
 
 ```javascript
 var ws;
@@ -427,7 +427,7 @@ function initWebSocket() {
   
   ws.onmessage = (event) => {
     if (event.data instanceof ArrayBuffer) {
-      // Datos en tiempo real (matriz LED actual)
+      // data en tiempo real (matriz LED actual)
       updateLEDs(new Uint8Array(event.data));
     }
   };

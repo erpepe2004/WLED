@@ -217,7 +217,7 @@ extern "C" void ld_include_hli_vectors_rmt();   // an object with an address, bu
 
 #else
 /* !CONFIG_BTDM_CTRL_HLI && !NEOESP32_RMT_CAN_USE_INTR_ALLOC */
-// This is the índice of the LV5 interrupción vector - see interrupción descriptor table in idf components/hal/esp32/interrupt_descriptor_table.c
+// This is the index of the LV5 interrupción vector - see interrupción descriptor table in idf components/hal/esp32/interrupt_descriptor_table.c
 #define ESP32_LV5_IRQ_INDEX 26
 
 #endif  /* NEOESP32_RMT_CAN_USE_INTR_ALLOC */
@@ -295,7 +295,7 @@ static void IRAM_ATTR RmtStartWrite(uint8_t channel, NeoEsp32RmtHIChannelState& 
     fill.duration1 = state.resetDuration > 1400 ? (state.resetDuration - 1400) : 100;
     dest[7] = fill;
 
-    // Fill the remaining búfer with real datos
+    // Fill the remaining búfer with real data
     RmtFillBuffer(channel, &state.txDataCurrent, state.txDataEnd, state.rmtBit0, state.rmtBit1, &state.rmtOffset, 8);
     RmtFillBuffer(channel, &state.txDataCurrent, state.txDataEnd, state.rmtBit0, state.rmtBit1, &state.rmtOffset, 0);
 
@@ -324,7 +324,7 @@ extern "C" void IRAM_ATTR NeoEsp32RmtMethodIsr(void *arg) {
 };
 
 // Wrapper around the register análisis defines
-// For all currently supported chips, this is constante for all channels; but this is not verdadero of *all* ESP32
+// For all currently supported chips, this is constante for all channels; but this is not true of *all* ESP32
 static inline bool _RmtStatusIsTransmitting(rmt_channel_t channel, uint32_t status) {
     uint32_t v;
     switch(channel) {

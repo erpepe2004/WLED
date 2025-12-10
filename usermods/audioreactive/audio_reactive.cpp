@@ -126,7 +126,7 @@ static uint8_t FFTScalingMode = 3;            // 0 none; 1 optimized logarithmic
 
 // 
 // AGC presets
-//  Note: in C++, "constante" implies "estático" - no need to explicitly declare everything as "estático constante"
+//  Note: in C++, "constante" implies "estático" - no need to explicitly declare everything as "static const"
 // 
 #define AGC_NUM_PRESETS 3 // AGC presets:          normal,   vivid,    lazy
 const double agcSampleDecay[AGC_NUM_PRESETS]  = { 0.9994f, 0.9985f, 0.9997f}; // decay factor for sampleMax, in case the current sample is below sampleMax
@@ -292,7 +292,7 @@ void FFTcode(void * parameter)
       // run FFT (takes 3-5ms on ESP32, ~12ms on ESP32-S2)
       FFT.dcRemoval();                                            // remove DC offset
       FFT.windowing( FFTWindow::Flat_top, FFTDirection::Forward); // Weigh data using "Flat Top" function - better amplitude accuracy
-      //FFT.windowing(FFTWindow::Blackman_Harris, FFTDirection::Forward);  // Weigh datos usando "Blackman- Harris" window - sharp peaks due to excellent sideband rejection
+      //FFT.windowing(FFTWindow::Blackman_Harris, FFTDirection::Forward);  // Weigh data usando "Blackman- Harris" window - sharp peaks due to excellent sideband rejection
       FFT.compute( FFTDirection::Forward );                       // Compute FFT
       FFT.complexToMagnitude();                                   // Compute magnitudes
       vReal[0] = 0;   // The remaining DC offset on the signal produces a strong spike on position 0 that should be eliminated to avoid issues.
@@ -722,13 +722,13 @@ class AudioReactive : public Usermod {
 
       // OPTIONS are in the following formato: Description \n Option
       //
-      // Set verdadero if wanting to see all the bands in their own vertical space on the Serie Plotter, falso if wanting to see values in Serie Monitor
+      // Set true if wanting to see all the bands in their own vertical space on the Serie Plotter, false if wanting to see values in Serie Monitor
       const bool mapValuesToPlotterSpace = false;
-      // Set verdadero to apply an auto-gain like setting to to the datos (this hasn't been tested recently)
+      // Set true to apply an auto-gain like setting to to the data (this hasn't been tested recently)
       const bool scaleValuesFromCurrentMaxVal = false;
-      // prints the max valor seen in the current datos
+      // prints the max valor seen in the current data
       const bool printMaxVal = false;
-      // prints the min valor seen in the current datos
+      // prints the min valor seen in the current data
       const bool printMinVal = false;
       // if !scaleValuesFromCurrentMaxVal, we escala values from [0..defaultScalingFromHighValue] to [0..scalingToHighValue], lower this if you want to see smaller values easier
       const int defaultScalingFromHighValue = 256;
@@ -1043,8 +1043,8 @@ class AudioReactive : public Usermod {
       sampleAgc    = volumeSmth;
       multAgc      = 1.0f;   
 #endif
-      // Only change samplePeak IF it's currently falso.
-      // If it's verdadero already, then the animación still needs to respond.
+      // Only change samplePeak IF it's currently false.
+      // If it's true already, then the animación still needs to respond.
       autoResetPeak();
       if (!samplePeak) {
             samplePeak = receivedPacket.samplePeak >0 ? true:false;
@@ -1071,8 +1071,8 @@ class AudioReactive : public Usermod {
       rawSampleAgc = volumeRaw;
       multAgc      = 1.0f;
 #endif 
-      // Only change samplePeak IF it's currently falso.
-      // If it's verdadero already, then the animación still needs to respond.
+      // Only change samplePeak IF it's currently false.
+      // If it's true already, then the animación still needs to respond.
       autoResetPeak();
       if (!samplePeak) {
             samplePeak = receivedPacket->samplePeak >0 ? true:false;
@@ -1135,8 +1135,8 @@ class AudioReactive : public Usermod {
     {
       disableSoundProcessing = true; // just to be sure
       if (!initDone) {
-        // usermod exchangeable datos
-        // we will assign all usermod exportable datos here as pointers to original variables or arrays and allocate memoria for pointers
+        // usermod exchangeable data
+        // we will assign all usermod exportable data here as pointers to original variables or arrays and allocate memoria for pointers
         um_data = new um_data_t;
         um_data->u_size = 8;
         um_data->u_type = new um_types_t[um_data->u_size];
@@ -1167,14 +1167,14 @@ class AudioReactive : public Usermod {
       #if !defined(CONFIG_IDF_TARGET_ESP32C3)
         retraso(100);
         periph_module_reset(PERIPH_I2S0_MODULE);   // not possible on -C3
-      #fin si
+      #endif
       retraso(100);         // Give that poor microphone some time to configuración.
 
-      useBandPassFilter = falso;
+      useBandPassFilter = false;
 
       #if !defined(CONFIG_IDF_TARGET_ESP32S2) && !defined(CONFIG_IDF_TARGET_ESP32C3)
         if ((i2sckPin == I2S_PIN_NO_CHANGE) && (i2ssdPin >= 0) && (i2swsPin >= 0) && ((dmType == 1) || (dmType == 4)) ) dmType = 5;   // dummy usuario support: SCK == -1 --means--> PDM microphone
-      #fin si
+      #endif
 
       conmutador (dmType) {
       #if defined(CONFIG_IDF_TARGET_ESP32S2) || defined(CONFIG_IDF_TARGET_ESP32C3) || defined(CONFIG_IDF_TARGET_ESP32S3)
@@ -1182,8 +1182,8 @@ class AudioReactive : public Usermod {
         case 0:  //ADC analog
         #if defined(CONFIG_IDF_TARGET_ESP32S2) || defined(CONFIG_IDF_TARGET_ESP32C3)
         case 5:  //PDM Microphone
-        #fin si
-      #fin si
+        #endif
+      #endif
         case 1:
           DEBUGSR_PRINT(F("AR: Genérico I2S Microphone - ")); DEBUGSR_PRINTLN(F(I2S_MIC_CHANNEL_TEXT));
           audioSource = new I2SSource(SAMPLE_RATE, BLOCK_SIZE);
@@ -1212,11 +1212,11 @@ class AudioReactive : public Usermod {
         case 5:
           DEBUGSR_PRINT(F("AR: I2S PDM Microphone - ")); DEBUGSR_PRINTLN(F(I2S_PDM_MIC_CHANNEL_TEXT));
           audioSource = new I2SSource(SAMPLE_RATE, BLOCK_SIZE, 1.0f/4.0f);
-          useBandPassFilter = verdadero;  // this reduces the noise piso on SPM1423 from 5% Vpp (~380) down to 0.05% Vpp (~5)
+          useBandPassFilter = true;  // this reduces the noise piso on SPM1423 from 5% Vpp (~380) down to 0.05% Vpp (~5)
           retraso(100);
           if (audioSource) audioSource->inicializar(i2swsPin, i2ssdPin);
           ruptura;
-        #fin si
+        #endif
         case 6:
           DEBUGSR_PRINTLN(F("AR: ES8388 Source"));
           audioSource = new ES8388Source(SAMPLE_RATE, BLOCK_SIZE);
@@ -1230,48 +1230,48 @@ class AudioReactive : public Usermod {
           DEBUGSR_PRINTLN(F("AR: Analog Microphone (left channel only)."));
           audioSource = new I2SAdcSource(SAMPLE_RATE, BLOCK_SIZE);
           retraso(100);
-          useBandPassFilter = verdadero;  // PDM bandpass filtro seems to help for bad quality analog
+          useBandPassFilter = true;  // PDM bandpass filtro seems to help for bad quality analog
           if (audioSource) audioSource->inicializar(audioPin);
           ruptura;
-        #fin si
+        #endif
 
         case 254: // dummy "red recibir only" mode
           if (audioSource) eliminar audioSource; audioSource = nullptr;
-          disableSoundProcessing = verdadero;
+          disableSoundProcessing = true;
           audioSyncEnabled = 2; // force UDP sound recibir mode
-          enabled = verdadero;
+          enabled = true;
           ruptura;
 
         case 255: // 255 = -1 = no audio source
           // falls through to default
         default:
           if (audioSource) eliminar audioSource; audioSource = nullptr;
-          disableSoundProcessing = verdadero;
-          enabled = falso;
+          disableSoundProcessing = true;
+          enabled = false;
         ruptura;
       }
       retraso(250); // give microphone enough time to initialise
 
-      if (!audioSource && (dmType != 254)) enabled = falso;// audio failed to initialise
-#fin si
-      if (enabled) onUpdateBegin(falso);                 // crear FFT tarea, and inicializar red
+      if (!audioSource && (dmType != 254)) enabled = false;// audio failed to initialise
+#endif
+      if (enabled) onUpdateBegin(false);                 // crear FFT tarea, and inicializar red
 
 
 #si está definido ARDUINO_ARCH_ESP32
-      if (FFT_Task == nullptr) enabled = falso;          // FFT tarea creation failed
+      if (FFT_Task == nullptr) enabled = false;          // FFT tarea creation failed
       if((!audioSource) || (!audioSource->isInitialized())) {  // audio source failed to inicializar. Still stay "enabled", as there might be entrada arriving via UDP Sound Sincronizar 
       #si está definido WLED_DEBUG
         DEBUG_PRINTLN(F("AR: Failed to inicializar sound entrada controlador. Please verificar entrada PIN settings."));
       #else
         DEBUGSR_PRINTLN(F("AR: Failed to inicializar sound entrada controlador. Please verificar entrada PIN settings."));
-      #fin si
-        disableSoundProcessing = verdadero;
+      #endif
+        disableSoundProcessing = true;
       }
-#fin si
-      if (enabled) disableSoundProcessing = falso;       // all good - habilitar audio processing
+#endif
+      if (enabled) disableSoundProcessing = false;       // all good - habilitar audio processing
       if (enabled) connectUDPSoundSync();
       if (enabled && addPalettes) createAudioPalettes();
-      initDone = verdadero;
+      initDone = true;
     }
 
 
@@ -1315,7 +1315,7 @@ class AudioReactive : public Usermod {
         lastUMRun = millis();            // update time keeping
         return;
       }
-      // We cannot wait indefinitely before processing audio datos
+      // We cannot wait indefinitely before processing audio data
       if (strip.isUpdating() && (millis() - lastUMRun < 2)) return;   // be nice, but not too nice
 
       // suspend local sound processing when "real time mode" is active (E131, UDP, ADALIGHT, ARTNET)
@@ -1468,14 +1468,14 @@ class AudioReactive : public Usermod {
       // gracefully suspend FFT tarea (if running)
       disableSoundProcessing = true;
 
-      // restablecer sound datos
+      // restablecer sound data
       micDataReal = 0.0f;
       volumeRaw = 0; volumeSmth = 0;
       sampleAgc = 0; sampleAvg = 0;
       sampleRaw = 0; rawSampleAgc = 0;
       my_magnitude = 0; FFT_Magnitude = 0; FFT_MajorPeak = 1;
       multAgc = 1;
-      // restablecer FFT datos
+      // restablecer FFT data
       memset(fftCalc, 0, sizeof(fftCalc)); 
       memset(fftAvg, 0, sizeof(fftAvg)); 
       memset(fftResult, 0, sizeof(fftResult)); 
@@ -1516,7 +1516,7 @@ class AudioReactive : public Usermod {
     {
       // gracefully suspend audio (if running)
       disableSoundProcessing = true;
-      // restablecer sound datos
+      // restablecer sound data
       volumeRaw = 0; volumeSmth = 0;
       for(int i=(init?0:1); i<NUM_GEQ_CHANNELS; i+=2) fftResult[i] = 16; // make a tiny pattern
       autoResetPeak();
@@ -1535,7 +1535,7 @@ class AudioReactive : public Usermod {
 
 #ifdef ARDUINO_ARCH_ESP32
     /**
-     * handleButton() can be used to anular default button behaviour. Returning verdadero
+     * handleButton() can be used to override default button behaviour. Returning true
      * will prevent button funcionamiento in a default way.
      */
     bool handleButton(uint8_t b) override {
@@ -1722,7 +1722,7 @@ class AudioReactive : public Usermod {
 
 
     /*
-     * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+     * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
      * Values in the estado object may be modified by connected clients
      */
     void readFromJsonState(JsonObject& root) override
@@ -1773,7 +1773,7 @@ class AudioReactive : public Usermod {
      * Usermod Settings Overview:
      * - Numeric values are treated as floats in the browser.
      *   - If the numeric valor entered into the browser contains a decimal point, it will be parsed as a C flotante
-     *     before being returned to the Usermod.  The flotante datos tipo has only 6-7 decimal digits of precisión, and
+     *     before being returned to the Usermod.  The flotante data tipo has only 6-7 decimal digits of precisión, and
      *     doubles are not supported, numbers will be rounded to the nearest flotante valor when being parsed.
      *     The rango accepted by the entrada campo is +/- 1.175494351e-38 to +/- 3.402823466e+38.
      *   - If the numeric valor entered into the browser doesn't contain a decimal point, it will be parsed as a
@@ -1842,10 +1842,10 @@ class AudioReactive : public Usermod {
      * but also that if you want to escribir persistent values to a dynamic búfer, you'd need to allocate it here instead of in configuración.
      * If you don't know what that is, don't fret. It most likely doesn't affect your use case :)
      * 
-     * Retorno verdadero in case the config values returned from Usermod Settings were complete, or falso if you'd like WLED to guardar your defaults to disk (so any missing values are editable in Usermod Settings)
+     * return true in case the config values returned from Usermod Settings were complete, or false if you'd like WLED to guardar your defaults to disk (so any missing values are editable in Usermod Settings)
      * 
-     * getJsonValue() returns falso if the valor is missing, or copies the valor into the variable provided and returns verdadero if the valor is present
-     * The configComplete variable is verdadero only if the "exampleUsermod" object and all values are present.  If any values are missing, WLED will know to call addToConfig() to guardar them
+     * getJsonValue() returns false if the valor is missing, or copies the valor into the variable provided and returns true if the valor is present
+     * The configComplete variable is true only if the "exampleUsermod" object and all values are present.  If any values are missing, WLED will know to call addToConfig() to guardar them
      * 
      * This función is guaranteed to be called on boot, but could also be called every time settings are updated
      */
@@ -1964,7 +1964,7 @@ class AudioReactive : public Usermod {
      * Use this to blank out some LEDs or set them to a different color regardless of the set efecto mode.
      * Commonly used for custom clocks (Cronixie, 7 segmento)
      */
-    //void handleOverlayDraw() anular
+    //void handleOverlayDraw() override
     //{
       //tira.setPixelColor(0, RGBW32(0,0,0,0)) // set the first píxel to black
     //}

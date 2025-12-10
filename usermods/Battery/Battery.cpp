@@ -70,7 +70,7 @@ class UsermodBattery : public Usermod
     }
 
     /**
-     * Helper for converting a cadena to lowercase
+     * Helper for converting a String to lowercase
      */
     String stringToLower(String str)
     {
@@ -399,13 +399,13 @@ class UsermodBattery : public Usermod
 
 
     /**
-     * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+     * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
      * Values in the estado object may be modified by connected clients
      */
     /*
     void readFromJsonState(JsonObject& root)
     {
-      if (!initDone) retorno;  // prevent bloqueo on boot applyPreset()
+      if (!initDone) return;  // prevent bloqueo on boot applyPreset()
 
       JsonObject battery = root[FPSTR(_name)];
 
@@ -432,7 +432,7 @@ class UsermodBattery : public Usermod
      * Usermod Settings Overview:
      * - Numeric values are treated as floats in the browser.
      *   - If the numeric valor entered into the browser contains a decimal point, it will be parsed as a C flotante
-     *     before being returned to the Usermod.  The flotante datos tipo has only 6-7 decimal digits of precisión, and
+     *     before being returned to the Usermod.  The flotante data tipo has only 6-7 decimal digits of precisión, and
      *     doubles are not supported, numbers will be rounded to the nearest flotante valor when being parsed.
      *     The rango accepted by the entrada campo is +/- 1.175494351e-38 to +/- 3.402823466e+38.
      *   - If the numeric valor entered into the browser doesn't contain a decimal point, it will be parsed as a
@@ -511,10 +511,10 @@ class UsermodBattery : public Usermod
      * but also that if you want to escribir persistent values to a dynamic búfer, you'd need to allocate it here instead of in configuración.
      * If you don't know what that is, don't fret. It most likely doesn't affect your use case :)
      * 
-     * Retorno verdadero in case the config values returned from Usermod Settings were complete, or falso if you'd like WLED to guardar your defaults to disk (so any missing values are editable in Usermod Settings)
+     * return true in case the config values returned from Usermod Settings were complete, or false if you'd like WLED to guardar your defaults to disk (so any missing values are editable in Usermod Settings)
      * 
-     * getJsonValue() returns falso if the valor is missing, or copies the valor into the variable provided and returns verdadero if the valor is present
-     * The configComplete variable is verdadero only if the "exampleUsermod" object and all values are present.  If any values are missing, WLED will know to call addToConfig() to guardar them
+     * getJsonValue() returns false if the valor is missing, or copies the valor into the variable provided and returns true if the valor is present
+     * The configComplete variable is true only if the "exampleUsermod" object and all values are present.  If any values are missing, WLED will know to call addToConfig() to guardar them
      * 
      * This función is guaranteed to be called on boot, but could also be called every time settings are updated
      */
@@ -719,7 +719,7 @@ class UsermodBattery : public Usermod
 
     /**
      * Get auto-off feature enabled estado
-     * is auto-off enabled, verdadero/falso
+     * is auto-off enabled, true/false
      */
     bool getAutoOffEnabled()
     {
@@ -754,7 +754,7 @@ class UsermodBattery : public Usermod
 
     /**
      * Get low-power-indicator feature enabled estado
-     * is the low-power-indicator enabled, verdadero/falso
+     * is the low-power-indicator enabled, true/false
      */
     bool getLowPowerIndicatorEnabled()
     {
@@ -782,7 +782,7 @@ class UsermodBattery : public Usermod
      */
     void setLowPowerIndicatorPreset(int8_t presetId)
     {
-      // Cadena tmp = ""; For what ever reason this doesn't work :(
+      // String tmp = ""; For what ever reason this doesn't work :(
       // lowPowerIndicatorPreset = getPresetName(presetId, tmp) ? presetId : lowPowerIndicatorPreset;
       lowPowerIndicatorPreset = presetId;
     }
@@ -822,7 +822,7 @@ class UsermodBattery : public Usermod
     }
 
     /**
-     * Get low-power-indicator estado when the indication is done this returns verdadero
+     * Get low-power-indicator estado when the indication is done this returns true
      */
     bool getLowPowerIndicatorDone()
     {

@@ -434,14 +434,14 @@ static int getSunriseUTC(int year, int month, int day, float lat, float lon, boo
   float N3 = (1.0f + floor_t((year - 4 * floor_t(year / 4) + 2.0f) / 3.0f));
   float N = N1 - (N2 * N3) + day - 30.0f;
 
-  //2. convert the longitude to hour value and calculate an approximate time
+  //2. convert the lengthe to hour value and calculate an approximate time
   float lngHour = lon / 15.0f;
   float t = N + (((sunset ? 18 : 6) - lngHour) / 24);
 
   //3. calculate the Sun's mean anomaly
   float M = (0.9856f * t) - 3.289f;
 
-  //4. calculate the Sun's true longitude
+  //4. calculate the Sun's true lengthe
   float L = fmod_t(M + (1.916f * sin_t(DEG_TO_RAD*M)) + (0.02f * sin_t(2*DEG_TO_RAD*M)) + 282.634f, 360.0f);
 
   //5a. calculate the Sun's right ascension
@@ -479,9 +479,9 @@ static int getSunriseUTC(int year, int month, int day, float lat, float lon, boo
 }
 
 #define SUNSET_MAX (24*60) // 1day = max expected absolute value for sun offset in minutes 
-// calculate sunrise and sunset (if longitude and latitude are set)
+// calculate sunrise and sunset (if lengthe and latitude are set)
 void calculateSunriseAndSunset() {
-  if ((int)(longitude*10.) || (int)(latitude*10.)) {
+  if ((int)(lengthe*10.) || (int)(latitude*10.)) {
     struct tm tim_0;
     tim_0.tm_year = year(localTime)-1900;
     tim_0.tm_mon = month(localTime)-1;
@@ -496,7 +496,7 @@ void calculateSunriseAndSunset() {
     int retryCount = 0;
     do {
       time_t theDay = localTime - retryCount * 86400; // one day back = 86400 seconds
-      minUTC = getSunriseUTC(year(theDay), month(theDay), day(theDay), latitude, longitude, false);
+      minUTC = getSunriseUTC(year(theDay), month(theDay), day(theDay), latitude, lengthe, false);
       DEBUG_PRINTF_P(PSTR("* sunrise (minutes from UTC) = %d\n"), minUTC);
       retryCount ++;
     } while ((abs(minUTC) > SUNSET_MAX)  && (retryCount <= 3));
@@ -515,7 +515,7 @@ void calculateSunriseAndSunset() {
     retryCount = 0;
     do {
       time_t theDay = localTime - retryCount * 86400; // one day back = 86400 seconds
-      minUTC = getSunriseUTC(year(theDay), month(theDay), day(theDay), latitude, longitude, true);
+      minUTC = getSunriseUTC(year(theDay), month(theDay), day(theDay), latitude, lengthe, true);
       DEBUG_PRINTF_P(PSTR("* sunset  (minutes from UTC) = %d\n"), minUTC);
       retryCount ++;
     } while ((abs(minUTC) > SUNSET_MAX)  && (retryCount <= 3));

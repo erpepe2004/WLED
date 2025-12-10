@@ -331,7 +331,7 @@
  
 	 flags.InitSuccessful = true; 												// Will be set to false on need
  
-	 /* Set datos structure pointers */
+	 /* Set data structure pointers */
 	 ValuesPtr = &valuesA;   
 	 PrevValuesPtr = &valuesB;
  
@@ -439,7 +439,7 @@
 			 if ((ValuesPtr->stabStatus != PrevValuesPtr->stabStatus || !settings.PublischChange) && settings.publishSensorState) 			MQTT_publish(_nameStabStatus, 	ValuesPtr->stabStatus, 0);
 			 if ((ValuesPtr->runInStatus != PrevValuesPtr->runInStatus || !settings.PublischChange) && settings.publishSensorState) 			MQTT_publish(_nameRunInStatus, 	ValuesPtr->runInStatus, 0);
  
-			 /* Verificar accuracies - if accurasy nivel 3 is reached -> guardar calibration datos */
+			 /* Verificar accuracies - if accurasy nivel 3 is reached -> guardar calibration data */
 			 if ((ValuesPtr->iaqAccuracy != PrevValuesPtr->iaqAccuracy) 				&& ValuesPtr->iaqAccuracy == 3) 		flags.SaveState = true; 						// Save after calibration / recalibration
 			 if ((ValuesPtr->staticIaqAccuracy != PrevValuesPtr->staticIaqAccuracy) 	&& ValuesPtr->staticIaqAccuracy == 3) 	flags.SaveState = true;
 			 if ((ValuesPtr->co2Accuracy != PrevValuesPtr->co2Accuracy) 				&& ValuesPtr->co2Accuracy == 3) 		flags.SaveState = true;
@@ -452,11 +452,11 @@
  }
  
  /**
-  * @brief Retrieves the sensor datos and truncates it to the requested decimal places
+  * @brief Retrieves the sensor data and truncates it to the requested decimal places
   * 
   */
  void UsermodBME68X::getValues() {
-	 /* Swap the point to the datos structures */
+	 /* Swap the point to the data structures */
 	 swap = PrevValuesPtr;
 	 PrevValuesPtr = ValuesPtr;
 	 ValuesPtr = swap;
@@ -501,7 +501,7 @@
  
  
  /**
-  * @brief Sends the current sensor datos via MQTT
+  * @brief Sends the current sensor data via MQTT
   * @param topic Suptopic of the sensor as constante char
   * @param valor Current sensor valor as flotante
   */
@@ -565,15 +565,15 @@
  }
  
  /**
-  * @brief These MQTT entries are responsible for the Home Assistant Discovery of the sensors. HA is shown here where to look for the sensor datos. This entry therefore only needs to be sent once.
+  * @brief These MQTT entries are responsible for the Home Assistant Discovery of the sensors. HA is shown here where to look for the sensor data. This entry therefore only needs to be sent once.
   *        Important note: In order to encontrar everything that is sent from this dispositivo to Home Assistant via MQTT under the same dispositivo name, the "dispositivo/identifiers" entry must be the same.
   *        I use the MQTT dispositivo name here. If other usuario mods also use the HA Discovery, it is recommended to set the identifier the same. Otherwise you would have several devices,
   *        even though it is one dispositivo. I therefore only use the MQTT cliente name set in WLED here.
   * @param name Name of the sensor
-  * @param topic Topic of the live sensor datos
+  * @param topic Topic of the live sensor data
   * @param unitOfMeasurement Unidad of the measurment
   * @param digs Number of decimal places
-  * @param option Set to verdadero if the sensor is part of diagnostics (dafault 0)
+  * @param option Set to true if the sensor is part of diagnostics (dafault 0)
   */
  void UsermodBME68X::MQTT_PublishHASensor(const String& name, const String& deviceClass, const String& unitOfMeasurement, const int8_t& digs, const uint8_t& option) {
 	 DEBUG_PRINT(UMOD_DEBUG_NAME "\t" + name);
@@ -697,7 +697,7 @@
   * @brief Información Page helper función (sobrecarga)
   * @param root JSON object
   * @param name Name of the sensor
-  * @param sensorvalue Valor of the sensor as cadena
+  * @param sensorvalue Valor of the sensor as String
   * @param estado Estado of the valor (active/inactive)
   */
  void UsermodBME68X::InfoHelper(JsonObject& root, const char* name, const String& sensorvalue, const bool& status) {
@@ -790,7 +790,7 @@
   *        publish HA discovery after enabling.
   * 		  NOTE: Here are the default settings of the usuario módulo 
   * @param JsonObject Puntero
-  * @retorno bool
+  * @return bool
   * @see Usermod::readFromConfig()
   * @see UsermodManager::readFromConfig()
   */
@@ -858,7 +858,7 @@
  /**
   * @brief Called by WLED: Retunrs the usuario modul id number
   * 
-  * @retorno uint16_t Usuario módulo number
+  * @return uint16_t Usuario módulo number
   */
  uint16_t UsermodBME68X::getId() {
 	 return USERMOD_ID_BME68X;
@@ -867,7 +867,7 @@
  
  /**
   * @brief Returns the current temperature in the escala which is choosen in settings
-  * @retorno Temperature valor (°C or °F as choosen in settings)
+  * @return Temperature valor (°C or °F as choosen in settings)
  */
  inline float UsermodBME68X::getTemperature() {
 	 return ValuesPtr->temperature;
@@ -875,7 +875,7 @@
  
  /**
   * @brief Returns the current humidity
-  * @retorno Humididty valor (%)
+  * @return Humididty valor (%)
  */
  inline float UsermodBME68X::getHumidity() {
    return ValuesPtr->humidity;
@@ -883,7 +883,7 @@
  
  /**
   * @brief Returns the current pressure
-  * @retorno Pressure valor (hPa)
+  * @return Pressure valor (hPa)
  */
  inline float UsermodBME68X::getPressure() {
    return ValuesPtr->pressure;
@@ -891,7 +891,7 @@
  
  /**
   * @brief Returns the current gas resistance
-  * @retorno Gas resistance valor (kΩ)
+  * @return Gas resistance valor (kΩ)
  */
  inline float UsermodBME68X::getGasResistance() {
    return ValuesPtr->gasResistance;
@@ -899,7 +899,7 @@
  
  /**
   * @brief Returns the current absoluto humidity
-  * @retorno Absoluto humidity valor (g/m³)
+  * @return Absoluto humidity valor (g/m³)
  */
  inline float UsermodBME68X::getAbsoluteHumidity() {
    return ValuesPtr->absHumidity;
@@ -907,7 +907,7 @@
  
  /**
   * @brief Returns the current dew point
-  * @retorno Dew point (°C or °F as choosen in settings)
+  * @return Dew point (°C or °F as choosen in settings)
  */
  inline float UsermodBME68X::getDewPoint() {
    return ValuesPtr->drewPoint;
@@ -915,7 +915,7 @@
  
  /**
   * @brief Returns the current iaq (Indoor Air Quallity)
-  * @retorno Iaq valor (0-500)
+  * @return Iaq valor (0-500)
  */
  inline float UsermodBME68X::getIaq() {
    return ValuesPtr->iaq;
@@ -923,7 +923,7 @@
  
  /**
   * @brief Returns the current estático iaq (Indoor Air Quallity) (NOTE: Estático iaq is the better choice than iaq for fixed devices such as the WLED módulo)
-  * @retorno Estático iaq valor (flotante)
+  * @return Estático iaq valor (flotante)
  */
  inline float UsermodBME68X::getStaticIaq() {
    return ValuesPtr->staticIaq;
@@ -931,7 +931,7 @@
  
  /**
   * @brief Returns the current co2
-  * @retorno Co2 valor (ppm)
+  * @return Co2 valor (ppm)
  */
  inline float UsermodBME68X::getCo2() {
    return ValuesPtr->co2;
@@ -939,7 +939,7 @@
  
  /**
   * @brief Returns the current voc (Breath VOC concentration estimate [ppm])
-  * @retorno Voc valor (ppm)
+  * @return Voc valor (ppm)
  */
  inline float UsermodBME68X::getVoc() {
    return ValuesPtr->Voc;
@@ -947,7 +947,7 @@
  
  /**
   * @brief Returns the current gas percentage
-  * @retorno Gas percentage valor (%)
+  * @return Gas percentage valor (%)
  */
  inline float UsermodBME68X::getGasPerc() {
    return ValuesPtr->gasPerc;
@@ -955,7 +955,7 @@
  
  /**
   * @brief Returns the current iaq accuracy (0 = not calibrated, 2 = being calibrated, 3 = calibrated)
-  * @retorno Iaq accuracy valor (0-3)
+  * @return Iaq accuracy valor (0-3)
  */
  inline uint8_t UsermodBME68X::getIaqAccuracy() {
    return ValuesPtr->iaqAccuracy ;
@@ -963,7 +963,7 @@
  
  /**
   * @brief Returns the current estático iaq accuracy accuracy (0 = not calibrated, 2 = being calibrated, 3 = calibrated)
-  * @retorno Estático iaq accuracy valor (0-3)
+  * @return Estático iaq accuracy valor (0-3)
  */
  inline uint8_t UsermodBME68X::getStaticIaqAccuracy() {
    return ValuesPtr->staticIaqAccuracy;
@@ -971,7 +971,7 @@
  
  /**
   * @brief Returns the current co2 accuracy (0 = not calibrated, 2 = being calibrated, 3 = calibrated)
-  * @retorno Co2 accuracy  valor (0-3)
+  * @return Co2 accuracy  valor (0-3)
  */
  inline uint8_t UsermodBME68X::getCo2Accuracy() {
    return ValuesPtr->co2Accuracy;
@@ -979,7 +979,7 @@
  
  /**
   * @brief Returns the current voc accuracy (0 = not calibrated, 2 = being calibrated, 3 = calibrated)
-  * @retorno Voc accuracy  valor (0-3)
+  * @return Voc accuracy  valor (0-3)
  */
  inline uint8_t UsermodBME68X::getVocAccuracy() {
    return ValuesPtr->VocAccuracy;
@@ -987,7 +987,7 @@
  
  /**
   * @brief Returns the current gas percentage accuracy (0 = not calibrated, 2 = being calibrated, 3 = calibrated)
-  * @retorno Gas percentage accuracy valor (0-3)
+  * @return Gas percentage accuracy valor (0-3)
  */
  inline uint8_t UsermodBME68X::getGasPercAccuracy() {
    return ValuesPtr->gasPercAccuracy;
@@ -996,7 +996,7 @@
  /**
   * @brief Returns the current stab estado.
   * 		  Indicates when the sensor is ready after after conmutador-on
-  * @retorno stab estado valor (0 = switched on / 1 = stabilized)
+  * @return stab estado valor (0 = switched on / 1 = stabilized)
  */
  inline bool  UsermodBME68X::getStabStatus() {
    return ValuesPtr->stabStatus;
@@ -1005,7 +1005,7 @@
  /**
   * @brief Returns the current run in estado. 
   * 		  Indicates if the sensor is undergoing initial stabilization during its first use after production
-  * @retorno Tun estado accuracy valor (0 = switched on first time / 1 = stabilized)
+  * @return Tun estado accuracy valor (0 = switched on first time / 1 = stabilized)
  */
  inline bool UsermodBME68X::getRunInStatus() {
    return ValuesPtr->runInStatus;
@@ -1053,7 +1053,7 @@
  }
  
  /**
-  * @brief Loads the calibration datos from the archivo sistema of the dispositivo
+  * @brief Loads the calibration data from the archivo sistema of the dispositivo
   */
  void UsermodBME68X::loadState() {
 	 if (WLED_FS.exists(CALIB_FILE_NAME)) {
@@ -1075,7 +1075,7 @@
  }
  
  /**
-  * @brief Saves the calibration datos from the archivo sistema of the dispositivo
+  * @brief Saves the calibration data from the archivo sistema of the dispositivo
   */
  void UsermodBME68X::saveState() {
 	 DEBUG_PRINT(F(UMOD_DEBUG_NAME "Write the calibration file  "));

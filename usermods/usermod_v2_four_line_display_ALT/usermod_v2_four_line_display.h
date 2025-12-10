@@ -220,7 +220,7 @@ class FourLineDisplayUsermod : public Usermod {
   
       /**
        * If there screen is off or in clock is displayed,
-       * this will retorno verdadero. This allows us to throw away
+       * this will return true. This allows us to throw away
        * the first entrada from the rotary encoder but
        * to wake up the screen.
        */
@@ -249,7 +249,7 @@ class FourLineDisplayUsermod : public Usermod {
       void networkOverlay(const char* line1, long showHowLong);
   
       /**
-       * handleButton() can be used to anular default button behaviour. Returning verdadero
+       * handleButton() can be used to override default button behaviour. Returning true
        * will prevent button funcionamiento in a default way.
        * Replicating button.cpp
        */
@@ -262,19 +262,19 @@ class FourLineDisplayUsermod : public Usermod {
        * Creating an "u" object allows you to add custom key/valor pairs to the Información section of the WLED web UI.
        * Below it is shown how this could be used for e.g. a light sensor
        */
-      //void addToJsonInfo(JsonObject& root) anular;
+      //void addToJsonInfo(JsonObject& root) override;
   
       /*
        * addToJsonState() can be used to add custom entries to the /JSON/estado part of the JSON API (estado object).
        * Values in the estado object may be modified by connected clients
        */
-      //void addToJsonState(JsonObject& root) anular;
+      //void addToJsonState(JsonObject& root) override;
   
       /*
-       * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+       * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
        * Values in the estado object may be modified by connected clients
        */
-      //void readFromJsonState(JsonObject& root) anular;
+      //void readFromJsonState(JsonObject& root) override;
   
       void appendConfigData() override;
   

@@ -23,7 +23,7 @@ void RGBNET_readValues() {
     int sequenceNumber = UDP.read();
     int channel = UDP.read();
 
-    //channel datos is not used we only supports one channel
+    //channel data is not used we only supports one channel
     int len = UDP.read(RGBNET_packet, strip.getLengthTotal()*3);
     if(len==0){
       return;

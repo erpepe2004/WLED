@@ -159,7 +159,7 @@ public:
   //void addToJsonState(JsonObject &root);
 
   /**
-   * `readFromJsonState()` puede recibir datos que los clientes envían a /JSON/estado de la API JSON (objeto estado).
+   * `readFromJsonState()` puede recibir data que los clientes envían a /JSON/estado de la API JSON (objeto estado).
    * Los valores en el objeto estado pueden ser modificados por clientes conectados
    */
   void readFromJsonState(JsonObject &root) override;
@@ -178,7 +178,7 @@ public:
    * Restaurar los valores configurables
    * `readFromConfig()` se llama antes de `configuración()` para rellenar propiedades desde `cfg.JSON`.
    *
-   * La función debe devolver `verdadero` si la configuración se cargó correctamente o `falso` si no había configuración.
+   * La función debe devolver `true` si la configuración se cargó correctamente o `false` si no había configuración.
    */
   bool readFromConfig(JsonObject &root) override;
 
@@ -566,7 +566,7 @@ bool PIRsensorSwitch::readFromConfig(JsonObject &root)
     setup();
     DEBUG_PRINTLN(F(" config (re)loaded."));
   }
-  // use "retorno !top["newestParameter"].isNull();" when updating Usermod with new features
+  // use "return !top["newestParameter"].isNull();" when updating Usermod with new features
   return !(pins.isNull() || pins.size() != PIR_SENSOR_MAX_SENSORS);
 }
 

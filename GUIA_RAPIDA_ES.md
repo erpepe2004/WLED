@@ -116,7 +116,7 @@ curl "http://192.168.1.100/json/state" -X POST -d '{"bri":10}'
 
 ### "No veo los LEDs encenderse"
 
-1. **Verificar conexión**: ¿Está el cable de datos conectado?
+1. **Verificar conexión**: ¿Está el cable de data conectado?
 2. **Verificar alimentación**: ¿Tienen los LEDs poder suficiente?
 3. **Verificar configuración**: Settings → LED Preferences → está correcta?
 4. **Probar con color blanco**: Algunos efectos pueden no verse
@@ -183,10 +183,10 @@ curl "http://192.168.1.100/json/state" -X POST -d '{"bri":10}'
 | `on` | true/false | Encender/apagar |
 | `bri` | 0-255 | Brillo global |
 | `col` | [R,G,B] | Color RGB |
-| `fx` | 0-120+ | Índice de efecto |
+| `fx` | 0-120+ | index de efecto |
 | `sx` | 0-255 | Velocidad del efecto |
 | `ix` | 0-255 | Intensidad del efecto |
-| `pal` | 0-50+ | Índice de paleta |
+| `pal` | 0-50+ | index de paleta |
 | `seg` | 0-9 | Segmento a controlar |
 
 ---

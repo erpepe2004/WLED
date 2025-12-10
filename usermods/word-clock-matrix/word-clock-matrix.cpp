@@ -20,13 +20,13 @@ public:
   {
     Serial.println("Hello from my usermod!");
 
-    //saveMacro(14, "A=128", falso);
-    //saveMacro(15, "A=64", falso);
-    //saveMacro(16, "A=16", falso);
+    //saveMacro(14, "A=128", false);
+    //saveMacro(15, "A=64", false);
+    //saveMacro(16, "A=16", false);
 
-    //saveMacro(1, "&FX=0&R=255&G=255&B=255", falso);
+    //saveMacro(1, "&FX=0&R=255&G=255&B=255", false);
 
-    //tira.getSegment(1).setOption(SEG_OPTION_SELECTED, verdadero);
+    //tira.getSegment(1).setOption(SEG_OPTION_SELECTED, true);
 
     //select first two segments (background color + FX settable)
     Segment &seg = strip.getSegment(0);
@@ -54,7 +54,7 @@ public:
     {
       //WS2812FX::Segmento &seg = tira.getSegment(i);
       strip.getSegment(i).setOption(0, state);
-      // tira.getSegment(1).setOption(SEG_OPTION_SELECTED, verdadero);
+      // tira.getSegment(1).setOption(SEG_OPTION_SELECTED, true);
       //seg.mode = 12;
       //seg.palette = 1;
       //tira.setBrightness(255);
@@ -69,7 +69,7 @@ public:
     colorUpdated(CALL_MODE_FX_CHANGED);
     savePreset(13);
     selectWordSegments(false);
-    //tira.getSegment(0).setOption(0, verdadero);
+    //tira.getSegment(0).setOption(0, true);
     strip.getSegment(0).setOption(2, true);
     applyPreset(12);
     colorUpdated(CALL_MODE_FX_CHANGED);
@@ -133,7 +133,7 @@ public:
       else
       {
         //tira.getSegment(4).setGeometry(24, 27); //past
-        //isToHour = falso;
+        //isToHour = false;
       }
     }
 

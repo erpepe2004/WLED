@@ -1,12 +1,12 @@
 /**
- * Writes compressed C arrays of datos files (web interfaz)
+ * Writes compressed C arrays of data files (web interfaz)
  * How to use it?
  *
  * 1) Install Nodo 20+ and npm
  * 2) npm install
  * 3) npm run compilación
  *
- * If you change datos carpeta often, you can run it in monitoring mode (it will recompile and actualizar *.h on every archivo change)
+ * If you change data carpeta often, you can run it in monitoring mode (it will recompile and actualizar *.h on every archivo change)
  *
  * > npm run dev
  *
@@ -252,9 +252,9 @@ if (isAlreadyBuilt("wled00/data") && process.argv[2] !== '--force' && process.ar
 
 writeHtmlGzipped("wled00/data/index.htm", "wled00/html_ui.h", 'index');
 writeHtmlGzipped("wled00/data/pixart/pixart.htm", "wled00/html_pixart.h", 'pixart');
-//writeHtmlGzipped("wled00/datos/cpal/cpal.htm", "wled00/html_cpal.h", 'cpal');
+//writeHtmlGzipped("wled00/data/cpal/cpal.htm", "wled00/html_cpal.h", 'cpal');
 writeHtmlGzipped("wled00/data/pxmagic/pxmagic.htm", "wled00/html_pxmagic.h", 'pxmagic');
-//writeHtmlGzipped("wled00/datos/edit.htm", "wled00/html_edit.h", 'edit');
+//writeHtmlGzipped("wled00/data/edit.htm", "wled00/html_edit.h", 'edit');
 
 
 writeChunks(

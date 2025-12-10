@@ -184,7 +184,7 @@ class AutoSaveUsermod : public Usermod {
     //}
 
     /*
-     * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+     * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
      * Values in the estado object may be modified by connected clients
      */
     void readFromJsonState(JsonObject& root) {
@@ -234,10 +234,10 @@ class AutoSaveUsermod : public Usermod {
      * but also that if you want to escribir persistent values to a dynamic búfer, you'd need to allocate it here instead of in configuración.
      * If you don't know what that is, don't fret. It most likely doesn't affect your use case :)
      * 
-     * The función should retorno verdadero if configuration was successfully loaded or falso if there was no configuration.
+     * The función should return true if configuration was successfully loaded or false if there was no configuration.
      */
     bool readFromConfig(JsonObject& root) {
-      // we look for JSON object: {"Autosave": {"enabled": verdadero, "autoSaveAfterSec": 10, "autoSavePreset": 250, ...}}
+      // we look for JSON object: {"Autosave": {"enabled": true, "autoSaveAfterSec": 10, "autoSavePreset": 250, ...}}
       JsonObject top = root[FPSTR(_name)];
       if (top.isNull()) {
         DEBUG_PRINT(FPSTR(_name));
@@ -254,7 +254,7 @@ class AutoSaveUsermod : public Usermod {
       DEBUG_PRINT(FPSTR(_name));
       DEBUG_PRINTLN(F(" config (re)loaded."));
 
-      // use "retorno !top["newestParameter"].isNull();" when updating Usermod with new features
+      // use "return !top["newestParameter"].isNull();" when updating Usermod with new features
       return true;
   }
 

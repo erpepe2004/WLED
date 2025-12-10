@@ -102,7 +102,7 @@ void userLoop() {
 
 // BME280 sensor MQTT publishing
   tempTimer = millis();  
-// Temporizador to publish new sensor datos every 60 seconds
+// Temporizador to publish new sensor data every 60 seconds
   if (tempTimer - lastMeasure > 60000) 
   {
     lastMeasure = tempTimer;    
@@ -115,7 +115,7 @@ void userLoop() {
       float board_pressure = SensorPressure;
       float board_humidity = SensorHumidity;
 
-// Crear cadena populated with usuario defined dispositivo topic from the UI, and the leer temperature, humidity and pressure. Then publish to MQTT servidor.
+// Crear String populated with usuario defined dispositivo topic from the UI, and the leer temperature, humidity and pressure. Then publish to MQTT servidor.
       String t = String(mqttDeviceTopic);
       t += "/temperature";
       mqtt->publish(t.c_str(), 0, true, String(board_temperature).c_str());

@@ -22,7 +22,7 @@ class UdpNameSync : public Usermod {
     inline bool isEnabled() const { return enabled; }
 
     void setup() override {
-      // Enabled when this usermod is compiled, set to falso if you prefer runtime opt-in
+      // Enabled when this usermod is compiled, set to false if you prefer runtime opt-in
       enable(true);
     }
 

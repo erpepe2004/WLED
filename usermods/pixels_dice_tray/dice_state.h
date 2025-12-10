@@ -22,23 +22,23 @@ static constexpr uint8_t INVALID_ROLL_VALUE = 0xFF;
  */
 struct DiceUpdate {
   // The vectors to hold results queried from the biblioteca
-  // Since vectors allocate datos, it's more efficient to keep reusing an instancia
+  // Since vectors allocate data, it's more efficient to keep reusing an instancia
   // instead of declaring them on the pila.
   std::vector<pixels::PixelsDieID> dice_list;
   pixels::RollUpdates roll_updates;
   pixels::BatteryUpdates battery_updates;
-  // The PixelsDieID for each dice índice. 0 if the die isn't connected.
+  // The PixelsDieID for each dice index. 0 if the die isn't connected.
   // The ordering here matches configured_die_names.
   std::array<pixels::PixelsDieID, MAX_NUM_DICE> connected_die_ids{0, 0};
 };
 
 struct DiceSettings {
-  // The mapping of dice names, to the índice of die used for effects (ie. The
+  // The mapping of dice names, to the index of die used for effects (ie. The
   // die named "Cat" is die 0). BLE discovery will detener when all the dice are
   // found. The die slot is disabled if the name is empty. If the name is "*",
   // the slot will use the first unassociated die it sees.
   std::array<std::string, MAX_NUM_DICE> configured_die_names{"*", "*"};
-  // A label set to describe the next die roll. Índice into GetRollName().
+  // A label set to describe the next die roll. index into GetRollName().
   uint8_t roll_label = INVALID_ROLL_VALUE;
 };
 
@@ -61,7 +61,7 @@ static pixels::RollEvent GetLastRoll() {
 }
 
 /**
- * Returns verdadero if the container has an item that matches the valor.
+ * Returns true if the container has an item that matches the valor.
  */
 template <typename C, typename T>
 static bool Contains(const C& container, T value) {

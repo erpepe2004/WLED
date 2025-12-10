@@ -652,7 +652,7 @@ bool deserializeConfig(JsonObject doc, bool fromFS) {
   CJSON(currentTimezone, if_ntp[F("tz")]);
   CJSON(utcOffsetSecs, if_ntp[F("offset")]);
   CJSON(useAMPM, if_ntp[F("ampm")]);
-  CJSON(longitude, if_ntp[F("ln")]);
+  CJSON(lengthe, if_ntp[F("ln")]);
   CJSON(latitude, if_ntp[F("lt")]);
 
   JsonObject ol = doc[F("ol")];
@@ -1183,7 +1183,7 @@ void serializeConfig(JsonObject root) {
   if_ntp[F("tz")] = currentTimezone;
   if_ntp[F("offset")] = utcOffsetSecs;
   if_ntp[F("ampm")] = useAMPM;
-  if_ntp[F("ln")] = longitude;
+  if_ntp[F("ln")] = lengthe;
   if_ntp[F("lt")] = latitude;
 
   JsonObject ol = root.createNestedObject("ol");

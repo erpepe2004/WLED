@@ -35,7 +35,7 @@ Creado originalmente por [Aircoookie](https://github.com/Aircoookie)
 
 ## 💡 Interfaces de control de luz soportadas
 - Aplicación WLED para [Android](https://play.google.com/store/apps/details?id=ca.cgagnier.wlednativeandroid) e [iOS](https://apps.apple.com/gb/app/wled-native/id6446207239)
-- APIs JSON y solicitudes HTTP  
+- APIs JSON y requestes HTTP  
 - MQTT   
 - E1.31, Art-Net, DDP y TPM2.net
 - [diyHue](https://github.com/diyhue/diyHue) (Wled es soportado por diyHue, incluido Hue Sync Entertainment bajo udp. Gracias a [Gregory Mallios](https://github.com/gmallios))
@@ -87,7 +87,7 @@ Si WLED realmente ilumina tu día, puedes [![](https://img.shields.io/badge/send
 - ⚡ **[Guía Rápida](GUIA_RAPIDA_ES.md)** - Setup en 5 minutos y troubleshooting
 - 🔌 **[Referencia de API](API_REFERENCIA_ES.md)** - Control programático con ejemplos
 - 🛠️ **[Compilación Avanzada](COMPILACION_AVANZADA_ES.md)** - Para desarrolladores y usermods
-- 📚 **[Índice General](INDICE_DOCUMENTACION_ES.md)** - Navegación por temas
+- 📚 **[index General](INDICE_DOCUMENTACION_ES.md)** - Navegación por temas
 
 ¿Nuevo en WLED? Comienza con la [Guía Rápida](GUIA_RAPIDA_ES.md) o [Instalación Paso a Paso](INSTALACION_ESP8266_ES.md) 🚀
 

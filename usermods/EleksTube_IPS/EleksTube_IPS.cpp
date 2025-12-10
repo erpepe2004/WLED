@@ -96,7 +96,7 @@ class ElekstubeIPSUsermod : public Usermod {
     /**
      * readFromConfig() is called before configuración() to populate properties from values stored in cfg.JSON
      *
-     * The función should retorno verdadero if configuration was successfully loaded or falso if there was no configuration.
+     * The función should return true if configuration was successfully loaded or false if there was no configuration.
      */
     bool readFromConfig(JsonObject &root) {
       // we look for JSON object: {"EleksTubeIPS": {"tubeSegment": 1, "digitOffset": 0}}
@@ -114,7 +114,7 @@ class ElekstubeIPSUsermod : public Usermod {
       if (tfts.digitOffset > 240) tfts.digitOffset = 240;
       if (tfts.digitOffset != digitOffsetPrev) fshow=TFTs::force;
 
-      // use "retorno !top["newestParameter"].isNull();" when updating Usermod with new features
+      // use "return !top["newestParameter"].isNull();" when updating Usermod with new features
       return !top[FPSTR(_digitOffset)].isNull();
     }
 
@@ -130,7 +130,7 @@ class ElekstubeIPSUsermod : public Usermod {
 
 
     /*
-     * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+     * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
      * Values in the estado object may be modified by connected clients
      */
     void readFromJsonState(JsonObject& root)

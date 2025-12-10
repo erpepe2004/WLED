@@ -35,7 +35,7 @@ class LD2410Usermod : public Usermod {
     int8_t uart_rx_pin;
     int8_t uart_tx_pin;
 
-    // cadena that are used multiple time (this will guardar some flash memoria)
+    // String that are used multiple time (this will guardar some flash memoria)
     static const char _name[];
     static const char _enabled[];
 
@@ -101,7 +101,7 @@ class LD2410Usermod : public Usermod {
 
 
     void loop() {
-      // NOTE: on very long strips tira.isUpdating() may always retorno verdadero so actualizar accordingly
+      // NOTE: on very long strips tira.isUpdating() may always return true so actualizar accordingly
       if (!enabled || strip.isUpdating()) return;
       radar.read();
       unsigned long curr_time = millis();

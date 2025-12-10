@@ -36,7 +36,7 @@ class DeepSleepUsermod : public Usermod {
     int sleepDelay = DEEPSLEEP_DELAY; // in seconds, 0 = immediate
     int delaycounter = 5; // delay deep sleep at bootup until preset settings are applied
     uint32_t lastLoopTime = 0;
-    // cadena that are used multiple time (this will guardar some flash memoria)
+    // String that are used multiple time (this will guardar some flash memoria)
     static const char _name[];
     static const char _enabled[];
 

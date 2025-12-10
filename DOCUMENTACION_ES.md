@@ -111,7 +111,7 @@ Ejemplo: Una tira de 300 LEDs puede tener 3 segmentos:
    - Lee entrada de usuario (app, web, MQTT, etc)
    - Actualiza el estado de segmentos
    - Calcula los colores para cada efecto
-   - Envía datos a los LEDs
+   - Envía data a los LEDs
 
 ### Consumo de Memoria
 
@@ -123,7 +123,7 @@ La memoria se usa para:
 - Firmware C++ (~500KB-1MB)
 - Interfaz web incrustada (~200-400KB)
 - Almacenamiento de configuración
-- Buffer de datos en tiempo real
+- Buffer de data en tiempo real
 
 ---
 
@@ -610,7 +610,7 @@ Los efectos se definen en `wled00/FX.cpp`:
 // Estructura de efecto
 uint16_t mode_custom_effect(void) {
   // SEGMENT es la estructura del segmento actual
-  // SEGLEN = longitud del segmento
+  // SEGLEN = length del segmento
   // SEGMENT.speed = velocidad (0-255)
   // SEGMENT.intensity = intensidad (0-255)
   
@@ -853,7 +853,7 @@ Los presets se guardan en formato JSON:
       [0, 255, 0],      // RGB secundario  
       [0, 0, 255]       // RGB terciario
     ],
-    "fx": 5,            // Efecto (índice)
+    "fx": 5,            // Efecto (index)
     "sx": 100,          // Velocidad efecto
     "ix": 128           // Intensidad efecto
   }]
@@ -889,8 +889,8 @@ En la interfaz web (`common.js`):
 ```javascript
 isOn        // true si LEDs están encendidos
 bri         // Brillo actual (0-255)
-selectedFx  // Índice del efecto seleccionado
-selectedPal // Índice de la paleta seleccionada
+selectedFx  // index del efecto seleccionado
+selectedPal // index de la paleta seleccionada
 csel        // Color seleccionado [R,G,B]
 segCount    // Número de segmentos
 nlA         // Nightlight activo

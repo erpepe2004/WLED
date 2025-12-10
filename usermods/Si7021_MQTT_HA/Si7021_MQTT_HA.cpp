@@ -51,7 +51,7 @@ class Si7021_MQTT_HA : public Usermod
       mqttDewPointTopic = String(mqttDeviceTopic) + "/si7021_dew_point";
       mqttAbsoluteHumidityTopic = String(mqttDeviceTopic) + "/si7021_absolute_humidity";
 
-      // Actualizar and publish sensor datos
+      // Actualizar and publish sensor data
       _updateSensorData();
       _publishSensorData();
 
@@ -119,7 +119,7 @@ class Si7021_MQTT_HA : public Usermod
         sensorDewPoint = EnvironmentCalculations::DewPoint(sensorTemperature, sensorHumidity, envTempUnit);
         sensorAbsoluteHumidity = EnvironmentCalculations::AbsoluteHumidity(sensorTemperature, sensorHumidity, envTempUnit);
 
-        // Serie.imprimir("\tHeat Índice: ");
+        // Serie.imprimir("\tHeat index: ");
         // Serie.imprimir(sensorHeatIndex, 2);
         // Serie.imprimir("\tDew Point: ");
         // Serie.imprimir(sensorDewPoint, 2);
@@ -205,7 +205,7 @@ class Si7021_MQTT_HA : public Usermod
           if (!mqttInitialized)
             _initializeMqtt();
 
-          // Actualizar and publish sensor datos
+          // Actualizar and publish sensor data
           _updateSensorData();
           _publishSensorData();
         }

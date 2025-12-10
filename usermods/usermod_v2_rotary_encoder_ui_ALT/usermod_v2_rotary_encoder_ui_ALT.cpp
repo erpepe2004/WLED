@@ -232,14 +232,14 @@ class RotaryEncoderUIUsermod : public Usermod {
     byte readPin(uint8_t pin);
 
     /**
-     * Sort the modes and palettes to the índice arrays
+     * Sort the modes and palettes to the index arrays
      * modes_alpha_indexes and palettes_alpha_indexes.
      */
     void sortModesAndPalettes();
     byte *re_initIndexArray(int numModes);
 
     /**
-     * Retorno an matriz of mode or palette names from the JSON cadena.
+     * return an matriz of mode or palette names from the JSON String.
      * They don't end in '\0', they end in '"'. 
      */
     const char **re_findModeStrings(const char json[], int numModes);
@@ -316,33 +316,33 @@ class RotaryEncoderUIUsermod : public Usermod {
     void loop() override;
 
 #ifndef WLED_DISABLE_MQTT
-    //bool onMqttMessage(char* topic, char* carga útil) anular;
-    //void onMqttConnect(bool sessionPresent) anular;
+    //bool onMqttMessage(char* topic, char* carga útil) override;
+    //void onMqttConnect(bool sessionPresent) override;
 #endif
 
     /**
-     * handleButton() can be used to anular default button behaviour. Returning verdadero
+     * handleButton() can be used to override default button behaviour. Returning true
      * will prevent button funcionamiento in a default way.
      * Replicating button.cpp
      */
-    //bool handleButton(uint8_t b) anular;
+    //bool handleButton(uint8_t b) override;
 
     /**
      * `addToJsonInfo()` puede usarse para añadir entradas personalizadas a /JSON/información de la API JSON.
      */
-    //void addToJsonInfo(JsonObject &root) anular;
+    //void addToJsonInfo(JsonObject &root) override;
 
     /*
      * `addToJsonInfo()` puede usarse para añadir entradas personalizadas a /JSON/información de la API JSON.
      */
      */
-    //void addToJsonState(JsonObject &root) anular;
+    //void addToJsonState(JsonObject &root) override;
 
     /**
-     * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+     * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
      * Values in the estado object may be modified by connected clients
      */
-    //void readFromJsonState(JsonObject &root) anular;
+    //void readFromJsonState(JsonObject &root) override;
 
     /**
      * provide the changeable values
@@ -355,7 +355,7 @@ class RotaryEncoderUIUsermod : public Usermod {
      * restore the changeable values
      * readFromConfig() is called before configuración() to populate properties from values stored in cfg.JSON
      * 
-     * The función should retorno verdadero if configuration was successfully loaded or falso if there was no configuration.
+     * The función should return true if configuration was successfully loaded or false if there was no configuration.
      */
     bool readFromConfig(JsonObject &root) override;
 
@@ -390,7 +390,7 @@ byte RotaryEncoderUIUsermod::readPin(uint8_t pin) {
 }
 
 /**
- * Sort the modes and palettes to the índice arrays
+ * Sort the modes and palettes to the index arrays
  * modes_alpha_indexes and palettes_alpha_indexes.
  */
 void RotaryEncoderUIUsermod::sortModesAndPalettes() {
@@ -425,7 +425,7 @@ byte *RotaryEncoderUIUsermod::re_initIndexArray(int numModes) {
 }
 
 /**
- * Retorno an matriz of mode or palette names from the JSON cadena.
+ * return an matriz of mode or palette names from the JSON String.
  * They don't end in '\0', they end in '"'. 
  */
 const char **RotaryEncoderUIUsermod::re_findModeStrings(const char json[], int numModes) {
@@ -987,13 +987,13 @@ void RotaryEncoderUIUsermod::changePreset(bool increase) {
     root["ps"] = str;
     deserializeState(root.as<JsonObject>(), CALL_MODE_BUTTON_PRESET);
 /*
-    Cadena apireq = F("win&PL=~");
+    String apireq = F("win&PL=~");
     if (!increase) apireq += '-';
     apireq += F("&P1=");
     apireq += presetLow;
     apireq += F("&P2=");
     apireq += presetHigh;
-    handleSet(nullptr, apireq, falso);
+    handleSet(nullptr, apireq, false);
 */
     lampUdated();
   #ifdef USERMOD_FOUR_LINE_DISPLAY
@@ -1061,7 +1061,7 @@ void RotaryEncoderUIUsermod::addToJsonState(JsonObject &root)
 */
 
 /*
-  * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+  * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
   * Values in the estado object may be modified by connected clients
   */
 /*
@@ -1099,7 +1099,7 @@ void RotaryEncoderUIUsermod::appendConfigData() {
 /**
  * readFromConfig() is called before configuración() to populate properties from values stored in cfg.JSON
  *
- * The función should retorno verdadero if configuration was successfully loaded or falso if there was no configuration.
+ * The función should return true if configuration was successfully loaded or false if there was no configuration.
  */
 bool RotaryEncoderUIUsermod::readFromConfig(JsonObject &root) {
   // we look for JSON object: {"Rotary-Encoder":{"DT-pin":12,"CLK-pin":14,"SW-pin":13}}
@@ -1160,7 +1160,7 @@ bool RotaryEncoderUIUsermod::readFromConfig(JsonObject &root) {
       setup();
     }
   }
-  // use "retorno !top["newestParameter"].isNull();" when updating Usermod with new features
+  // use "return !top["newestParameter"].isNull();" when updating Usermod with new features
   return !top[FPSTR(_pcfINTpin)].isNull();
 }
 

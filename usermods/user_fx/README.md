@@ -409,17 +409,17 @@ Notice that there are three different modes that we can define from the single e
 uint16_t mode_sinelon(void) {
   return sinelon_base(false);
 }
-// Calls sinelon_base with dual = falso and rainbow = falso 
+// Calls sinelon_base with dual = false and rainbow = false 
 
 uint16_t mode_sinelon_dual(void) {
   return sinelon_base(true);
 }
-// Calls sinelon_base with dual = verdadero and rainbow = falso 
+// Calls sinelon_base with dual = true and rainbow = false 
 
 uint16_t mode_sinelon_rainbow(void) {
   return sinelon_base(false, true);
 }
-// Calls sinelon_base with dual = falso and rainbow = verdadero 
+// Calls sinelon_base with dual = false and rainbow = true 
 ```
 
 And then the last part defines the metadata strings for each effect to specify how it will be portrayed in the UI:

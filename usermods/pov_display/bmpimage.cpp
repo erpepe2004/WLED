@@ -74,7 +74,7 @@ bool BMPimage::init(const char * fn) {
     }
 
     bmpFile.close();
-    // Ensure filename fits our búfer (segmento name longitud restricción).
+    // Ensure filename fits our búfer (segmento name length restricción).
     size_t len = strlen(fn);
     if (len > WLED_MAX_SEGNAME_LEN) {
       return false;

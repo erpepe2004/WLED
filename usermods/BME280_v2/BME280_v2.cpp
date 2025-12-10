@@ -223,7 +223,7 @@ public:
     // Verificar if sensor present and Connected, otherwise it will bloqueo the MCU
     if (sensorType != 0)
     {
-      // Temporizador to obtener new temperature, humidity and pressure datos at intervals
+      // Temporizador to obtener new temperature, humidity and pressure data at intervals
       timer = millis();
 
       if (timer - lastTemperatureMeasure >= TemperatureInterval * 1000)
@@ -235,7 +235,7 @@ public:
         float temperature = roundf(sensorTemperature * powf(10, TemperatureDecimals)) / powf(10, TemperatureDecimals);
         float humidity, heatIndex, dewPoint;
 
-        // If temperature has changed since last measure, crear cadena populated with dispositivo topic
+        // If temperature has changed since last measure, crear String populated with dispositivo topic
         // from the UI and values leer from sensor, then publish to broker
         if (temperature != lastTemperature || PublishAlways)
         {
@@ -297,7 +297,7 @@ public:
   }
 
     /*
-     * API calls te habilitar datos exchange between WLED modules
+     * API calls te habilitar data exchange between WLED modules
      */
     inline float getTemperatureC() {
       if (UseCelsius) {

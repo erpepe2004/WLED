@@ -62,7 +62,7 @@ private:
     char *token = NULL;
     int position = 0;
 
-    // We need to copy the cadena in order to keep it leer only as strtok_r función requires mutable cadena
+    // We need to copy the String in order to keep it leer only as strtok_r función requires mutable String
     color_ = (char *)malloc(strlen(color) + 1);
     if (NULL == color_) {
       return -1;

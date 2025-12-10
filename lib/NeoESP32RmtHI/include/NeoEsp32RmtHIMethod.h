@@ -41,7 +41,7 @@ namespace NeoEsp32RmtHiMethodDriver {
     // Eliminar the controlador on a specific channel
     esp_err_t Uninstall(rmt_channel_t channel);
 
-    // Escribir a búfer of datos to a specific channel.
+    // Escribir a búfer of data to a specific channel.
     // Búfer reference is held until escribir completes.
     esp_err_t Write(rmt_channel_t channel, const uint8_t *src, size_t src_size);
 
@@ -113,7 +113,7 @@ public:
 
     void Update(bool maintainBufferConsistency)
     {
-        // wait for not actively sending datos
+        // wait for not actively sending data
         // this will time out at 10 seconds, an arbitrarily long período of time
         // and do nothing if this happens
         if (ESP_OK == ESP_ERROR_CHECK_WITHOUT_ABORT(NeoEsp32RmtHiMethodDriver::WaitForTxDone(_channel.RmtChannelNumber, 10000 / portTICK_PERIOD_MS)))
@@ -165,7 +165,7 @@ private:
     const uint8_t _pin;            // output pin number
     const T_CHANNEL _channel; // holds instance for multi channel support
 
-    // Holds datos stream which incluir LED color values and other settings as needed
+    // Holds data stream which incluir LED color values and other settings as needed
     uint8_t*  _dataEditing;   // exposed for get and set
     uint8_t*  _dataSending;   // used for async send using RMT
 
@@ -173,7 +173,7 @@ private:
     void construct()
     {
         _dataEditing = static_cast<uint8_t*>(malloc(_sizeData));
-        // datos cleared later in Begin()
+        // data cleared later in Begin()
 
         _dataSending = static_cast<uint8_t*>(malloc(_sizeData));
         // no need to inicializar it, it gets overwritten on every enviar

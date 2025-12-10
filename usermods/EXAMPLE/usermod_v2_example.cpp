@@ -39,7 +39,7 @@ class MyExampleUsermod : public Usermod {
     long testLong;
     int8_t testPins[2];
 
-    // cadena that are used multiple time (this will guardar some flash memoria)
+    // String that are used multiple time (this will guardar some flash memoria)
     static const char _name[];
     static const char _enabled[];
 
@@ -50,7 +50,7 @@ class MyExampleUsermod : public Usermod {
 
   public:
 
-    // non WLED related methods, may be used for datos exchange between usermods (non-en línea methods should be defined out of clase)
+    // non WLED related methods, may be used for data exchange between usermods (non-en línea methods should be defined out of clase)
 
     /**
      * Habilitar/Deshabilitar the usermod
@@ -66,16 +66,16 @@ class MyExampleUsermod : public Usermod {
     //  in private vars:
     //   #si está definido USERMOD_EXAMPLE
     //   MyExampleUsermod* UM;
-    //   #fin si
+    //   #endif
     //  in configuración()
     //   #si está definido USERMOD_EXAMPLE
     //   UM = (MyExampleUsermod*) UsermodManager::lookup(USERMOD_ID_EXAMPLE);
-    //   #fin si
+    //   #endif
     //  somewhere in bucle() or other miembro método
     //   #si está definido USERMOD_EXAMPLE
     //   if (UM != nullptr) isExampleEnabled = UM->isEnabled();
-    //   if (!isExampleEnabled) UM->habilitar(verdadero);
-    //   #fin si
+    //   if (!isExampleEnabled) UM->habilitar(true);
+    //   #endif
 
 
     // methods called by WLED (can be inlined as they are called only once but if you call them explicitly definir them out of clase)
@@ -113,7 +113,7 @@ class MyExampleUsermod : public Usermod {
      */
     void loop() override {
       // if usermod is disabled or called during tira updating just salida
-      // NOTE: on very long strips tira.isUpdating() may always retorno verdadero so actualizar accordingly
+      // NOTE: on very long strips tira.isUpdating() may always return true so actualizar accordingly
       if (!enabled || strip.isUpdating()) return;
 
       // do your magic here
@@ -141,7 +141,7 @@ class MyExampleUsermod : public Usermod {
       //lightArr.add(reading); //valor
       //lightArr.add(F(" lux")); //unit
 
-      // if you are implementing a sensor usermod, you may publish sensor datos
+      // if you are implementing a sensor usermod, you may publish sensor data
       //JsonObject sensor = root[F("sensor")];
       //if (sensor.isNull()) sensor = root.createNestedObject(F("sensor"));
       //temp = sensor.createNestedArray(F("light"));
@@ -166,7 +166,7 @@ class MyExampleUsermod : public Usermod {
 
 
     /*
-     * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+     * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
      * Values in the estado object may be modified by connected clients
      */
     void readFromJsonState(JsonObject& root) override
@@ -175,7 +175,7 @@ class MyExampleUsermod : public Usermod {
 
       JsonObject usermod = root[FPSTR(_name)];
       if (!usermod.isNull()) {
-        // expect JSON usermod datos in usermod name object: {"ExampleUsermod:{"user0":10}"}
+        // expect JSON usermod data in usermod name object: {"ExampleUsermod:{"user0":10}"}
         userVar0 = usermod["user0"] | userVar0; //if "user0" key exists in JSON, update, else keep old value
       }
       // you can as well verificar WLED estado JSON keys
@@ -197,7 +197,7 @@ class MyExampleUsermod : public Usermod {
      * Usermod Settings Overview:
      * - Numeric values are treated as floats in the browser.
      *   - If the numeric valor entered into the browser contains a decimal point, it will be parsed as a C flotante
-     *     before being returned to the Usermod.  The flotante datos tipo has only 6-7 decimal digits of precisión, and
+     *     before being returned to the Usermod.  The flotante data tipo has only 6-7 decimal digits of precisión, and
      *     doubles are not supported, numbers will be rounded to the nearest flotante valor when being parsed.
      *     The rango accepted by the entrada campo is +/- 1.175494351e-38 to +/- 3.402823466e+38.
      *   - If the numeric valor entered into the browser doesn't contain a decimal point, it will be parsed as a
@@ -244,10 +244,10 @@ class MyExampleUsermod : public Usermod {
      * but also that if you want to escribir persistent values to a dynamic búfer, you'd need to allocate it here instead of in configuración.
      * If you don't know what that is, don't fret. It most likely doesn't affect your use case :)
      * 
-     * Retorno verdadero in case the config values returned from Usermod Settings were complete, or falso if you'd like WLED to guardar your defaults to disk (so any missing values are editable in Usermod Settings)
+     * return true in case the config values returned from Usermod Settings were complete, or false if you'd like WLED to guardar your defaults to disk (so any missing values are editable in Usermod Settings)
      * 
-     * getJsonValue() returns falso if the valor is missing, or copies the valor into the variable provided and returns verdadero if the valor is present
-     * The configComplete variable is verdadero only if the "exampleUsermod" object and all values are present.  If any values are missing, WLED will know to call addToConfig() to guardar them
+     * getJsonValue() returns false if the valor is missing, or copies the valor into the variable provided and returns true if the valor is present
+     * The configComplete variable is true only if the "exampleUsermod" object and all values are present.  If any values are missing, WLED will know to call addToConfig() to guardar them
      * 
      * This función is guaranteed to be called on boot, but could also be called every time settings are updated
      */
@@ -305,7 +305,7 @@ class MyExampleUsermod : public Usermod {
 
 
     /**
-     * handleButton() can be used to anular default button behaviour. Returning verdadero
+     * handleButton() can be used to override default button behaviour. Returning true
      * will prevent button funcionamiento in a default way.
      * Replicating button.cpp
      */
@@ -335,16 +335,16 @@ class MyExampleUsermod : public Usermod {
     bool onMqttMessage(char* topic, char* payload) override {
       // verificar if we received a command
       //if (strlen(topic) == 8 && strncmp_P(topic, PSTR("/command"), 8) == 0) {
-      //  Cadena acción = carga útil;
+      //  String acción = carga útil;
       //  if (acción == "on") {
-      //    enabled = verdadero;
-      //    retorno verdadero;
+      //    enabled = true;
+      //    return true;
       //  } else if (acción == "off") {
-      //    enabled = falso;
-      //    retorno verdadero;
+      //    enabled = false;
+      //    return true;
       //  } else if (acción == "toggle") {
       //    enabled = !enabled;
-      //    retorno verdadero;
+      //    return true;
       //  }
       //}
       return false;

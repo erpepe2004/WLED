@@ -254,10 +254,10 @@ public:
           mqttInitialized = true;
         }
 
-        // Actualizar sensor datos
+        // Actualizar sensor data
         _updateSensorData();
 
-        // Crear cadena populated with usuario defined dispositivo topic from the UI,
+        // Crear String populated with usuario defined dispositivo topic from the UI,
         // and the leer temperature, humidity and pressure.
         // Then publish to MQTT servidor.
         mqtt->publish(mqttTemperatureTopic.c_str(), 0, true, String(SensorTemperature).c_str());

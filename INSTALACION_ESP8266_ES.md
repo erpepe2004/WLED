@@ -24,7 +24,7 @@ Esta guía te llevará a través de la instalación completa de WLED en una plac
 - **Cable USB**: Para conectar la placa al PC
 - **Tira LED WS2812B (NeoPixel)**: Opcional para pruebas iniciales
 - **Fuente de poder**: Para alimentar los LEDs (5V recomendado)
-- **Resistor 470Ω**: Para proteger el pin de datos (recomendado)
+- **Resistor 470Ω**: Para proteger el pin de data (recomendado)
 
 ### Software
 - **Python 3.7+**: Descárgalo desde [python.org](https://www.python.org)
@@ -155,7 +155,7 @@ npm install
 ### 4.1 Conectar los LEDs
 
 **Conexión básica:**
-- **Din (Datos)** del LED → Pin GPIO4 (D2 en NodeMCU) + resistor 470Ω
+- **Din (data)** del LED → Pin GPIO4 (D2 en NodeMCU) + resistor 470Ω
 - **GND** del LED → GND del ESP8266
 - **+5V** del LED → +5V desde fuente de poder
 
@@ -386,7 +386,7 @@ http://[IP_DEL_ESP8266]
 1. Ve a **Configuración** → **Configuración de LED**
 2. Selecciona:
    - **Tipo de LED**: WS2812b (NeoPixel)
-   - **Pin de datos**: GPIO4 (D2)
+   - **Pin de data**: GPIO4 (D2)
    - **Cantidad de LEDs**: El número de LEDs en tu tira
 3. Haz clic en **Guardar y recargar**
 

@@ -506,7 +506,7 @@ void handleSettingsSet(AsyncWebServerRequest *request, byte subPage)
     if (ntpEnabled && WLED_CONNECTED && !ntpConnected) ntpConnected = ntpUdp.begin(ntpLocalPort);
     ntpLastSyncTime = NTP_NEVER; // force new NTP query
 
-    longitude = request->arg(F("LN")).toFloat();
+    lengthe = request->arg(F("LN")).toFloat();
     latitude = request->arg(F("LT")).toFloat();
     // force a sunrise/sunset re-calculation
     calculateSunriseAndSunset();

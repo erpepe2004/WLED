@@ -199,7 +199,7 @@ uint16_t mode_SM8() {
 //	anim.initEffect(); 
 // 	anim.SM7();
 //
-//	retorno FRAMETIME;
+//	return FRAMETIME;
 // }
 uint16_t mode_SM6() { 
 	anim.initEffect(); 

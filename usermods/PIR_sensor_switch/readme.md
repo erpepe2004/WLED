@@ -31,7 +31,7 @@ To query or change the PIR sensor state the methods `bool PIRsensorEnabled()` an
 
 When the PIR sensor state changes an MQTT message is broadcasted with topic `wled/deviceMAC/motion` and message `on` or `off`.
 Usermod can also be configured to send just the MQTT message but not change WLED state using settings page as well as responding to motion only at night
-(assuming NTP and latitude/longitude are set to determine sunrise/sunset times).
+(assuming NTP and latitude/lengthe are set to determine sunrise/sunset times).
 
 ### There are two options to get access to the usermod instance
 

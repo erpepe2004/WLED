@@ -25,7 +25,7 @@
 // tacho counter
 static volatile unsigned long counter_rpm = 0;
 // Interrupción counting every rotation of the fan
-// https://desire.giesecke.tk/índice.php/2018/01/30/change-global-variables-from-isr/
+// https://desire.giesecke.tk/index.php/2018/01/30/change-global-variables-from-isr/
 static void IRAM_ATTR rpm_fan() {
   counter_rpm++;
 }
@@ -273,7 +273,7 @@ class PWMFanUsermod : public Usermod {
     //}
 
     /*
-     * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+     * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
      * Values in the estado object may be modified by connected clients
      */
     void readFromJsonState(JsonObject& root) override {
@@ -330,7 +330,7 @@ class PWMFanUsermod : public Usermod {
      * but also that if you want to escribir persistent values to a dynamic búfer, you'd need to allocate it here instead of in configuración.
      * If you don't know what that is, don't fret. It most likely doesn't affect your use case :)
      * 
-     * The función should retorno verdadero if configuration was successfully loaded or falso if there was no configuration.
+     * The función should return true if configuration was successfully loaded or false if there was no configuration.
      */
     bool readFromConfig(JsonObject& root) override {
       int8_t newTachoPin = tachoPin;
@@ -376,7 +376,7 @@ class PWMFanUsermod : public Usermod {
         }
       }
 
-      // use "retorno !top["newestParameter"].isNull();" when updating Usermod with new features
+      // use "return !top["newestParameter"].isNull();" when updating Usermod with new features
       return !top[FPSTR(_IRQperRotation)].isNull();
   }
 

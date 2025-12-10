@@ -24,7 +24,7 @@ class UsermodTemperature : public Usermod {
     OneWire *oneWire;
     // GPIO pin used for sensor (with a default compile-time fallback)
     int8_t temperaturePin = TEMPERATURE_PIN;
-    // measurement unit (verdadero==°C, falso==°F)
+    // measurement unit (true==°C, false==°F)
     bool degC = true;
     // usando parasite power on the sensor
     bool parasite = false;
@@ -78,7 +78,7 @@ class UsermodTemperature : public Usermod {
     static UsermodTemperature *getInstance() { return UsermodTemperature::_instance; }
 
     /*
-     * API calls te habilitar datos exchange between WLED modules
+     * API calls te habilitar data exchange between WLED modules
      */
     inline float getTemperatureC() { return temperature; }
     inline float getTemperatureF() { return temperature * 1.8f + 32.0f; }
@@ -88,18 +88,18 @@ class UsermodTemperature : public Usermod {
 
     void setup() override;
     void loop() override;
-    //void connected() anular;
+    //void connected() override;
 #ifndef WLED_DISABLE_MQTT
     void onMqttConnect(bool sessionPresent) override;
 #endif
-    //void onUpdateBegin(bool init) anular;
+    //void onUpdateBegin(bool init) override;
 
-    //bool handleButton(uint8_t b) anular;
-    //void handleOverlayDraw() anular;
+    //bool handleButton(uint8_t b) override;
+    //void handleOverlayDraw() override;
 
     void addToJsonInfo(JsonObject& root) override;
-    //void addToJsonState(JsonObject &root) anular;
-    //void readFromJsonState(JsonObject &root) anular;
+    //void addToJsonState(JsonObject &root) override;
+    //void readFromJsonState(JsonObject &root) override;
     void addToConfig(JsonObject &root) override;
     bool readFromConfig(JsonObject &root) override;
 

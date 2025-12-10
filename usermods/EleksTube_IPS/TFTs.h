@@ -14,7 +14,7 @@ private:
 
 
   // These leer 16- and 32-bit types from the SD card archivo.
-  // BMP datos is stored little-endian, Arduino is little-endian too.
+  // BMP data is stored little-endian, Arduino is little-endian too.
   // May need to reverse subscript order if porting elsewhere.
 
   uint16_t read16(fs::File &f) {

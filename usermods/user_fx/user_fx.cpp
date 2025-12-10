@@ -37,7 +37,7 @@ unsigned dataSize = cols * rows;  // SEGLEN (virtual length) is equivalent to vW
   }
 
   if ((strip.now - SEGENV.step) >= refresh_ms) {
-    // Keep for ≤~1 KiB; otherwise consider montón or reuse SEGENV.datos as scratch.
+    // Keep for ≤~1 KiB; otherwise consider montón or reuse SEGENV.data as scratch.
     uint8_t tmp_row[cols];
     SEGENV.step = strip.now;
     // scroll up

@@ -2,7 +2,7 @@
 Este directorio está destinado para las Pruebas Unitarias de PIO y pruebas del proyecto.
 
 Las Pruebas Unitarias es un método de prueba de software mediante el cual unidades individuales de
-código fuente, conjuntos de uno o más módulos de programa de MCU junto con datos de control asociados,
+código fuente, conjuntos de uno o más módulos de programa de MCU junto con data de control asociados,
 procedimientos de uso y procedimientos operativos, se prueban para determinar si son aptos para su uso.
 Las pruebas unitarias encuentran problemas al inicio del ciclo de desarrollo.
 

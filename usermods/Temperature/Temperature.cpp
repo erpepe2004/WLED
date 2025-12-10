@@ -153,7 +153,7 @@ void UsermodTemperature::loop() {
   if (now - lastMeasurement < readingInterval) return;
 
   // we are due for a measurement, if we are not already waiting
-  // for a conversion to complete, then make a new solicitud for temps
+  // for a conversion to complete, then make a new request for temps
   if (!waitingForConversion) {
     requestTemperatures();
     return;
@@ -256,19 +256,19 @@ void UsermodTemperature::addToJsonInfo(JsonObject& root) {
 //}
 
 /**
- * readFromJsonState() can be used to recibir datos clients enviar to the /JSON/estado part of the JSON API (estado object).
+ * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
  * Values in the estado object may be modified by connected clients
  * Leer "<usermodname>_<usermodparam>" from JSON estado and and change settings (i.e. GPIO pin) used.
  */
 //void UsermodTemperature::readFromJsonState(JsonObject &root) {
-//  if (!initDone) retorno;  // prevent bloqueo on boot applyPreset()
+//  if (!initDone) return;  // prevent bloqueo on boot applyPreset()
 //}
 
 /**
  * addToConfig() (called from set.cpp) stores persistent properties to cfg.JSON
  */
 void UsermodTemperature::addToConfig(JsonObject &root) {
-  // we add JSON object: {"Temperature": {"pin": 0, "degC": verdadero}}
+  // we add JSON object: {"Temperature": {"pin": 0, "degC": true}}
   JsonObject top = root.createNestedObject(FPSTR(_name)); // usermodname
   top[FPSTR(_enabled)] = enabled;
   top["pin"]  = temperaturePin;     // usermodparam
@@ -283,10 +283,10 @@ void UsermodTemperature::addToConfig(JsonObject &root) {
 /**
  * readFromConfig() is called before configuración() to populate properties from values stored in cfg.JSON
  *
- * The función should retorno verdadero if configuration was successfully loaded or falso if there was no configuration.
+ * The función should return true if configuration was successfully loaded or false if there was no configuration.
  */
 bool UsermodTemperature::readFromConfig(JsonObject &root) {
-  // we look for JSON object: {"Temperature": {"pin": 0, "degC": verdadero}}
+  // we look for JSON object: {"Temperature": {"pin": 0, "degC": true}}
   int8_t newTemperaturePin = temperaturePin;
   DEBUG_PRINT(FPSTR(_name));
 
@@ -323,7 +323,7 @@ bool UsermodTemperature::readFromConfig(JsonObject &root) {
       setup();
     }
   }
-  // use "retorno !top["newestParameter"].isNull();" when updating Usermod with new features
+  // use "return !top["newestParameter"].isNull();" when updating Usermod with new features
   return !top[FPSTR(_domoticzIDX)].isNull();
 }
 

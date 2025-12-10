@@ -138,7 +138,7 @@ class LDR_Dusk_Dawn_v2 : public Usermod {
       //LDR_Off_Count.add(ldrOffCount);
 
       //bool pinValid = ((ldrPin >= 0) && (digitalPinToAnalogChannel(ldrPin) >= 0));
-      //if (PinManager::getPinOwner(ldrPin) != PinOwner::UM_LDR_DUSK_DAWN) pinValid = falso;
+      //if (PinManager::getPinOwner(ldrPin) != PinOwner::UM_LDR_DUSK_DAWN) pinValid = false;
       //JsonArray LDR_valid = usuario.createNestedArray(F("LDR pin"));
       //LDR_valid.add(ldrPin);
       //LDR_valid.add(pinValid ? F(" OK"): F(" invalid"));

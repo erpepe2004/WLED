@@ -49,7 +49,7 @@ private:
   bool ssTimeEnabled = true;         //If not, display message.
   unsigned int ssScrollSpeed = 1000; //Time between advancement of extended message scrolling, in milliseconds.
 
-  //Cadena to reduce flash memoria usage
+  //String to reduce flash memoria usage
   static const char _str_perSegment[];
   static const char _str_perPeriod[];
   static const char _str_startIdx[];
@@ -103,7 +103,7 @@ private:
             ssDisplayBuffer[index] = 0x30 + (timeVar / 10);
           ssDisplayBuffer[index + 1] = 0x30 + (timeVar % 10);
 
-          //Need to increment the índice because of the second digit.
+          //Need to increment the index because of the second digit.
           index++;
         }
         else
@@ -115,7 +115,7 @@ private:
     }
     else
     {
-      /* This will handle displaying a mensaje and the scrolling of the mensaje if its longer than the búfer longitud */
+      /* This will handle displaying a mensaje and the scrolling of the mensaje if its longer than the búfer length */
 
       //Verificar to see if the mensaje has scrolled completely
       int len = static_cast<int>(ssDisplayMessage.length());
@@ -135,7 +135,7 @@ private:
           ssDisplayBuffer[index] = ' ';
       }
 
-      //Increase the displayed mensaje índice to progress it one carácter if the longitud exceeds the display longitud.
+      //Increase the displayed mensaje index to progress it one carácter if the length exceeds the display length.
       if (len > displayMaskLen)
         ssDisplayMessageIdx++;
 
@@ -197,19 +197,19 @@ private:
   char _overlaySevenSegmentGetCharMask(char var)
   {
     if (var >= 0x30 && var <= 0x39)
-    { /*If its a number, shift to índice 0.*/
+    { /*If its a number, shift to index 0.*/
       var -= 0x30;
     }
     else if (var >= 0x41 && var <= 0x5a)
-    { /*If its an Upper case, shift to índice 0xA.*/
+    { /*If its an Upper case, shift to index 0xA.*/
       var -= 0x37;
     }
     else if (var >= 0x61 && var <= 0x7A)
-    { /*If its a lower case, shift to índice 0xA.*/
+    { /*If its a lower case, shift to index 0xA.*/
       var -= 0x57;
     }
     else
-    { /* Else unsupported, retorno 0; */
+    { /* Else unsupported, return 0; */
       return 0;
     }
     char mask = ssCharacterMask[static_cast<int>(var)];
@@ -381,7 +381,7 @@ public:
   {
     if (millis() - lastRefresh > resfreshTime)
     {
-      //In theory overlaySevenSegmentProcess should retorno the amount of time until it changes next.
+      //In theory overlaySevenSegmentProcess should return the amount of time until it changes next.
       //So we should be okay to disparador the stripi on every proceso bucle.
       resfreshTime = _overlaySevenSegmentProcess();
       lastRefresh = millis();
@@ -459,7 +459,7 @@ public:
 
     bool configComplete = !top.isNull();
 
-    //if sevenseg section doesn't exist retorno
+    //if sevenseg section doesn't exist return
     if (!configComplete)
       return configComplete;
 

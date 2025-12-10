@@ -78,7 +78,7 @@ void userLoop() {
       #else
       float board_temperature = sensor.getTempFByIndex(0);
       #endif
-//Crear carácter cadena populated with usuario defined dispositivo topic from the UI, and the leer temperature. Then publish to MQTT servidor.
+//Crear carácter String populated with usuario defined dispositivo topic from the UI, and the leer temperature. Then publish to MQTT servidor.
       char subuf[38];
       strcpy(subuf, mqttDeviceTopic);
       strcat(subuf, "/temperature");

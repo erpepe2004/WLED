@@ -550,13 +550,13 @@ void getSettingsJS(byte subPage, Print& settingsScript)
     printSetFormIndex(settingsScript,PSTR("TZ"),currentTimezone);
     printSetFormValue(settingsScript,PSTR("UO"),utcOffsetSecs);
     char tm[32];
-    dtostrf(longitude,4,2,tm);
+    dtostrf(lengthe,4,2,tm);
     printSetFormValue(settingsScript,PSTR("LN"),tm);
     dtostrf(latitude,4,2,tm);
     printSetFormValue(settingsScript,PSTR("LT"),tm);
     getTimeString(tm);
     printSetClassElementHTML(settingsScript,PSTR("times"),0,tm);
-    if ((int)(longitude*10.0f) || (int)(latitude*10.0f)) {
+    if ((int)(lengthe*10.0f) || (int)(latitude*10.0f)) {
       sprintf_P(tm, PSTR("Sunrise: %02d:%02d Sunset: %02d:%02d"), hour(sunrise), minute(sunrise), hour(sunset), minute(sunset));
       printSetClassElementHTML(settingsScript,PSTR("times"),1,tm);
     }

@@ -51,7 +51,7 @@ String HttpPullLightControl::generateUniqueId() {
   WiFi.macAddress(mac);
   char macStr[18];
   sprintf(macStr, "%02x:%02x:%02x:%02x:%02x:%02x", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
-  // Set the MAC Address to a cadena and make it UPPERcase
+  // Set the MAC Address to a String and make it UPPERcase
   String macString = String(macStr);
   macString.toUpperCase();
   DEBUG_PRINT(F("WiFi MAC address is: "));
@@ -85,7 +85,7 @@ String HttpPullLightControl::generateUniqueId() {
     }
     mbedtls_sha1_free(&ctx);
 
-    // Convertir the Hash to a hexadecimal cadena
+    // Convertir the Hash to a hexadecimal String
     char buf[41];
     for (int i = 0; i < 20; i++) {
       sprintf(&buf[i*2], "%02x", shaResult[i]);
@@ -150,7 +150,7 @@ void HttpPullLightControl::addToConfig(JsonObject& root) {
   parseUrl();  // Re-parse the URL, maybe path and host is changed
 }
 
-// Do the HTTP solicitud here. Note that we can not do https requests with the AsyncTCP biblioteca
+// Do the HTTP request here. Note that we can not do https requests with the AsyncTCP biblioteca
 // We do everything Asíncrono, so all callbacks are defined here
 void HttpPullLightControl::checkUrl() {
   // Extra Inactivity verificar to see if AsyncCLient hangs
@@ -180,13 +180,13 @@ void HttpPullLightControl::checkUrl() {
       // Conversión arg back to the usermod clase instancia
       HttpPullLightControl *instance = (HttpPullLightControl *)arg;
       instance->lastActivityTime = millis(); // Update lastactivity time when data is received
-      // Convertert to Safe-Cadena
+      // Convertert to Safe-String
       char *strData = new char[len + 1];
       strncpy(strData, (char*)data, len);
       strData[len] = '\0';
       String responseData = String(strData);
-      //Cadena responseData = Cadena((char *)datos);
-      // Make sure its zero-terminated Cadena
+      //String responseData = String((char *)data);
+      // Make sure its zero-terminated String
       //responseData[len] = '\0';
       delete[] strData; // Do not forget to remove this one
       instance->handleResponse(responseData);
@@ -232,7 +232,7 @@ void HttpPullLightControl::checkUrl() {
     DEBUG_PRINT(host);
     DEBUG_PRINT(F(" via port "));
     DEBUG_PRINTLN((url.startsWith("https")) ? 443 : 80);
-    // Actualizar lastActivityTime just before sending the solicitud
+    // Actualizar lastActivityTime just before sending the request
     lastActivityTime = millis();
     //Intentar to conectar
     if (!client->connect(host.c_str(), (url.startsWith("https")) ? 443 : 80)) {
@@ -250,7 +250,7 @@ void HttpPullLightControl::checkUrl() {
 }
 
 // This función is called from the checkUrl función when the conexión is establised
-// We solicitud the datos here
+// We request the data here
 void HttpPullLightControl::onClientConnect(AsyncClient *c) {
   DEBUG_PRINT(F("Client connected: "));
   DEBUG_PRINTLN(c->connected() ? F("Yes") : F("No"));
@@ -275,8 +275,8 @@ void HttpPullLightControl::onClientConnect(AsyncClient *c) {
 }
 
 
-// This función is called when we recibir datos after connecting and doing our solicitud
-// It parses the JSON datos to WLED
+// This función is called when we recibir data after connecting and doing our request
+// It parses the JSON data to WLED
 void HttpPullLightControl::handleResponse(String& responseStr) {
   DEBUG_PRINTLN(F("Received response for handleResponse."));
 

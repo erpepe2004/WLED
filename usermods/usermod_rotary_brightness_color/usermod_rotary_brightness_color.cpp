@@ -156,15 +156,15 @@ public:
 
   /* 
    * This example uses a more robust método of checking for missing values in the config, and setting back to defaults:
-   * - The getJsonValue() función copies the valor to the variable only if the key requested is present, returning falso with no copy if the valor isn't present
-   * - configComplete is used to retorno falso if any valor is missing, not just if the principal object is missing
+   * - The getJsonValue() función copies the valor to the variable only if the key requested is present, returning false with no copy if the valor isn't present
+   * - configComplete is used to return false if any valor is missing, not just if the principal object is missing
    * - The defaults are loaded every time readFromConfig() is run, not just once after boot
    * 
    * This ensures that missing values are added to the config, with their default values, in the rare but plausible cases of:
    * - a single valor being missing at boot, e.g. if the Usermod was upgraded and a new setting was added
    * - a single valor being missing after boot (e.g. if the cfg.JSON was manually edited and a valor was removed)
    * 
-   * If configComplete is falso, the default values are already set, and by returning falso, WLED now knows it needs to guardar the defaults by calling addToConfig()
+   * If configComplete is false, the default values are already set, and by returning false, WLED now knows it needs to guardar the defaults by calling addToConfig()
    */
   bool readFromConfig(JsonObject& root)
   {
