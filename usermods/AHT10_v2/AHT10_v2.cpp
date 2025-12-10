@@ -154,7 +154,7 @@ public:
       float humidity = truncateDecimals(_aht->readHumidity(AHT10_USE_READ_DATA));
 
 #ifndef WLED_DISABLE_MQTT
-      // Enviar to MQTT
+      // send to MQTT
 
       // We can avoid reporting if the change is insignificant. The umbral chosen is below the nivel of accuracy, but way above 0.01 which is the precisión of the valor provided.
       // The AHT10/15/20 has an accuracy of 0.3C in the temperature readings

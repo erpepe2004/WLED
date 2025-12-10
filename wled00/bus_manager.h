@@ -522,7 +522,7 @@ namespace BusManager {
   inline Bus*    getBus(size_t busNr)    { return busNr < busses.size() ? busses[busNr].get() : nullptr; }
   inline size_t  getNumBusses()          { return busses.size(); }
 
-  //semi-duplicate of strip.getLengthTotal() (though that just returns strip._length, calculated in finalizeInit())
+  //semi-duplicate of strip.getLengthTotal() (though that just returns strip._length, calculated in endizeInit())
   inline uint16_t getTotalLength(bool onlyPhysical = false) {
     unsigned len = 0;
     for (const auto &bus : busses) if (!(bus->isVirtual() && onlyPhysical)) len += bus->getLength();

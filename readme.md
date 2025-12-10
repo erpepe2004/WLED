@@ -73,7 +73,7 @@ Proxy CORS por [Corsfix](https://corsfix.com/)
 
 ¡Consulte el [foro de Discourse de WLED](https://wled.discourse.group)!  
 
-También puede enviarme correos a [dev.aircoookie@gmail.com](mailto:dev.aircoookie@gmail.com), pero por favor, solo hágalo si desea hablar conmigo en privado.  
+También puede sendme correos a [dev.aircoookie@gmail.com](mailto:dev.aircoookie@gmail.com), pero por favor, solo hágalo si desea hablar conmigo en privado.  
 
 Si WLED realmente ilumina tu día, puedes [![](https://img.shields.io/badge/send%20me%20a%20small%20gift-paypal-blue.svg?style=flat-square)](https://paypal.me/aircoookie)
 

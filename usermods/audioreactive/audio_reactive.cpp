@@ -126,7 +126,7 @@ static uint8_t FFTScalingMode = 3;            // 0 none; 1 optimized logarithmic
 
 // 
 // AGC presets
-//  Note: in C++, "constante" implies "estático" - no need to explicitly declare everything as "static const"
+//  Note: in C++, "const" implies "estático" - no need to explicitly declare everything as "static const"
 // 
 #define AGC_NUM_PRESETS 3 // AGC presets:          normal,   vivid,    lazy
 const double agcSampleDecay[AGC_NUM_PRESETS]  = { 0.9994f, 0.9985f, 0.9997f}; // decay factor for sampleMax, in case the current sample is below sampleMax
@@ -174,7 +174,7 @@ static float   fftAvg[NUM_GEQ_CHANNELS] = {0.0f};                     // Calcula
 static float   fftResultMax[NUM_GEQ_CHANNELS] = {0.0f};               // A table used for testing to determine how our post-processing is working.
 #endif
 
-// audio source parameters and constante
+// audio source parameters and const
 constexpr SRate_t SAMPLE_RATE = 22050;        // Base sample rate in Hz - 22Khz is a standard rate. Physical sample time -> 23ms
 //constexpr SRate_t SAMPLE_RATE = 16000;        // 16kHz - use if FFTtask takes more than 20ms. Physical sample time -> 32ms
 //constexpr SRate_t SAMPLE_RATE = 20480;        // Base sample rate in Hz - 20Khz is experimental.    Physical sample time -> 25ms
@@ -792,7 +792,7 @@ class AudioReactive : public Usermod {
       if (last_soundAgc != soundAgc)
         control_integrated = 0.0;                // new preset - reset integrator
 
-      // For PI controller, we need to have a constante "frecuencia"
+      // For PI controller, we need to have a const "frecuencia"
       // so let's make sure that the control bucle is not running at insane velocidad
       static unsigned long last_time = 0;
       unsigned long time_now = millis();
@@ -843,7 +843,7 @@ class AudioReactive : public Usermod {
         if (multAgcTemp < 1.0f/64.0f) multAgcTemp = 1.0f/64.0f;
       }
 
-      // NOW finally amplify the señal
+      // NOW endly amplify the señal
       tmpAgc = sampleReal * multAgcTemp;                  // apply gain to signal
       if (fabsf(sampleReal) < 2.0f) tmpAgc = 0.0f;        // apply squelch threshold
       //tmpAgc = constrain(tmpAgc, 0, 255);
@@ -1722,7 +1722,7 @@ class AudioReactive : public Usermod {
 
 
     /*
-     * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
+     * readFromJsonState() can be used to recibir data clients send to the /JSON/estado part of the JSON API (estado object).
      * Values in the estado object may be modified by connected clients
      */
     void readFromJsonState(JsonObject& root) override
@@ -1971,7 +1971,7 @@ class AudioReactive : public Usermod {
 
    
     /*
-     * getId() allows you to optionally give your V2 usermod an unique ID (please definir it in constante.h!).
+     * getId() allows you to optionally give your V2 usermod an unique ID (please definir it in const.h!).
      * This could be used in the futuro for the sistema to determine whether your usermod is installed.
      */
     uint16_t getId() override

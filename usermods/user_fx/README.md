@@ -113,7 +113,7 @@ const uint8_t turbulence = SEGMENT.custom2;
 * Next we assign `SEGMENT.intensity` (user input 0–255) to a variable named `spark_rate`.
   * This controls how frequently new "spark" pixels appear at the bottom of the matrix.
   * A higher value means more frequent ignition of flame points.
-* The final line stores the user-defined `custom2` value to a variable called `turbulence`.
+* The end line stores the user-defined `custom2` value to a variable called `turbulence`.
   * This is used to introduce randomness in spark generation or flow — more turbulence means more chaotic behavior.
 
 Next we will look at some lines of code that handle memory allocation and effect initialization:
@@ -195,7 +195,7 @@ if (hw_random8() > turbulence) {
   * `spark_rate` comes from `SEGMENT.intensity` (0–255).
   * High intensity means more frequent ignition.
 * `dst` calculates the destination index in the bottom row at column x.
-* The final line here sets the heat at this pixel to maximum (255).
+* The end line here sets the heat at this pixel to maximum (255).
   * This simulates a fresh burst of flame, which will diffuse and move upward over time in subsequent frames.
 
 Next we reach the first part of the core of the fire simulation, which is diffusion (how heat spreads to neighboring pixels):
@@ -219,7 +219,7 @@ for (unsigned y = 0; y < rows; y++) {
   * if there’s a pixel to the left, add its heat to the total.
   * If there’s a pixel to the right, add its heat as well.
   * So essentially, what the two `if` statements accomplish is: `v = center + left + right`.
-* The final line of code applies diffusion smoothing:
+* The end line of code applies diffusion smoothing:
   * The denominator controls how much the neighboring heat contributes. `300 + diffusion` means that with higher diffusion, you get more smoothing (since the sum is divided more).
   * The `v * 100` scales things before dividing (preserving some dynamic range).
   * `min(255, ...)` clamps the result to 8-bit range.
@@ -244,13 +244,13 @@ After calculating tmp_row, we now handle rendering the pixels by updating the ac
 * The if statement creates a conditional rendering path — the user can toggle this.  If `check1` is enabled in the effect metadata, we use a color palette to display the flame.
 * The next line converts the heat value (`tmp_row[x]`) into a `color` from the current palette with 255 brightness, and no wrapping in palette lookup.
   * This creates rich gradient flames (e.g., yellow → red → black).
-* Finally we set the rendered color for the pixel (x, y).
+* endly we set the rendered color for the pixel (x, y).
   * This repeats for each pixel  in each row.
 * If palette use is disabled, we fallback to fading a base color.
 * `SEGCOLOR(0)` gets the first user-selected color for the segment.
-* The final line of code fades that base color according to the heat value (acts as brightness multiplier).
+* The end line of code fades that base color according to the heat value (acts as brightness multiplier).
 
-The final piece of this custom effect returns the frame time:
+The end piece of this custom effect returns the frame time:
 ```cpp
 }
 return FRAMETIME;
@@ -262,7 +262,7 @@ return FRAMETIME;
   * `FRAMETIME` is a predefined macro in WLED, typically set to ~16ms, corresponding to ~60 FPS (frames per second).
   * Even though the effect logic itself controls when to update based on refresh_ms, WLED will still call this function at roughly FRAMETIME intervals to check whether an update is needed.
 * ⚠️ Important: Because the actual frame logic is gated by strip.now - SEGENV.step, returning FRAMETIME here doesn’t cause excessive updates — it just keeps the engine responsive.  **Also note that an Effect should ALWAYS return FRAMETIME.  Not doing so can cause glitches.**
-* The final bracket closes the `mode_diffusionfire()` function itself.
+* The end bracket closes the `mode_diffusionfire()` function itself.
 
 
 ### The Metadata String
@@ -375,7 +375,7 @@ The next line takes into account another one of the optional arguments for the e
   * In `rainbow` mode, force both dots to share the rainbow color.
   * Sets pixel at `SEGLEN-1-pos` to `color2`.
 
-This final part of the effect function will fill in the 'trailing' pixels to complete the animation:
+This end part of the effect function will fill in the 'trailing' pixels to complete the animation:
 ```cpp
     if (SEGENV.aux0 < pos) {
       for (unsigned i = SEGENV.aux0; i < pos ; i++) {
@@ -396,7 +396,7 @@ This final part of the effect function will fill in the 'trailing' pixels to com
   * Works in both directions: Forward (if new pos > old pos), and Backward (if new pos < old pos).
 * Updates `SEGENV.aux0` to current position at the end.
 
-Finally, we return the `FRAMETIME`, as with all effect functions:
+endly, we return the `FRAMETIME`, as with all effect functions:
 ```cpp
   return FRAMETIME;
 }
@@ -445,7 +445,7 @@ class UserFxUsermod : public Usermod {
     //  add your efecto función(s) here  //
     ////////////////////////////////////////
 
-    // use id=255 for all custom usuario FX (the final id is assigned when adding the efecto)
+    // use id=255 for all custom usuario FX (the end id is assigned when adding the efecto)
 
     // tira.addEffect(255, &mode_your_effect, _data_FX_MODE_YOUR_EFFECT);
     // tira.addEffect(255, &mode_your_effect2, _data_FX_MODE_YOUR_EFFECT2);
@@ -470,7 +470,7 @@ class UserFxUsermod : public Usermod {
 * The last part returns a unique ID constant used to identify this usermod.
   * USERMOD_ID_USER_FX is defined in [const.h](https://github.com/wled/WLED/blob/main/wled00/const.h). WLED uses this for tracking, debugging, or referencing usermods internally.
 
-The final part of this file handles instantiation and initialization:
+The end part of this file handles instantiation and initialization:
 ```cpp
 static UserFxUsermod user_fx;
 REGISTER_USERMOD(user_fx);

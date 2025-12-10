@@ -284,7 +284,7 @@ class RotaryEncoderUIUsermod : public Usermod {
     {}
 
     /**
-     * `getId()` permite asignar opcionalmente un ID único a este usermod V2 (defínelo en `constante.h`).
+     * `getId()` permite asignar opcionalmente un ID único a este usermod V2 (defínelo en `const.h`).
      * Esto puede usarse para que el sistema determine si el usermod está instalado.
      */
     uint16_t getId() override { return USERMOD_ID_ROTARY_ENC_UI; }
@@ -339,7 +339,7 @@ class RotaryEncoderUIUsermod : public Usermod {
     //void addToJsonState(JsonObject &root) override;
 
     /**
-     * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
+     * readFromJsonState() can be used to recibir data clients send to the /JSON/estado part of the JSON API (estado object).
      * Values in the estado object may be modified by connected clients
      */
     //void readFromJsonState(JsonObject &root) override;
@@ -1061,7 +1061,7 @@ void RotaryEncoderUIUsermod::addToJsonState(JsonObject &root)
 */
 
 /*
-  * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
+  * readFromJsonState() can be used to recibir data clients send to the /JSON/estado part of the JSON API (estado object).
   * Values in the estado object may be modified by connected clients
   */
 /*

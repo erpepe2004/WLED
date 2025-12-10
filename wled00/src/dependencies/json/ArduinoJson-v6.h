@@ -4804,9 +4804,9 @@ inline bool parseNumber(const char* s, VariantData& result) {
   exponent += exponent_offset;
   if (*s != '\0')
     return false;
-  Float final_result =
+  Float end_result =
       traits::make_float(static_cast<Float>(mantissa), exponent);
-  result.setFloat(is_negative ? -final_result : final_result);
+  result.setFloat(is_negative ? -end_result : end_result);
   return true;
 }
 template <typename T>

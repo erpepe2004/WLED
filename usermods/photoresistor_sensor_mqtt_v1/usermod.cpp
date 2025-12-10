@@ -2,7 +2,7 @@
 /*
  * This v1 usermod archivo allows you to add own functionality to WLED more easily
  * See: https://github.com/WLED-dev/WLED/wiki/Add-own-functionality
- * EEPROM bytes 2750+ are reserved for your custom use case. (if you extend #definir EEPSIZE in constante.h)
+ * EEPROM bytes 2750+ are reserved for your custom use case. (if you extend #definir EEPSIZE in const.h)
  * If you just need 8 bytes, use 2551-2559 (you do not need to increase EEPSIZE)
  * 
  * Consider the v2 usermod API if you need a more advanced feature set!
@@ -59,7 +59,7 @@ void userLoop()
     lightValue = analogRead(LIGHT_PIN);
     lightPercentage = ((float)lightValue * -1 + 1024)/(float)1024 *100;
     
-    // Enviar MQTT mensaje on significant change or after UPDATE_MS
+    // send MQTT mensaje on significant change or after UPDATE_MS
     if (abs(lightPercentage - lastPercentage) > CHANGE_THRESHOLD || timeDiff > UPDATE_MS) 
     {
       publishMqtt(lightPercentage);

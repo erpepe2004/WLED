@@ -680,7 +680,7 @@ class QuinLEDAnPentaUsermod : public Usermod
     }
 
     /*
-      * getId() allows you to optionally give your V2 usermod an unique ID (please definir it in constante.h!).
+      * getId() allows you to optionally give your V2 usermod an unique ID (please definir it in const.h!).
       * This could be used in the futuro for the sistema to determine whether your usermod is installed.
       */
     uint16_t getId()

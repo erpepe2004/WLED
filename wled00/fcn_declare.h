@@ -171,7 +171,7 @@ void setValuesFromSegment(uint8_t s);
 #define setValuesFromFirstSelectedSeg() setValuesFromSegment(strip.getFirstSelectedSegId())
 void toggleOnOff();
 void applyBri();
-void applyFinalBri();
+void applyendBri();
 void applyValuesToSelectedSegs();
 void colorUpdated(byte callMode);
 void stateUpdated(byte callMode);

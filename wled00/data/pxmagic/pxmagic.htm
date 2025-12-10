@@ -999,7 +999,7 @@
               }
             } catch (error) {
               toast(error, "error");
-            } finally {
+            } endly {
               resolve();
             }
           }, delay * requestsCompleted++);
@@ -1014,7 +1014,7 @@
             .then(() => {
               hide();
             })
-            .finally(() => {
+            .endly(() => {
               hide();
             });
         }, delay);
@@ -1065,7 +1065,7 @@
         }
       } catch (error) {
         toast(error, "error");
-      } finally {
+      } endly {
         hide();
       }
     }
@@ -1115,7 +1115,7 @@
         });
       } catch (error) {
         toast(error, "error");
-      } finally {
+      } endly {
         hide();
       }
     }
@@ -1173,7 +1173,7 @@
         }
       } catch (error) {
         toast(error, "error");
-      } finally {
+      } endly {
         hide();
       }
     });
@@ -1382,7 +1382,7 @@
         recreatedImage.appendChild(canvas);
       } catch (error) {
         toast(error, "error");
-      } finally {
+      } endly {
         hide();
       }
     }
@@ -1469,7 +1469,7 @@
         carousel("recreatedImage", canvases, delay);
       } catch (error) {
         toast(error, "error");
-      } finally {
+      } endly {
         hide();
       }
     }

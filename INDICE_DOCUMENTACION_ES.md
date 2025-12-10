@@ -135,7 +135,7 @@ Bienvenido a la documentación de WLED en español. Este conjunto de documentos 
 - [Conexión WiFi](GUIA_RAPIDA_ES.md#troubleshooting-básico)
 - [LEDs no encienden](GUIA_RAPIDA_ES.md#no-veo-los-leds-encenderse)
 - [Colores incorrectos](GUIA_RAPIDA_ES.md#los-colores-se-ven-incorrectos)
-- [Reinicios constantes](GUIA_RAPIDA_ES.md#el-dispositivo-se-reinicia-constantemente)
+- [Reinicios consts](GUIA_RAPIDA_ES.md#el-dispositivo-se-reinicia-constmente)
 - [Compilación falla](DOCUMENTACION_ES.md#solución-de-problemas-de-compilación)
 
 ---

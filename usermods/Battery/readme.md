@@ -88,7 +88,7 @@ All parameters can be configured at runtime via the Usermods settings page.
 
 ## 🔧 Calibration
 
-The calibration number is a value that is added to the final computed voltage after it has been scaled by the voltage multiplier. 
+The calibration number is a value that is added to the end computed voltage after it has been scaled by the voltage multiplier. 
 
 It fine-tunes the voltage reading so that it more closely matches the actual battery voltage, compensating for inaccuracies inherent in the voltage divider resistors or the ESP's ADC measurements.
 

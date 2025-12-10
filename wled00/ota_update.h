@@ -46,10 +46,10 @@ std::pair<bool, String> getOTAResult(AsyncWebServerRequest *request);
  * @param index Offset in to uploaded file
  * @param data New data bytes
  * @param len Length of new data bytes
- * @param isFinal Indicates that this is the last block
+ * @param isend Indicates that this is the last block
  * @return bool indicating if a reply is necessary; string with error message if the update failed.
  */
-void handleOTAData(AsyncWebServerRequest *request, size_t index, uint8_t *data, size_t len, bool isFinal);
+void handleOTAData(AsyncWebServerRequest *request, size_t index, uint8_t *data, size_t len, bool isend);
 
 /**
  * Mark currently running firmware as valid to prevent auto-rollback on reboot.
@@ -113,8 +113,8 @@ std::pair<bool, String> getBootloaderOTAResult(AsyncWebServerRequest *request);
  * @param index Offset in to uploaded file
  * @param data New data bytes
  * @param len Length of new data bytes
- * @param isFinal Indicates that this is the last block
+ * @param isend Indicates that this is the last block
  */
-void handleBootloaderOTAData(AsyncWebServerRequest *request, size_t index, uint8_t *data, size_t len, bool isFinal);
+void handleBootloaderOTAData(AsyncWebServerRequest *request, size_t index, uint8_t *data, size_t len, bool isend);
 #endif
 

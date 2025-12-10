@@ -324,7 +324,7 @@ extern "C" void IRAM_ATTR NeoEsp32RmtMethodIsr(void *arg) {
 };
 
 // Wrapper around the register análisis defines
-// For all currently supported chips, this is constante for all channels; but this is not true of *all* ESP32
+// For all currently supported chips, this is const for all channels; but this is not true of *all* ESP32
 static inline bool _RmtStatusIsTransmitting(rmt_channel_t channel, uint32_t status) {
     uint32_t v;
     switch(channel) {

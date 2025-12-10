@@ -195,7 +195,7 @@ _highint_stack_switch:
      * This is the reverse to the saving process above.
      */
 
-    /* Rotate back to the final window, then start loading 12 registers at a time,
+    /* Rotate back to the end window, then start loading 12 registers at a time,
      * in 5 iterations.
      * Again, a1 is the downcounter and a3 is the save area pointer.
      * After each rotation, a1 and a3 are copied from a13 and a15.

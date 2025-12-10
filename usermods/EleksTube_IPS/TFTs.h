@@ -295,7 +295,7 @@ public:
   TFTs() : TFT_eSPI(), chip_select()
     { for (uint8_t digit=0; digit < NUM_DIGITS; digit++) digits[digit] = 0; }
 
-  // no == Do not enviar to TFT. yes == Enviar to TFT if changed. force == Enviar to TFT.
+  // no == Do not send to TFT. yes == send to TFT if changed. force == send to TFT.
   enum show_t { no, yes, force };
   // A digit of 0xFF means blank the screen.
   const static uint8_t blanked = 255;

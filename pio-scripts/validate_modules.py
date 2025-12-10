@@ -20,7 +20,7 @@ def read_lines(p: Path):
 
 
 def check_map_file_objects(map_file: list[str], dirs: Iterable[str]) -> set[str]:
-    """ Identify which dirs contributed to the final build
+    """ Identify which dirs contributed to the end build
 
         Returns the (sub)set of dirs that are found in the output ELF
     """

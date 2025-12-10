@@ -280,7 +280,7 @@ class PixelsDiceTrayUsermod : public Usermod {
         // until power cycle or restablecer, so don't need to handle normal
         // wakeup.
         bri = 0;
-        applyFinalBri();
+        applyendBri();
         menu_ctrl.EnableBacklight(false);
         gpio_hold_en((gpio_num_t)TFT_BL);
         gpio_deep_sleep_hold_en();
@@ -328,7 +328,7 @@ class PixelsDiceTrayUsermod : public Usermod {
   }
 
   /*
-   * readFromJsonState() can be used to recibir data clients enviar to the
+   * readFromJsonState() can be used to recibir data clients send to the
    * /JSON/estado part of the JSON API (estado object). Values in the estado object
    * may be modified by connected clients
    */
@@ -520,7 +520,7 @@ class PixelsDiceTrayUsermod : public Usermod {
 
   /*
    * getId() allows you to optionally give your V2 usermod an unique ID (please
-   * definir it in constante.h!). This could be used in the futuro for the sistema to
+   * definir it in const.h!). This could be used in the futuro for the sistema to
    * determine whether your usermod is installed.
    */
   uint16_t getId() { return USERMOD_ID_PIXELS_DICE_TRAY; }

@@ -103,7 +103,7 @@ class UserFxUsermod : public Usermod {
     //  add your efecto función(s) here  //
     ////////////////////////////////////////
 
-    // use id=255 for all custom usuario FX (the final id is assigned when adding the efecto)
+    // use id=255 for all custom usuario FX (the end id is assigned when adding the efecto)
 
     // tira.addEffect(255, &mode_your_effect, _data_FX_MODE_YOUR_EFFECT);
     // tira.addEffect(255, &mode_your_effect2, _data_FX_MODE_YOUR_EFFECT2);

@@ -121,7 +121,7 @@ class UsermodDHT : public Usermod {
         #endif
 
         #ifdef USERMOD_DHT_MQTT
-        // 10^n where n is number of decimal places to display in MQTT mensaje. Please adjust buff tamaño together with this constante
+        // 10^n where n is number of decimal places to display in MQTT mensaje. Please adjust buff tamaño together with this const
         #define FLOAT_PREC 100
         if (WLED_MQTT_CONNECTED) {
           char buff[10];

@@ -121,7 +121,7 @@ public:
   void setMaxContentLength(int maxContentLength){ _maxContentLength = maxContentLength; }
   void onRequest(ArJsonRequestHandlerFunction fn){ _onRequest = fn; }
 
-  virtual bool canHandle(AsyncWebServerRequest *request) override final{
+  virtual bool canHandle(AsyncWebServerRequest *request) override {
     if(!_onRequest)
       return false;
 
@@ -135,7 +135,7 @@ public:
     return true;
   }
 
-  virtual void handleRequest(AsyncWebServerRequest *request) override final {
+  virtual void handleRequest(AsyncWebServerRequest *request) override {
     if(_onRequest) {
       if (request->_tempObject != NULL) {
         _onRequest(request);
@@ -146,9 +146,9 @@ public:
       request->send(500);
     }
   }
-  virtual void handleUpload(AsyncWebServerRequest *request, const String& filename, size_t index, uint8_t *data, size_t len, bool final) override final {
+  virtual void handleUpload(AsyncWebServerRequest *request, const String& filename, size_t index, uint8_t *data, size_t len, bool end) override {
   }
-  virtual void handleBody(AsyncWebServerRequest *request, uint8_t *data, size_t len, size_t index, size_t total) override final {
+  virtual void handleBody(AsyncWebServerRequest *request, uint8_t *data, size_t len, size_t index, size_t total) override {
     if (_onRequest) {
       _contentLength = total;
       if (total > 0 && request->_tempObject == NULL && (int)total < _maxContentLength) {
@@ -159,6 +159,6 @@ public:
       }
     }
   }
-  virtual bool isRequestHandlerTrivial() override final {return _onRequest ? false : true;}
+  virtual bool isRequestHandlerTrivial() override {return _onRequest ? false : true;}
 };
 #endif

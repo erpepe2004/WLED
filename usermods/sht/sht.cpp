@@ -405,7 +405,7 @@ float ShtUsermod::getTemperature() {
 /**
  * Returns the current configured unit as human readable String.
  *
- * @return constante char*
+ * @return const char*
  */
 const char* ShtUsermod::getUnitString() {
   return unitOfTemp ? "°F" : "°C";

@@ -258,7 +258,7 @@ class Animated_Staircase : public Usermod {
       }
     }
 
-    // enviar sensor values to JSON API
+    // send sensor values to JSON API
     void writeSensorsToJson(JsonObject& staircase) {
       staircase[F("top-sensor")]    = topSensorRead;
       staircase[F("bottom-sensor")] = bottomSensorRead;

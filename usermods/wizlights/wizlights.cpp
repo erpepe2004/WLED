@@ -33,7 +33,7 @@ class WizLightsUsermod : public Usermod {
 
 
 
-    // Enviar JSON blob to WiZ Light over UDP
+    // send JSON blob to WiZ Light over UDP
     // RGB or C/W white
     // TODO:
     //   Better utilize WLED existing white mixing logic
@@ -59,7 +59,7 @@ class WizLightsUsermod : public Usermod {
         if (coldWhite > 0 && warmWhite > 0){
           UDP.print("{\"method\":\"setPilot\",\"params\":{\"c\":"); UDP.print(coldWhite) ;UDP.print(",\"w\":"); UDP.print(warmWhite); UDP.print("}}");}
 
-      // Enviar color as RGB  
+      // send color as RGB  
       } else {
         UDP.print("{\"method\":\"setPilot\",\"params\":{\"r\":");
         UDP.print(R(color));

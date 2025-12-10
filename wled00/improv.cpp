@@ -165,7 +165,7 @@ void sendImprovRPCResult(ImprovRPCType type, uint8_t n_strings, const char **str
   }
 
   packetLen = pos  +1;
-  out[8]    = pos  -9; // Length of packet (excluding first 9 header bytes and final checksum byte)
+  out[8]    = pos  -9; // Length of packet (excluding first 9 header bytes and end checksum byte)
   out[10]   = pos -11; // Data len
 
   unsigned checksum = 0;

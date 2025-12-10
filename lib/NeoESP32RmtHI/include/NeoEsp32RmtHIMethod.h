@@ -71,7 +71,7 @@ public:
 
     ~NeoEsp32RmtHIMethodBase()
     {
-        // wait until the last enviar finishes before destructing everything
+        // wait until the last send finishes before destructing everything
         // arbitrary time out of 10 seconds
         ESP_ERROR_CHECK_WITHOUT_ABORT(NeoEsp32RmtHiMethodDriver::WaitForTxDone(_channel.RmtChannelNumber, 10000 / portTICK_PERIOD_MS));
 
@@ -176,7 +176,7 @@ private:
         // data cleared later in Begin()
 
         _dataSending = static_cast<uint8_t*>(malloc(_sizeData));
-        // no need to inicializar it, it gets overwritten on every enviar
+        // no need to inicializar it, it gets overwritten on every send
     }
 };
 

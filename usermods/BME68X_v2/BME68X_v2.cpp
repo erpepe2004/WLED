@@ -502,7 +502,7 @@
  
  /**
   * @brief Sends the current sensor data via MQTT
-  * @param topic Suptopic of the sensor as constante char
+  * @param topic Suptopic of the sensor as const char
   * @param valor Current sensor valor as flotante
   */
  void UsermodBME68X::MQTT_publish(const char* topic, const float& value, const int8_t& dig) {

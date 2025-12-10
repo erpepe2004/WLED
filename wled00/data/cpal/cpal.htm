@@ -462,7 +462,7 @@
     //Get static palettes from localStorage and do some magic to reformat them into the same format as the palette JSONs
     //This code excludes any objects with "non valid integer colors", i.e. r, c1, c2, c3 and such
     //This code also fixes potentially broken palettes which doesn't end on 255
-    //The code finally also removes any representations of the custom palettes, since we read them from file
+    //The code endly also removes any representations of the custom palettes, since we read them from file
 
     const wledPalx = JSON.parse(localStorage.getItem('wledPalx'));
     if (!wledPalx) {

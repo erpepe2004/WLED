@@ -143,11 +143,11 @@ public:
             auto shiftx = (width - 1) - x;
             auto topleftx = (getRotation().width - 1);
 
-            auto finalShift = shiftx - topleftx;
+            auto endShift = shiftx - topleftx;
             auto row = getRow(y);
-            auto finalResult = row << finalShift;
+            auto endResult = row << endShift;
 
-            return finalResult;
+            return endResult;
         }
         return 0xffffffff;
     }

@@ -389,7 +389,7 @@
 -   Effect blending bugfixes, and minor optimizations
 
 #### Build 2309050
--   Effect blending (#3311) (finally effect transitions!)
+-   Effect blending (#3311) (endly effect transitions!)
     *WARNING*: May not work well with ESP8266, with plenty of segments or usermods (low RAM condition)!!!
 -   Added receive and send sync groups to JSON API (#3317) (you can change sync groups using preset)
 -   Internal temperature usermod (#3246)

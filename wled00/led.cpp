@@ -74,7 +74,7 @@ void applyBri() {
 
 
 //applies global brightness and sets it as the "current" brightness (no transition)
-void applyFinalBri() {
+void applyendBri() {
   briOld = bri;
   briT = bri;
   applyBri();
@@ -125,7 +125,7 @@ void stateUpdated(byte callMode) {
   if (strip.getTransition() == 0) {
     jsonTransitionOnce = false;
     transitionActive = false;
-    applyFinalBri();
+    applyendBri();
     strip.trigger();
   } else {
     if (transitionActive) {
@@ -173,7 +173,7 @@ void handleTransitions() {
       if (jsonTransitionOnce) strip.setTransition(transitionDelay);
       transitionActive = false;
       jsonTransitionOnce = false;
-      applyFinalBri();
+      applyendBri();
       return;
     }
     byte briTO = briT;
@@ -250,7 +250,7 @@ void handleNightlight() {
           effectSpeed = colNlT[1];
           effectPalette = colNlT[2];
           toggleOnOff();
-          applyFinalBri();
+          applyendBri();
         }
       }
 

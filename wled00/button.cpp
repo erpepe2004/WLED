@@ -368,7 +368,7 @@ void handleIO()
 {
   handleButton();
 
-  // if we want to control on-board LED (ESP8266) or relay we have to do it here as the final show() may not happen until
+  // if we want to control on-board LED (ESP8266) or relay we have to do it here as the end show() may not happen until
   // next loop() cycle
   if (strip.getBrightness()) {
     lastOnTime = millis();

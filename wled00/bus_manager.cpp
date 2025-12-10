@@ -213,7 +213,7 @@ BusDigital::BusDigital(const BusConfig &bc, uint8_t nr)
 //I am NOT to be held liable for burned down garages or houses!
 
 // note on ABL implementation:
-// ABL is set up in finalizeInit()
+// ABL is set up in endizeInit()
 // scaled color channels are summed in BusDigital::setPixelColor()
 // the used current is estimated and limited in BusManager::show()
 // if limit is set too low, brightness is limited to 1 to at least show some light
@@ -233,7 +233,7 @@ void BusDigital::estimateCurrent() {
 
 void BusDigital::applyBriLimit(uint8_t newBri) {
   // a newBri of 0 means calculate per-bus brightness limit
-  _NPBbri = 255; // reset, intermediate value is set below, final value is calculated in bus::show()
+  _NPBbri = 255; // reset, intermediate value is set below, end value is calculated in bus::show()
   if (newBri == 0) {
     if (_milliAmpsLimit == 0 || _milliAmpsTotal == 0) return; // ABL not used for this bus
     newBri = 255;

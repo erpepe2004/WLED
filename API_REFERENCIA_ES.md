@@ -281,7 +281,7 @@ const fetch = require('node-fetch');
 const IP = "192.168.1.100";
 const apiUrl = `http://${IP}/json/state`;
 
-// Función auxiliar para enviar comandos
+// Función auxiliar para send comandos
 async function sendCommand(command) {
   const response = await fetch(apiUrl, {
     method: 'POST',
@@ -470,7 +470,7 @@ setInterval(async () => {
   "seg": [{
     "id": 0,                         // 0-9
     "start": 0,                      // LED inicial
-    "stop": 120,                     // LED final
+    "stop": 120,                     // LED end
     "on": true,                      // Boolean
     "bri": 255,                      // 0-255
     "col": [                         // Array de colores

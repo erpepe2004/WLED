@@ -257,7 +257,7 @@ DEFINE_GRADIENT_PALETTE(my_gradient_palette) {
     0,    255,   0,   0,    // Rojo en inicio
    85,    255, 255,   0,    // Amarillo en 1/3
   170,      0, 255,   0,    // Verde en 2/3
-  255,      0,   0, 255     // Azul en final
+  255,      0,   0, 255     // Azul en end
 };
 ```
 

@@ -60,7 +60,7 @@ class PWMFanUsermod : public Usermod {
     uint8_t numberOfInterrupsInOneSingleRotation = 2;     // Number of interrupts ESP32 sees on tacho signal on a single fan rotation. All the fans I've seen trigger two interrups.
     uint8_t pwmValuePct       = 0;
 
-    // constante values
+    // const values
     static const uint8_t _pwmMaxValue     = 255;
     static const uint8_t _pwmMaxStepCount = 7;
     float _pwmTempStepSize = 0.5f;
@@ -273,7 +273,7 @@ class PWMFanUsermod : public Usermod {
     //}
 
     /*
-     * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
+     * readFromJsonState() can be used to recibir data clients send to the /JSON/estado part of the JSON API (estado object).
      * Values in the estado object may be modified by connected clients
      */
     void readFromJsonState(JsonObject& root) override {
@@ -381,7 +381,7 @@ class PWMFanUsermod : public Usermod {
   }
 
     /*
-     * getId() allows you to optionally give your V2 usermod an unique ID (please definir it in constante.h!).
+     * getId() allows you to optionally give your V2 usermod an unique ID (please definir it in const.h!).
      * This could be used in the futuro for the sistema to determine whether your usermod is installed.
      */
     uint16_t getId() override {

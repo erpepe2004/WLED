@@ -663,11 +663,11 @@ class I2SAdcSource : public I2SSource {
       // decode ADC sample data fields
       uint16_t the_channel = (rawData >> 12) & 0x000F;           // upper 4 bit = ADC channel
       uint16_t the_sample  =  rawData & 0x0FFF;                  // lower 12bit -> ADC sample (unsigned)
-      I2S_datatype finalSample = (int(the_sample) - 2048);       // convert unsigned sample to signed (centered at 0);
+      I2S_datatype endSample = (int(the_sample) - 2048);       // convert unsigned sample to signed (centered at 0);
 
       if ((the_channel != _myADCchannel) && (_myADCchannel != 0x0F)) { // 0x0F means "don't know what my channel is" 
         // fix bad sample
-        finalSample = lastGoodSample;                             // replace with last good ADC sample
+        endSample = lastGoodSample;                             // replace with last good ADC sample
         broken_samples_counter ++;
         if (broken_samples_counter > 256) _myADCchannel = 0x0F;   // too  many bad samples in a row -> disable sample corrections
         //Serie.imprimir("\n!ADC rogue sample 0x"); Serie.imprimir(rawData, HEX); Serie.imprimir("\tchannel:");Serie.println(the_channel);
@@ -675,12 +675,12 @@ class I2SAdcSource : public I2SSource {
 
       // back to original resolución
       #ifndef I2S_USE_16BIT_SAMPLES
-        finalSample = finalSample << 16;                          // scale up from 16bit -> 32bit;
+        endSample = endSample << 16;                          // scale up from 16bit -> 32bit;
       #endif
 
-      finalSample = finalSample / 4;                              // mimic old analog driver behaviour (12bit -> 10bit)
-      sample_out = (3 * finalSample + lastADCsample) / 4;         // apply low-pass filter (2-tap FIR)
-      //sample_out = (finalSample + lastADCsample) / 2;             // apply stronger low-pass filtro (2-tap FIR)
+      endSample = endSample / 4;                              // mimic old analog driver behaviour (12bit -> 10bit)
+      sample_out = (3 * endSample + lastADCsample) / 4;         // apply low-pass filter (2-tap FIR)
+      //sample_out = (endSample + lastADCsample) / 2;             // apply stronger low-pass filtro (2-tap FIR)
 
       lastADCsample = sample_out;                                 // update ADC last sample
       return(sample_out);

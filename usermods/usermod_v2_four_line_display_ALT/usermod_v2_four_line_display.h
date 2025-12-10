@@ -271,7 +271,7 @@ class FourLineDisplayUsermod : public Usermod {
       //void addToJsonState(JsonObject& root) override;
   
       /*
-       * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
+       * readFromJsonState() can be used to recibir data clients send to the /JSON/estado part of the JSON API (estado object).
        * Values in the estado object may be modified by connected clients
        */
       //void readFromJsonState(JsonObject& root) override;
@@ -305,7 +305,7 @@ class FourLineDisplayUsermod : public Usermod {
       bool readFromConfig(JsonObject& root) override;
   
       /*
-       * getId() allows you to optionally give your V2 usermod an unique ID (please definir it in constante.h!).
+       * getId() allows you to optionally give your V2 usermod an unique ID (please definir it in const.h!).
        * This could be used in the futuro for the sistema to determine whether your usermod is installed.
        */
       uint16_t getId() override {

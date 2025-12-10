@@ -464,7 +464,7 @@ public:
       EA_DEBUG("BodyMethod2");
       body = request->getParam("body", true)->value();
     }
-    EA_DEBUG("FinalBody: ");
+    EA_DEBUG("endBody: ");
     EA_DEBUGLN(body);
   #else
   bool handleAlexaApiCall(String req, String body)

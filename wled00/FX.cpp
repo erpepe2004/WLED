@@ -1834,7 +1834,7 @@ uint16_t mode_random_chase(void) {
     uint8_t b = random8(6) != 0 ? (color       & 0xFF) : random8();
     color = RGBW32(r, g, b, 0);
     SEGMENT.setPixelColor(i, color);
-    if (i == SEGLEN -1U && SEGENV.aux1 != (it & 0xFFFFU)) { //new first color in next frame
+    if ((unsigned int)i == SEGLEN -1U && SEGENV.aux1 != (it & 0xFFFFU)) { //new first color in next frame
       SEGENV.step = color;
       SEGENV.aux0 = random16_get_seed();
     }
@@ -2123,7 +2123,7 @@ uint16_t mode_palette() {
         // That allows displaying exactly 2 repetitions for example.
         colorIndex = ((inputSize - 112) * colorIndex) / 16;
       }
-      // Finally, shift the palette a bit.
+      // endly, shift the palette a bit.
       const int paletteOffset = (!inputAnimateShift) ? (inputShift) : (((strip.now * ((inputShift >> 3) +1)) & 0xFFFF) >> 8);
       colorIndex -= paletteOffset;
       const uint32_t color = SEGMENT.color_wheel((uint8_t)colorIndex);
@@ -4010,7 +4010,7 @@ static const char _data_FX_MODE_HEARTBEAT[] PROGMEM = "Heartbeat@!,!;!,!;!;01;m1
 //
 // All four wave layers are added together on top of each other, and then
 // another filter is applied that adds "whitecaps" of brightness where the
-// waves line up with each other more.  Finally, another pass is taken
+// waves line up with each other more.  endly, another pass is taken
 // over the led array to 'deepen' (dim) the blues and greens.
 //
 // The speed and scale and motion each layer varies slowly within independent
@@ -5361,7 +5361,7 @@ uint16_t mode_2Dgameoflife(void) { // Written by Ewoud Wijma, inspired by https:
 
   if (repeatingOscillator || repeatingSpaceship || emptyGrid) {
     generation = 0; // reset on next call
-    SEGENV.step += 1024; // pause final generation for ~1 second
+    SEGENV.step += 1024; // pause end generation for ~1 second
   }
   else {
     ++generation;

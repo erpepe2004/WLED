@@ -51,6 +51,7 @@ python3 --version
 sudo apt update
 sudo apt install python3.7
 sudo apt install python3
+pip3 install esptool
 
 # powershell
 winget search Python
@@ -255,6 +256,15 @@ El firmware se encuentra en:
 Abre Administrador de dispositivos → Puertos (COM y LPT)
 Busca un puerto llamado "USB-SERIAL CH340" o similar
 Anota el número de puerto (ejemplo: COM3)
+
+Powershell
+Get-WmiObject Win32_SerialPort | Select-Object DeviceID, Name
+
+[System.IO.Ports.SerialPort]::GetPortNames()
+
+bash
+ls /dev/ttyUSB* /dev/ttyACM* /dev/ttyS*
+
 ```
 
 **Linux/Mac:**
@@ -471,7 +481,7 @@ pio run --target clean
 pio run -e nodemcuv2
 ```
 
-### El ESP8266 arranca pero se apaga constantemente
+### El ESP8266 arranca pero se apaga constmente
 
 **Causa:** Probablemente falta de alimentación o brownout.
 

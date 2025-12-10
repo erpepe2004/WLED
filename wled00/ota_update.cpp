@@ -194,12 +194,12 @@ std::pair<bool, String> getOTAResult(AsyncWebServerRequest* request) {
 
 
 
-void handleOTAData(AsyncWebServerRequest *request, size_t index, uint8_t *data, size_t len, bool isFinal)
+void handleOTAData(AsyncWebServerRequest *request, size_t index, uint8_t *data, size_t len, bool isend)
 {
   UpdateContext* context = reinterpret_cast<UpdateContext*>(request->_tempObject);
   if (!context) return;
 
-  //DEBUG_PRINTF_P(PSTR("HandleOTAData: %d %d %d\n"), index, len, isFinal);
+  //DEBUG_PRINTF_P(PSTR("HandleOTAData: %d %d %d\n"), index, len, isend);
 
   if (context->replySent || (context->errorMessage.length())) return;
 
@@ -251,7 +251,7 @@ void handleOTAData(AsyncWebServerRequest *request, size_t index, uint8_t *data, 
 
   // Check if validation was still pending (shouldn't happen normally)
   // This is done before writing the last chunk, so endOTA can abort 
-  if (isFinal && !context->releaseCheckPassed) {
+  if (isend && !context->releaseCheckPassed) {
     DEBUG_PRINTLN(F("OTA failed: Validation never completed"));
     // Don't write the last chunk to the updater: this will trip an error later
     context->errorMessage = F("Release check data never arrived?");
@@ -265,7 +265,7 @@ void handleOTAData(AsyncWebServerRequest *request, size_t index, uint8_t *data, 
     }
   }
 
-  if(isFinal) {
+  if(isend) {
     DEBUG_PRINTLN(F("OTA Update End"));
     // Upload complete
     context->uploadComplete = true;
@@ -653,7 +653,7 @@ std::pair<bool, String> getBootloaderOTAResult(AsyncWebServerRequest *request) {
 }
 
 // Handle bootloader OTA data
-void handleBootloaderOTAData(AsyncWebServerRequest *request, size_t index, uint8_t *data, size_t len, bool isFinal) {
+void handleBootloaderOTAData(AsyncWebServerRequest *request, size_t index, uint8_t *data, size_t len, bool isend) {
   BootloaderUpdateContext* context = reinterpret_cast<BootloaderUpdateContext*>(request->_tempObject);
 
   if (!context) {
@@ -682,7 +682,7 @@ void handleBootloaderOTAData(AsyncWebServerRequest *request, size_t index, uint8
   }
 
   // Only write to flash when upload is complete
-  if (isFinal) {
+  if (isend) {
     DEBUG_PRINTLN(F("Bootloader Upload Complete - validating and flashing"));
 
     if (context->buffer && context->bytesBuffered > 0) {

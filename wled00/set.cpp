@@ -227,7 +227,7 @@ void handleSettingsSet(AsyncWebServerRequest *request, byte subPage)
       }
       type |= request->hasArg(rf) << 7; // off refresh override
       text = request->arg(hs).substring(0,31);
-      // actual finalization is done in WLED::loop() (removing old busses and adding new)
+      // actual endization is done in WLED::loop() (removing old busses and adding new)
       // this may happen even before this loop is finished so we do "doInitBusses" after the loop
       busConfigs.emplace_back(type, pins, start, length, colorOrder | (channelSwap<<4), request->hasArg(cv), skip, awmode, freq, maPerLed, maMax, text);
       busesChanged = true;

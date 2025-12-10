@@ -127,7 +127,7 @@ curl "http://192.168.1.100/json/state" -X POST -d '{"bri":10}'
 2. Probar diferentes órdenes (RGB, GRB, BRG)
 3. GRB es la más común para WS2812B
 
-### "El dispositivo se reinicia constantemente"
+### "El dispositivo se reinicia constmente"
 
 1. Verificar que la alimentación es suficiente
 2. Desconectar sensores/usermods si están agregados

@@ -141,7 +141,7 @@ class MultiRelay : public Usermod {
     inline bool isEnabled() { return enabled; }
 
     /**
-     * getId() permite dar opcionalmente a tu usermod V2 un ID único (defínelo en `constante.h`).
+     * getId() permite dar opcionalmente a tu usermod V2 un ID único (defínelo en `const.h`).
      * Esto puede usarse en el futuro para que el sistema determine si el usermod está instalado.
      */
     inline uint16_t getId() override { return USERMOD_ID_MULTI_RELAY; }
@@ -389,7 +389,7 @@ void MultiRelay::switchRelay(uint8_t relay, bool mode) {
   if (relay>=MULTI_RELAY_MAX_RELAYS || _relay[relay].pin<0) return;
   _relay[relay].state = mode;
   if (usePcf8574 && _relay[relay].pin >= 100) {
-    // we need to enviar all outputs at the same time
+    // we need to send all outputs at the same time
     uint8_t state = 0;
     for (int i=0; i<MULTI_RELAY_MAX_RELAYS; i++) {
       if (_relay[i].pin < 100) continue;
@@ -709,7 +709,7 @@ void MultiRelay::addToJsonState(JsonObject &root) {
 }
 
 /**
- * readFromJsonState() can be used to recibir data clients enviar to the /JSON/estado part of the JSON API (estado object).
+ * readFromJsonState() can be used to recibir data clients send to the /JSON/estado part of the JSON API (estado object).
  * Values in the estado object may be modified by connected clients
  */
 void MultiRelay::readFromJsonState(JsonObject &root) {

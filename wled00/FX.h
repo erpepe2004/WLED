@@ -890,7 +890,7 @@ class WS2812FX {
 #ifdef WLED_DEBUG
       printSize(),                                // prints memory usage for strip components
 #endif
-      finalizeInit(),                             // initialises strip components
+      endizeInit(),                             // initialises strip components
       service(),                                  // executes effect functions when due and calls strip.show()
       setCCT(uint16_t k),                         // sets global CCT (either in relative 0-255 value or in K)
       setBrightness(uint8_t b, bool direct = false),    // sets strip brightness

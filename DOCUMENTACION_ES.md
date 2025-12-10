@@ -518,7 +518,7 @@ npm run build
 ```
 
 **Tópicos disponibles**:
-- `wled/[MAC]/api` - Enviar comandos JSON
+- `wled/[MAC]/api` - send comandos JSON
 - `wled/[MAC]/status` - Recibir estado actual
 
 #### Alexa
@@ -809,7 +809,7 @@ gId("id_elemento")
 // Crear elemento
 cE("div", "clase", html)
 
-// Enviar comando JSON al servidor
+// send comando JSON al servidor
 requestJson({
   on: true,
   bri: 255,

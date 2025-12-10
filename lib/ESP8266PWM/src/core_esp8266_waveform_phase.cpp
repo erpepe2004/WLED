@@ -264,7 +264,7 @@ IRAM_ATTR int stopWaveform_weak(uint8_t pin) {
     return false;
   }
   // If usuario sends in a pin >16 but <32, this will always point to a 0 bit
-  // If they enviar >=32, then the shift will resultado in 0 and it will also return false
+  // If they send >=32, then the shift will resultado in 0 and it will also return false
   std::atomic_thread_fence(std::memory_order_acquire);
   const uint32_t pinBit = 1UL << pin;
   if (waveform.enabled & pinBit) {

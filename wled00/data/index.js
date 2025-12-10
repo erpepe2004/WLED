@@ -265,7 +265,7 @@ function onLoad()
 		.catch((e)=>{
 			console.log("No array of holidays in holidays.json. Defaults loaded.");
 		})
-		.finally(()=>{
+		.endly(()=>{
 			loadBg();
 		});
 	} else
@@ -512,7 +512,7 @@ function loadPresets(callback = null)
 		//showToast(e, true);
 		presetError(false);
 	})
-	.finally(()=>{
+	.endly(()=>{
 		if (callback) setTimeout(callback,99);
 	});
 }
@@ -538,7 +538,7 @@ function loadPalettes(callback = null)
 		}
 		showToast(e, true);
 	})
-	.finally(()=>{
+	.endly(()=>{
 		if (callback) callback();
 		updateUI();
 	});
@@ -565,7 +565,7 @@ function loadFX(callback = null)
 		}
 		showToast(e, true);
 	})
-	.finally(()=>{
+	.endly(()=>{
 		if (callback) callback();
 		updateUI();
 	});
@@ -595,7 +595,7 @@ function loadFXData(callback = null)
 		}
 		showToast(e, true);
 	})
-	.finally(()=>{
+	.endly(()=>{
 		if (callback) callback();
 		updateUI();
 	});

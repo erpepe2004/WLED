@@ -163,7 +163,7 @@ public:
   }
 
   /**
-   * `getId()` permite asignar opcionalmente un ID único a este usermod V2 (defínelo en `constante.h`).
+   * `getId()` permite asignar opcionalmente un ID único a este usermod V2 (defínelo en `const.h`).
    * Esto puede usarse para que el sistema determine si el usermod está instalado.
    */
   uint16_t getId()

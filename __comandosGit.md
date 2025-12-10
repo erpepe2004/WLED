@@ -64,3 +64,22 @@ bash
 git checkout -- INSTALACION_ESP8266_ES.md
 git pull origin main
 ⚠️ Esto borra tus modificaciones locales en ese archivo.
+
+_________________
+
+Comandos recomendados:
+Limpiar build pero mantener libs/packages:
+pio run --target clean
+
+Borrar completamente la caché/entornos (recuperable mediante compilación):
+rm -rf .pio
+
+Recompilar después de borrarla:
+pio run -e nodemcuv2
+
+Consejos prácticos
+
+Si te falta espacio en disco, puedes borrar libdeps o todo .pio y luego reconstruir cuando necesites compilar.
+Si sólo tienes un problema de compilación, prueba primero:
+pio run --target clean
+pio run -e nodemcuv2 --verbose

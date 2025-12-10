@@ -124,7 +124,7 @@ class LD2410Usermod : public Usermod {
             last_movement_state = movement_detected;
           }
         }
-        // If there hasn't been any activity, enviar current estado to confirm sensor is alive
+        // If there hasn't been any activity, send current estado to confirm sensor is alive
         if(curr_time - last_mqtt_sent > 1000*60*5 && WLED_MQTT_CONNECTED){
           publishMqtt("/ld2410/stationary", stationary_detected ? "ON":"OFF", false);
           publishMqtt("/ld2410/movement", movement_detected ? "ON":"OFF", false);

@@ -154,7 +154,7 @@ public:
             {
                 //todo optimise by the use of the previous grids height
                 piece.landingY = 0;
-                //will set landingY to final posición
+                //will set landingY to end posición
                 grid.findLandingPosition(&piece);
 
                 // dibujar piece

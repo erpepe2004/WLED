@@ -568,7 +568,7 @@ void handleNotifications()
   if (receiveDirect) {
     //TPM2.NET
     if (udpIn[0] == 0x9c) {
-      //WARNING: this code assumes that the final TMP2.NET payload is evenly distributed if using multiple packets (ie. frame size is constant)
+      //WARNING: this code assumes that the end TMP2.NET payload is evenly distributed if using multiple packets (ie. frame size is constant)
       //if the number of LEDs in your installation doesn't allow that, please include padding bytes at the end of the last packet
       byte tpmType = udpIn[1];
       if (tpmType == 0xaa) { //TPM2.NET polling, expect answer

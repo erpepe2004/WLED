@@ -184,25 +184,25 @@ static String msgProcessor(const String& var)
 }
 
 
-static void handleUpload(AsyncWebServerRequest *request, const String& filename, size_t index, uint8_t *data, size_t len, bool isFinal) {
+static void handleUpload(AsyncWebServerRequest *request, const String& filename, size_t index, uint8_t *data, size_t len, bool isend) {
   if (!correctPIN) {
-    if (isFinal) request->send(401, FPSTR(CONTENT_TYPE_PLAIN), FPSTR(s_unlock_cfg));
+    if (isend) request->send(401, FPSTR(CONTENT_TYPE_PLAIN), FPSTR(s_unlock_cfg));
     return;
   }
   if (!index) {
-    String finalname = filename;
-    if (finalname.charAt(0) != '/') {
-      finalname = '/' + finalname; // prepend slash if missing
+    String endname = filename;
+    if (endname.charAt(0) != '/') {
+      endname = '/' + endname; // prepend slash if missing
     }
 
-    request->_tempFile = WLED_FS.open(finalname, "w");
-    DEBUG_PRINTF_P(PSTR("Uploading %s\n"), finalname.c_str());
-    if (finalname.equals(FPSTR(getPresetsFileName()))) presetsModifiedTime = toki.second();
+    request->_tempFile = WLED_FS.open(endname, "w");
+    DEBUG_PRINTF_P(PSTR("Uploading %s\n"), endname.c_str());
+    if (endname.equals(FPSTR(getPresetsFileName()))) presetsModifiedTime = toki.second();
   }
   if (len) {
     request->_tempFile.write(data,len);
   }
-  if (isFinal) {
+  if (isend) {
     request->_tempFile.close();
     if (filename.indexOf(F("cfg.json")) >= 0) { // check for filename with or without slash
       doReboot = true;
@@ -469,7 +469,7 @@ void initServer()
 
   server.on(F("/upload"), HTTP_POST, [](AsyncWebServerRequest *request) {},
         [](AsyncWebServerRequest *request, const String& filename, size_t index, uint8_t *data,
-                      size_t len, bool isFinal) {handleUpload(request, filename, index, data, len, isFinal);}
+                      size_t len, bool isend) {handleUpload(request, filename, index, data, len, isend);}
   );
 
   createEditHandler(); // initialize "/edit" handler, access is protected by "correctPIN"
@@ -498,7 +498,7 @@ void initServer()
       // No context structure - something's gone horribly wrong
       serveMessage(request, 500, F("Update failed!"), F("Internal server fault"), 254);
     }
-  },[](AsyncWebServerRequest *request, String filename, size_t index, uint8_t *data, size_t len, bool isFinal){
+  },[](AsyncWebServerRequest *request, String filename, size_t index, uint8_t *data, size_t len, bool isend){
     if (index == 0) { 
       // Allocate the context structure
       if (!initOTA(request)) {
@@ -525,14 +525,14 @@ void initServer()
       }      
     }
 
-    handleOTAData(request, index, data, len, isFinal);
+    handleOTAData(request, index, data, len, isend);
   });
 #else
   const auto notSupported = [](AsyncWebServerRequest *request){
     serveMessage(request, 501, FPSTR(s_notimplemented), F("This build does not support OTA update."), 254);
   };
   server.on(_update, HTTP_GET, notSupported);
-  server.on(_update, HTTP_POST, notSupported, [](AsyncWebServerRequest *request, String filename, size_t index, uint8_t *data, size_t len, bool isFinal){});
+  server.on(_update, HTTP_POST, notSupported, [](AsyncWebServerRequest *request, String filename, size_t index, uint8_t *data, size_t len, bool isend){});
 #endif
 
 #if defined(ARDUINO_ARCH_ESP32) && !defined(WLED_DISABLE_OTA)
@@ -551,7 +551,7 @@ void initServer()
       // No context structure - something's gone horribly wrong
       serveMessage(request, 500, F("Bootloader update failed!"), F("Internal server fault"), 254);
     }
-  },[](AsyncWebServerRequest *request, String filename, size_t index, uint8_t *data, size_t len, bool isFinal){
+  },[](AsyncWebServerRequest *request, String filename, size_t index, uint8_t *data, size_t len, bool isend){
     if (index == 0) {
       // Privilege checks
       IPAddress client = request->client()->remoteIP();
@@ -578,7 +578,7 @@ void initServer()
       }
     }
 
-    handleBootloaderOTAData(request, index, data, len, isFinal);
+    handleBootloaderOTAData(request, index, data, len, isend);
   });
 #endif
 

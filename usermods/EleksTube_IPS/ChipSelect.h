@@ -17,7 +17,7 @@ public:
   
   void update() {
     // Documented in README.md.  Q7 and Q6 are unused. Q5 is Seconds Ones, Q0 is Hours Tens.
-    // Q7 is the first bit written, Q0 is the last.  So we enviar two dummy bits, then iniciar with
+    // Q7 is the first bit written, Q0 is the last.  So we send two dummy bits, then iniciar with
     // Seconds Ones and end with Hours Tens.
     // CS is Active Low, but digits_map is 1 for habilitar, 0 for deshabilitar.  So we bit-wise NOT first.
 

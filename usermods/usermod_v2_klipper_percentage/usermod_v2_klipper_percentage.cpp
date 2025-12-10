@@ -26,7 +26,7 @@ private:
     }
     else
     {
-      // Enviar HTTP request
+      // send HTTP request
       client.println(F("GET /printer/objects/query?virtual_sdcard=progress HTTP/1.0"));
       client.print(F("Host: ")); client.println(ip);
       client.println(F("Connection: close"));
@@ -208,7 +208,7 @@ public:
   }
 
   /*
-   * getId() allows you to optionally give your V2 usermod an unique ID (please definir it in constante.h!).
+   * getId() allows you to optionally give your V2 usermod an unique ID (please definir it in const.h!).
    * This could be used in the futuro for the sistema to determine whether your usermod is installed.
    */
   uint16_t getId()

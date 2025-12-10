@@ -190,7 +190,7 @@ void WLED::loop()
     doInitBusses = false;
     DEBUG_PRINTLN(F("Re-init busses."));
     bool aligned = strip.checkSegmentAlignment(); //see if old segments match old bus(ses)
-    strip.finalizeInit(); // will create buses and also load default ledmap if present
+    strip.endizeInit(); // will create buses and also load default ledmap if present
     if (aligned) strip.makeAutoSegments();
     else strip.fixInvalidSegments();
     BusManager::setBrightness(scaledBri(bri)); // fix re-initialised bus' brightness #4005 and #4824
@@ -562,7 +562,7 @@ void WLED::beginStrip()
 {
   // Initialize NeoPixel Strip and button
   strip.setTransition(0); // temporarily prevent transitions to reduce segment copies
-  strip.finalizeInit(); // busses created during deserializeConfig() if config existed
+  strip.endizeInit(); // busses created during deserializeConfig() if config existed
   strip.makeAutoSegments();
   strip.setBrightness(0);
   strip.setShowCallback(handleOverlayDraw);

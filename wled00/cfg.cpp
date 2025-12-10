@@ -237,7 +237,7 @@ bool deserializeConfig(JsonObject doc, bool fromFS) {
 
       String host = elm[F("text")] | String();
       busConfigs.emplace_back(ledType, pins, start, length, colorOrder, reversed, skipFirst, AWmode, freqkHz, maPerLed, maMax, host);
-      doInitBusses = true;  // finalization done in beginStrip()
+      doInitBusses = true;  // endization done in beginStrip()
       if (!Bus::isVirtual(ledType)) s++; // have as many virtual buses as you want
     }
   } else if (fromFS) {
@@ -320,7 +320,7 @@ bool deserializeConfig(JsonObject doc, bool fromFS) {
       // analog always has length 1
       if (Bus::isPWM(dataType) || Bus::isOnOff(dataType)) count = 1;
       busConfigs.emplace_back(dataType, defPin, start, count, DEFAULT_LED_COLOR_ORDER, false, 0, RGBW_MODE_MANUAL_ONLY, 0);
-      doInitBusses = true;  // finalization done in beginStrip()
+      doInitBusses = true;  // endization done in beginStrip()
     }
   }
   if (hw_led["rev"] && BusManager::getNumBusses()) BusManager::getBus(0)->setReversed(true); //set 0.11 global reversed setting for first bus

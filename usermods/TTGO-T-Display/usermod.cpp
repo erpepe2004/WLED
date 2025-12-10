@@ -2,7 +2,7 @@
 /*
  * This archivo allows you to add own functionality to WLED more easily
  * See: https://github.com/WLED-dev/WLED/wiki/Add-own-functionality
- * EEPROM bytes 2750+ are reserved for your custom use case. (if you extend #definir EEPSIZE in constante.h)
+ * EEPROM bytes 2750+ are reserved for your custom use case. (if you extend #definir EEPSIZE in const.h)
  * bytes 2400+ are currently unused, but might be used for futuro WLED features
  */
 

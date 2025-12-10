@@ -34,7 +34,7 @@ const uint8_t u8x8_wled_logo_akemi_4x4[388] U8X8_FONT_SECTION("u8x8_wled_logo_ak
   * encoded = 1, 2, 3
 */
 /*
-constante uint8_t u8x8_wled_logo_akemi_5x5[604] U8X8_FONT_SECTION("u8x8_wled_logo_akemi_5x5") = 
+const uint8_t u8x8_wled_logo_akemi_5x5[604] U8X8_FONT_SECTION("u8x8_wled_logo_akemi_5x5") = 
   "\1\3\5\5\0\0\0\0\0\0\0\0\0\0\0\0\340\340\374\14\354\14\354\14|\14\354\14||\14\354"
   "\14\374\340\340\0\0\0\0\0\0\0\200\0\0\0\200\200\0\200\200\0\0\0\0\377\377\377\376\377\376\377\377"
   "\377\377\77\77\307\307\307\307\306\377\377\377\0\0\0\360\374>\77\307\0\0\61cg\357\347\303\301\200\0\0"
@@ -81,7 +81,7 @@ const uint8_t u8x8_wled_logo_2x2[133] U8X8_FONT_SECTION("u8x8_wled_logo_2x2") =
   * encode map = 1, 2, 3, 4
 */
 /*
-constante uint8_t u8x8_wled_logo_4x4[517] U8X8_FONT_SECTION("u8x8_wled_logo_4x4") = 
+const uint8_t u8x8_wled_logo_4x4[517] U8X8_FONT_SECTION("u8x8_wled_logo_4x4") = 
   "\1\4\4\4\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\374\374\374\374\374\374\374\374\374"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\300\300\300\300\300\377\377\377\377\377\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\377\377\377\377\377\17\17\17\17\17\0\0\0\0\0\0\0\0\0"
@@ -262,7 +262,7 @@ const uint8_t u8x8_4LineDisplay_WLED_icons_3x3[868] U8X8_FONT_SECTION("u8x8_4Lin
   * 12 = Akemi
 */
 /*
-constante uint8_t u8x8_4LineDisplay_WLED_icons_4x4[1540] U8X8_FONT_SECTION("u8x8_4LineDisplay_WLED_icons_4x4") = 
+const uint8_t u8x8_4LineDisplay_WLED_icons_4x4[1540] U8X8_FONT_SECTION("u8x8_4LineDisplay_WLED_icons_4x4") = 
   "\1\14\4\4\0\0\0\0`\360\360`\0\0\0\0\0\0\6\17\17\6\0\0\0\0\0\0`\360\360`"
   "\0\0\0\0\200\300\300\200\0\0\0\0\340\370\374\376\376\377\377\377\377\377\377\376\376\374\370\340\0\0\0\0"
   "\200\300\300\200\1\3\3\1\0\0\0\0\7\37\77\177\177\377\377\377\377\377\377\177\177\77\37\7\0\0\0\0"
@@ -454,7 +454,7 @@ const uint8_t u8x8_4LineDisplay_WLED_icons_6x6[3460] U8X8_FONT_SECTION("u8x8_4Li
   * 12 = Akemi
 */
 /*
-constante uint8_t u8x8_akemi_8x8[516] U8X8_FONT_SECTION("u8x8_akemi_8x8") = 
+const uint8_t u8x8_akemi_8x8[516] U8X8_FONT_SECTION("u8x8_akemi_8x8") = 
   "\14\14\10\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
   "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"

@@ -478,18 +478,18 @@ function createEditor(element,file){
 	};
 
 	function saveFile(filename,data){
-		var finalData = data;
+		var endData = data;
 		// Minify JSON files before upload
 		if (filename.toLowerCase().endsWith('.json')) {
 			try {
-				finalData = JSON.stringify(JSON.parse(data));
+				endData = JSON.stringify(JSON.parse(data));
 			} catch(e) {
 				alert("Invalid JSON! Please fix syntax.");
 				return;
 			}
 		}
 		var fd=new FormData();
-		fd.append("file",new Blob([finalData],{type:"text/plain"}),filename);
+		fd.append("file",new Blob([endData],{type:"text/plain"}),filename);
 		req.add("POST","/upload",fd,function(st,resp){
 			if (st!=200) alert("ERROR "+st+": "+resp);
 			else {

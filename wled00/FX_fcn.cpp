@@ -1147,7 +1147,7 @@ uint32_t Segment::color_from_palette(uint16_t i, bool mapping, bool moving, uint
 ///////////////////////////////////////////////////////////////////////////////
 
 //do not call this method from system context (network callback)
-void WS2812FX::finalizeInit() {
+void WS2812FX::endizeInit() {
   //reset segment runtimes
   restartRuntime();
 
@@ -1765,7 +1765,7 @@ uint8_t WS2812FX::getActiveSegmentsNum() const {
 }
 
 uint16_t WS2812FX::getLengthTotal() const {
-  unsigned len = Segment::maxWidth * Segment::maxHeight; // will be _length for 1D (see finalizeInit()) but should cover whole matrix for 2D
+  unsigned len = Segment::maxWidth * Segment::maxHeight; // will be _length for 1D (see endizeInit()) but should cover whole matrix for 2D
   if (isMatrix && _length > len) len = _length; // for 2D with trailing strip
   return len;
 }
@@ -1921,7 +1921,7 @@ void WS2812FX::fixInvalidSegments() {
   }
   // if any segments were deleted free memory
   purgeSegments();
-  // this is always called as the last step after finalizeInit(), update covered bus types
+  // this is always called as the last step after endizeInit(), update covered bus types
   for (const Segment &seg : _segments)
     seg.refreshLightCapabilities();
 }
@@ -1960,7 +1960,7 @@ void WS2812FX::printSize() {
 }
 #endif
 
-// load custom mapping table from JSON file (called from finalizeInit() or deserializeState())
+// load custom mapping table from JSON file (called from endizeInit() or deserializeState())
 // if this is a matrix set-up and default ledmap.json file does not exist, create mapping table using setUpMatrix() from panel information
 // WARNING: effect drawing has to be suspended (strip.suspend()) or must be called from loop() context
 bool WS2812FX::deserializeMap(unsigned n) {
