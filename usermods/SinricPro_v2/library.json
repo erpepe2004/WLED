@@ -1,0 +1,22 @@
+{
+  "name": "SinricPro Usermod",
+  "version": "1.0.0",
+  "description": "SinricPro integration usermod for WLED. Allows controlling LED strips via SinricPro app with configurable credentials.",
+  "keywords": "sinricpro,smart-home,iot,led,control",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WLED-dev/WLED"
+  },
+  "authors": [
+    {
+      "name": "WLED Contributors"
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://www.wled.me",
+  "frameworks": "platformio",
+  "platforms": ["espressif32", "espressif8266"],
+  "export": {
+    "exclude": ["test", ".git*", "*.md"]
+  }
+}

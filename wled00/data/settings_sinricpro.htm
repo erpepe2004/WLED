@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+	<title>SinricPro Settings</title>
+	<script src="common.js" type="text/javascript"></script>
+	<script>
+		// Configuration for SinricPro usermod
+		function S() {
+			getLoc();
+			fetch(getURL('/json/cfg'), {
+				method: 'get'
+			})
+			.then(res => res.json())
+			.then(json => {
+				if (json.SinricPro) {
+					gId('enabled').checked = json.SinricPro.enabled || false;
+					gId('deviceId').value = json.SinricPro.deviceId || '';
+					gId('appKey').value = json.SinricPro.appKey || '';
+					gId('appSecret').value = json.SinricPro.appSecret || '';
+				}
+			})
+			.catch(e => console.error('Error loading SinricPro config:', e));
+		}
+
+		function GetV(f) {
+			if (f == null) {
+				S();
+				return;
+			}
+			let obj = {};
+			obj.SinricPro = {
+				enabled: gId('enabled').checked,
+				deviceId: gId('deviceId').value,
+				appKey: gId('appKey').value,
+				appSecret: gId('appSecret').value
+			};
+			return obj;
+		}
+
+		function preGetV(f) {
+			return GetV(f);
+		}
+
+		S();
+	</script>
+	<style>
+		.label-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: 10px 0;
+			padding: 5px 0;
+		}
+		.label-row label {
+			flex: 0 0 auto;
+			min-width: 150px;
+			margin-right: 10px;
+		}
+		.label-row input {
+			flex: 1 1 auto;
+			min-width: 200px;
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+		.checkbox-row {
+			display: flex;
+			align-items: center;
+			margin: 10px 0;
+		}
+		.checkbox-row input[type="checkbox"] {
+			margin-right: 10px;
+		}
+		.info-text {
+			color: #666;
+			font-size: 0.9em;
+			margin-top: 5px;
+			margin-bottom: 15px;
+		}
+		.section-title {
+			font-size: 1.1em;
+			font-weight: bold;
+			margin-top: 15px;
+			margin-bottom: 10px;
+			border-bottom: 1px solid #ddd;
+			padding-bottom: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div id="msg"></div>
+	<h2>SinricPro Configuration</h2>
+	
+	<form id="form_s" name="Sf">
+		<div class="section-title">SinricPro Settings</div>
+		<p class="info-text">Configure SinricPro integration for WLED LED control via SinricPro app.</p>
+
+		<div class="checkbox-row">
+			<input type="hidden" name="SinricPro:enabled" value="false">
+			<input id="enabled" type="checkbox" name="SinricPro:enabled" value="true">
+			<label for="enabled">Enable SinricPro</label>
+		</div>
+
+		<div class="label-row">
+			<label for="deviceId">Device ID:</label>
+			<input id="deviceId" type="text" name="SinricPro:deviceId" placeholder="693c36596ebb39d664cbf65b" maxlength="100">
+		</div>
+
+		<div class="label-row">
+			<label for="appKey">App Key:</label>
+			<input id="appKey" type="text" name="SinricPro:appKey" placeholder="cfc93eb7-e6d4-40a7-87ed-d1355aa14da2" maxlength="100">
+		</div>
+
+		<div class="label-row">
+			<label for="appSecret">App Secret:</label>
+			<input id="appSecret" type="password" name="SinricPro:appSecret" placeholder="e975af56-388c-4512-88b8-8ccd5fd6c776-..." maxlength="200">
+		</div>
+
+		<p class="info-text">
+			<strong>Note:</strong> You need a SinricPro account and registered device. 
+			Get your credentials from <a href="https://sinric.pro" target="_blank">https://sinric.pro</a>
+		</p>
+
+		<button type="button" onclick="requestJson(preGetV, null, 200);">Save</button>
+		<button type="button" onclick="window.location.href='/settings/';">Back</button>
+	</form>
+
+	<script src="settings.js" type="text/javascript"></script>
+</body>
+</html>
